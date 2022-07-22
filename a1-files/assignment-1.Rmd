@@ -1,0 +1,37 @@
+---
+title: "Assignment 1"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Deliverable
+
+Submit a description each of three spatial datasets with approximately 
+the same spatial extent. One dataset should be a set of points; one should be a 
+set of polygons; and one should be a set of lines. Your description can be 
+entirely text, and it may include tables and other graphics. You should include 
+the following information about each dataset.
+
+* The spatial extent
+* The unit of observation
+* The spatial data type (e.g. points, lines, or polygons)
+* The spatial data format (e.g. KML, geoJSON, shapefile)
+* A description of each variable
+* The coordinate reference system
+* The data source (who created the data and where did you find it)
+
+# Relevant Skills
+
+Getting street data from OpenStreetMap
+Getting spatial data from the R tidycensus package
+Getting spatial data from the R tigris package
+Getting spatial data from U.S. Census TIGER files (web interface)
+Getting national and subnational boundaries from rnaturalearth
+
+# Examples
+
+
+

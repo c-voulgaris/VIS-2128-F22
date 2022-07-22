@@ -1,0 +1,80 @@
+---
+title: "Getting Street Data from OpenStreetMap"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+OpenStreetMap can be a good sources of street data for many areas of the world.
+`osmextract` is one of a few different R packages that make it easy to download
+OpenStreetMap data directly into R. YOu can find more details on the package 
+and how to use it [here](https://cran.r-project.org/web/packages/osmextract/vignettes/osmextract.html){target="_blank"}.
+
+# Required packages
+
+This skills page uses the following three packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(osmextract)
+library(tidyverse)
+library(sf)
+library(here)
+```
+
+# Search for a location
+
+All of the functions in the `osmextract` package begin with the prefix `oe_`.We'll use `oe_match()` to find a url for the San Luis Obispo street network. `oe_match()` will save a download url to the variable called `SLO_file` and print a message with the name of the provider.
+
+```{r}
+SLO_file <- oe_match("San Luis Obispo")
+```
+
+# Download data
+
+Now, we can use `oe_read()` to both download the data to the networks folder and
+to read in a layer of lines representing the street network. The function will 
+read all line features within the area (including rivers, for example), so we'll
+filter to only include lines that are tagged as "highways" (all roads and even 
+pedestrian paths are tagged as highways in OpenStreetMap).
+
+```{r}
+SLO_streets <- oe_read(SLO_file$url, 
+                   provider = "openstreetmap_fr", 
+                   layer = "lines", 
+                   quiet = TRUE) %>%
+  filter(!is.na(highway)) 
+```
+
+# View the data
+
+Let's take a look at those streets by plotting a quick map. This can be a nice quick check to make sure you're getting the data you expected.
+
+```{r}
+ggplot(SLO_streets) +
+  geom_sf()
+```
+
+Now that I have the data loaded in R, I can continue to work with it in R, or I 
+can save it to a file format of my choice. The `sf` package has a function 
+called `st_write()` that can save your spatial data into most common spatial 
+data formats (all functions in the sf package begin with an `st_` prefix).
+
+Here is how I would save my streets as a shapefile you can open in ArcGIS. 
+Remember that ESRI shapefiles are collections of files. This will write a set of
+four files into a folder called "SLO-streets" (assuming you already have a 
+folder with that name in your working directory).
+
+```{r, eval=FALSE}
+st_write(SLO_streets, here("SLO-streets", 
+                           "SLO-streets.shp"))
+```
+
+You could use the same function to save it as a geoJSON file. In this case, you 
+don't need to make a subfolder for it because a geoJSON is a single file.
+
+```{r, eval=FALSE}
+st_write(SLO_streets, here("SLO-streets.geojson"))
+```
+

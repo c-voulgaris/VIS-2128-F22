@@ -1,0 +1,47 @@
+---
+title: "Spatial Analysis"
+subtitle: "Fall 2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is the course webpage for Spatial Analysis (VIS 2128) at the Harvard 
+Graduate School of Design.
+
+# Course Topics
+
+* Week 1: Describing (spatial) datasets
+    * Tabular data structure
+    * Spatial data format
+    * Unit of analysis
+    * Variables
+    
+* Week 2: Visualizing (spatial) data
+    * Symbology for points, lines, and polygons
+    * Coordinate reference systems and map projection
+    
+* Week 3: Calculating variables
+    * Areas and densities
+    
+# Assignments
+
+* Assignment 1: Select and describe a dataset
+    * Census data
+    * Municipal open data portals
+    * Due September 8
+
+* Assignment 2: Remix a map
+    * Due September 15
+
+* Assignment 3: Generate new variables
+    * Due September 22
+
+* Assignment 4: Relate layers by calculating distances
+    * Get centroids
+    * Due September 29
+
+* Assignment 5: Spatial sampling and clustering
+    * Due October 6
