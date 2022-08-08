@@ -1,0 +1,49 @@
+---
+title: "Plotting spatial data with ggplot"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+You can create beautiful maps using ggplot. The focus of this page 
+is to offer a minimal example of how you can quickly plot a spatial 
+dataset. This will be useful if you have loaded some data and you 
+want to quickly confirm that the file contains what you expected it 
+to.
+
+# Required packages
+
+This skills page uses the following three packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(sf)
+library(here)
+```
+
+# Load data from a  file
+
+I'll start by reading in some data. 
+
+```{r, message=FALSE, warning=FALSE}
+SLO_streets <- st_read(here("a1-files",
+                            "SLO-streets.geojson"))
+```
+
+
+# Plot data
+
+You can use the `ggplot()` for a wide variety of data 
+visulalizations, including scatter plots, bar charts, histograms,
+and (what we'll use it for here) maps.
+
+The first line in the code chunk below sets up the plot and 
+specifies the dataset the plot will represent. `geom_sf()` indicates
+that we want to plot the spatial data as a map.
+
+```{r}
+ggplot(SLO_streets) +
+  geom_sf()
+```

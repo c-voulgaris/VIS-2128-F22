@@ -23,13 +23,19 @@ the following information about each dataset.
 * The coordinate reference system
 * The data source (who created the data and where did you find it)
 
+Choose wisely and carefully! You will be working with these three datasets for
+the remainder of this course.
+
 # Relevant Skills
 
-Getting street data from OpenStreetMap
+[Getting street data from OpenStreetMap (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-load-osm-data.html){target="_blank"}
 Getting spatial data from the R tidycensus package
 Getting spatial data from the R tigris package
 Getting spatial data from U.S. Census TIGER files (web interface)
 Getting national and subnational boundaries from rnaturalearth
+Saving data from R to another data format
+Determining the coordinate reference system for spatial data in R
+Determining the coordinate reference system for a dataset in ArcGIS
 
 # Examples
 

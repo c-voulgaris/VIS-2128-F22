@@ -1,0 +1,92 @@
+---
+title: "Loading spatial data from tidycensus"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The `tidycensus` package for R is a very convenient way to download census data 
+along with associated boundaries. The author of the package has provided really
+excellent documentation 
+[here](https://walker-data.com/tidycensus/){target="_blank"}, and you can find 
+even more useful methods in his (free) ebook, 
+[Analyzing US Census Data](https://walker-data.com/census-r/index.html){target="_blank"}.
+
+# Required package
+
+This skills page uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidycensus)
+library(tidyverse)
+library(sf)
+library(here)
+```
+
+# Getting and installing a census API key
+
+Before you can use the `tidycensus` package, you will need to register for a 
+Census API key here. It can take one or two business days to get a key, so do 
+this well before the assignment is due.
+
+Your API key will be a string of letters and numbers. If your API key is 
+"1234567abcdEFG" (and it isn't), you can install your API key by typing 
+`census_api_key("1234567abcdEFG", install = TRUE)` into your console. You should
+only ever need to do this once.
+
+# Selecting variables
+
+When you download a set of polygons using `tidycensus`, you can select from 
+many different variables to include with them. To see what your options are, 
+you can type `View(load_variables(2020, "acs5"))` into your console. Of course,
+you can select a year other than 2020. "acs5" indicates that you want data from 
+the 5-year sample of the American Community Survey. Alternatives are "acs1" for 
+American Community Survey 1-year sample or "sf1" for the decennial census.
+
+After you type that into your console, you'll see a table like the one below. 
+There is a search box at the top right (circled in red below) you can use to 
+find a variable you're interested in. The first column shows the variable name; 
+the second and third columns describe the variable, and the fourth column shows 
+the smallest census geography for which the variable is available.
+
+```{r var-search, echo = FALSE, fig.asp=1.0, out.width='100%'}
+here("a1-files",
+     "images",
+     "tidycensus-variable-search.png") %>%
+knitr::include_graphics()
+```
+
+# Loading data
+
+Let's say I'm interested in the total population and the population of 
+foreign-born residents for each census tract in San Luis Obispo County, 
+California. I've determined that the variable name for total population is 
+`B01003_001` and the variable name for the foreign-born population is 
+`B05002_013`.
+
+I can download the census tract boundaries for San Luis Obispo County along with
+the estimates and standard deviations for those two variables with the following
+code:
+
+```{r, message=FALSE, results='hide'}
+vars <- c(total_pop = "B01003_001",
+          foreign_pop = "B05002_013")
+
+SLO_tracts <- get_acs(geography = "tract",
+                      state = "CA",
+                      county = "San Luis Obispo",
+                      variables = vars,
+                      output = "wide",
+                      geometry = TRUE)
+```
+
+`output = "wide"` specifies that I want one row for each census tract and a
+column for each variable (the alternative is `output = "tidy"` which will 
+rarely be what you want). `geometry = TRUE` indicates that you want the tract 
+boundaries in addition to a table of the tract IDs and variables. 
+
+From there, you might choose to quickly plot the data within R (either using
+ggplot or leaflet) just to see what it looks like, or you might save it to 
+another file format to work with it using different software.
