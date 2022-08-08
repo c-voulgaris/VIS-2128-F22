@@ -31,9 +31,13 @@ Graduate School of Design.
 * Assignment 1: Select and describe a dataset
     * Census data
     * Municipal open data portals
+    * Aspatial filtering
+    * Spatial filtering
     * Due September 8
 
 * Assignment 2: Remix a map
+    * Georeferencing
+    * Symbology
     * Due September 15
 
 * Assignment 3: Generate new variables

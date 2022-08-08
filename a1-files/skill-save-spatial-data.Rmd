@@ -1,0 +1,56 @@
+---
+title: "Saving spatial data"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Once you've loaded and/or edited data in R, you might want to 
+save it to a file that you can open later in R or another 
+software.
+
+# Required packages
+
+This skills page uses the following three packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(sf)
+library(here)
+```
+
+# Load data from a  file
+
+I'll start by reading in some data. 
+
+```{r, message=FALSE, warning=FALSE}
+SLO_streets <- st_read(here("a1-files",
+                            "SLO-streets.geojson"))
+```
+
+# Save data to a file
+
+The `sf` package has a function 
+called `st_write()` that can save your spatial data into most common spatial 
+data formats (all functions in the sf package begin with an `st_` prefix).
+
+Here is how I would save my streets as a shapefile I can open in ArcGIS. 
+Remember that ESRI shapefiles are collections of files, and it's a
+good practice to keep this set of files in its own little subfolder.
+The code below will write a set of four files into a folder called 
+"SLO-streets" (you will need to have already created a folder with
+that name in your working directory).
+
+```{r, eval=FALSE}
+st_write(SLO_streets, here("SLO-streets", 
+                           "SLO-streets.shp"))
+```
+
+You could use the same function to save it as a geoJSON file. In this case, you 
+don't need to make a subfolder for it first because a geoJSON is a single file.
+
+```{r, eval=FALSE}
+st_write(SLO_streets, here("SLO-streets.geojson"))
+```

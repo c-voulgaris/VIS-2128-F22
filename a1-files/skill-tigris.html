@@ -11,7 +11,7 @@
 
 
 
-<title>Spatial Analysis</title>
+<title>Loading spatial data from tigris</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -361,61 +361,93 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Spatial Analysis</h1>
-<h3 class="subtitle">Fall 2022</h3>
+<h1 class="title toc-ignore">Loading spatial data from tigris</h1>
 
 </div>
 
 
-<p>This is the course webpage for Spatial Analysis (VIS 2128) at the
-Harvard Graduate School of Design.</p>
-<div id="course-topics" class="section level1">
-<h1>Course Topics</h1>
-<ul>
-<li>Week 1: Describing (spatial) datasets
-<ul>
-<li>Tabular data structure</li>
-<li>Spatial data format</li>
-<li>Unit of analysis</li>
-<li>Variables</li>
-</ul></li>
-<li>Week 2: Visualizing (spatial) data
-<ul>
-<li>Symbology for points, lines, and polygons</li>
-<li>Coordinate reference systems and map projection</li>
-</ul></li>
-<li>Week 3: Calculating variables
-<ul>
-<li>Areas and densities</li>
-</ul></li>
-</ul>
+<p>The <code>tigris</code> package is a convenient way to load TIGER
+data from the United States Census Bureau into R. The author of the
+<code>tigris</code> package, Kyle Walker, has written a free ebook about
+working with census data in R, and you can read more about the
+<code>tigris</code> package in chapter 5 of that book, <a href="https://walker-data.com/census-r/census-geographic-data-and-applications-in-r.html">here</a>.</p>
+<p>Census boundaries, such as national, state, county, or census tract
+boundaries can be loaded from <code>tigris</code>, but if you load them
+through the <code>tidycensus</code> package, you can get a wide variety
+of population and housing variables at the same time, so I recommend you
+use <code>tidycensus</code> for census boundaries. <code>tigris</code>
+is especially useful for loading data on roads, water features, and
+landmarks.</p>
+<div id="required-packages" class="section level1">
+<h1>Required packages</h1>
+<p>This skills page uses the following packages:</p>
+<pre class="r"><code>library(tigris)
+library(tidyverse)
+library(sf)
+library(here)</code></pre>
 </div>
-<div id="assignments" class="section level1">
-<h1>Assignments</h1>
+<div id="getting-and-installing-a-census-api-key" class="section level1">
+<h1>Getting and installing a census API key</h1>
+<p>Before you can use the <code>tidycensus</code> package, you will need
+to register for a Census API key <a href="https://api.census.gov/data/key_signup.html" target="_blank">here</a>. It can take one or two business days to get a
+key, <em>so do this well before the assignment is due</em>.</p>
+<p>Your API key will be a string of letters and numbers. If your API key
+is “1234567abcdEFG” (it isn’t), you can install your API key by typing
+<code>census_api_key(&quot;1234567abcdEFG&quot;, install = TRUE)</code> into your
+console. You should only ever need to do this once.</p>
+</div>
+<div id="loading-data" class="section level1">
+<h1>Loading data</h1>
+<p>The census collects data on landmarks such as parks, schools,
+airports, and cemeteries. Some landmarks are stored as points, and
+others are stored as areas. You can use the <code>landmarks()</code>
+function to download either point landmarks or area landmarks. Landmarks
+are available for states (i.e. you must specify which state you want and
+you can’t specify a lower geography level like a county).</p>
+<p>Here is how you would download all the point landmarks in Rhode
+Island:</p>
+<pre class="r"><code>ri_landmark_pts &lt;- landmarks(state = &quot;Rhode Island&quot;, type = &quot;point&quot;)</code></pre>
+<p>Here is how I would download all the area landmarks in Rhode Island
+in Connecticut:</p>
+<pre class="r"><code>ct_landmark_areas &lt;- landmarks(state = &quot;Connecticut&quot;, type = &quot;area&quot;)</code></pre>
+<p><code>area_water()</code> represents areas of water such as lakes or
+areas covered by rivers and streams as polygons. You must specify a
+state and a county.</p>
+<pre class="r"><code>boston_lakes &lt;- area_water(state = &quot;Massachusetts&quot;, county = &quot;Suffolk&quot;)</code></pre>
+<p><code>linear_water()</code> represents rivers, streams, and canals as
+lines. You must speficy a state and a county.</p>
+<pre class="r"><code>westchester_rivers &lt;- linear_water(state = &quot;New York&quot;, 
+                                   county = &quot;Westchester&quot;)</code></pre>
+<p><code>primary_roads()</code> represents major roads (e.g. freeways)
+as lines. You can’t specify a specific geography; this function will
+give you all the primary roads in the United States.</p>
+<pre class="r"><code>usa_roads &lt;- primary_roads()</code></pre>
+<p><code>primary_secondary_roads()</code> represents roads like freeways
+and arterials (primary and secondary roads) as lines. You must specify a
+state.</p>
+<pre class="r"><code>kentucky_roads &lt;- primary_secondary_roads(state = &quot;Kentucky&quot;)</code></pre>
+<p><code>roads()</code> represents all roads, including local
+neighborhood streets, as lines. You mush specify a state and county.</p>
+<pre class="r"><code>SLC_roads &lt;- roads(state = &quot;Utah&quot;, county = &quot;Salt Lake&quot;)</code></pre>
+<p><code>rails()</code> represents all rail lines as as lines. You can’t
+specify a specific geography; this function will give you all the rail
+lines in the United States.</p>
+<pre class="r"><code>USA_rail &lt;- rails()</code></pre>
+</div>
+<div id="differentiating-among-types-of-features" class="section level1">
+<h1>Differentiating among types of features</h1>
+<p>TIGER features (whether you download them using <code>tigris</code>
+or via the web interface) will include a variable called MTFCC with a
+five-digit code (a letter followed by four numbers). These codes
+classify features by type. For example, the boston_lakes dataset loaded
+above using the <code>area_water()</code> function has four different
+values for this variable: H2030, H2040, H2051, and H3010. You can find
+definitions of these codes at the census website, <a href="https://www.census.gov/library/reference/code-lists/mt-feature-class-codes.html" target="_blank">here</a>, where you’ll see that:</p>
 <ul>
-<li>Assignment 1: Select and describe a dataset
-<ul>
-<li>Census data</li>
-<li>Municipal open data portals</li>
-<li>Due September 8</li>
-</ul></li>
-<li>Assignment 2: Remix a map
-<ul>
-<li>Due September 15</li>
-</ul></li>
-<li>Assignment 3: Generate new variables
-<ul>
-<li>Due September 22</li>
-</ul></li>
-<li>Assignment 4: Relate layers by calculating distances
-<ul>
-<li>Get centroids</li>
-<li>Due September 29</li>
-</ul></li>
-<li>Assignment 5: Spatial sampling and clustering
-<ul>
-<li>Due October 6</li>
-</ul></li>
+<li>H2030 indicates a lake/pond</li>
+<li>H2040 indicates a resevoir</li>
+<li>H2051 indicates a bay/estuary/gulf/sound</li>
+<li>H3010 indicates a stream/river</li>
 </ul>
 </div>
 

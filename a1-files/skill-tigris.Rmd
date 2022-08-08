@@ -1,0 +1,129 @@
+---
+title: "Loading spatial data from tigris"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The `tigris` package is a convenient way to load TIGER data from 
+the United States Census Bureau into R. The author of the `tigris`
+package, Kyle Walker, has written a free ebook about working with 
+census data in R, and you can read more about the `tigris` package
+in chapter 5 of that book, [here](https://walker-data.com/census-r/census-geographic-data-and-applications-in-r.html).
+
+Census boundaries, such as national, state, county, or census tract
+boundaries can be loaded from `tigris`, but if you load them through
+the `tidycensus` package, you can get a wide variety of population
+and housing variables at the same time, so I recommend you use 
+`tidycensus` for census boundaries. `tigris` is especially useful 
+for loading data on roads, water features, and landmarks.
+
+# Required packages
+
+This skills page uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tigris)
+library(tidyverse)
+library(sf)
+library(here)
+```
+
+# Getting and installing a census API key
+
+Before you can use the `tidycensus` package, you will need to 
+register for a  Census API key
+[here](https://api.census.gov/data/key_signup.html){target="_blank"}. 
+It can take one or two business days to get a key, *so do 
+this well before the assignment is due*.
+
+Your API key will be a string of letters and numbers. If your API key is 
+"1234567abcdEFG" (it isn't), you can install your API key by typing 
+`census_api_key("1234567abcdEFG", install = TRUE)` into your console. 
+You should only ever need to do this once.
+
+# Loading data
+
+The census collects data on landmarks such as parks, schools, 
+airports, and cemeteries. Some landmarks are stored as points, and 
+others are stored as areas. You can use the `landmarks()` function 
+to download either point landmarks or area landmarks. Landmarks are 
+available for states (i.e. you must specify which state you want
+and you can't specify a lower geography level like a county).
+
+Here is how you would download all the point landmarks in Rhode 
+Island:
+
+```{r, message = FALSE, results='hide'}
+ri_landmark_pts <- landmarks(state = "Rhode Island", type = "point")
+```
+
+Here is how I would download all the area landmarks in Rhode Island in
+Connecticut:
+
+```{r, message = FALSE, results='hide'}
+ct_landmark_areas <- landmarks(state = "Connecticut", type = "area")
+```
+
+`area_water()` represents areas of water such as lakes or areas 
+covered by rivers and streams as polygons. You must specify a state and
+a county.
+
+```{r, message = FALSE, results='hide'}
+boston_lakes <- area_water(state = "Massachusetts", county = "Suffolk")
+```
+
+`linear_water()` represents rivers, streams, and canals as lines. You
+must speficy a state and a county.
+
+```{r, message = FALSE, results='hide'}
+westchester_rivers <- linear_water(state = "New York", 
+                                   county = "Westchester")
+```
+
+`primary_roads()` represents major roads (e.g. freeways) as lines. 
+You can't specify a specific geography; this function will give you all
+the primary roads in the United States.
+
+```{r, message = FALSE, results='hide'}
+usa_roads <- primary_roads()
+```
+
+`primary_secondary_roads()` represents roads like freeways and 
+arterials (primary and secondary roads) as lines. You must specify a 
+state.
+
+```{r, message = FALSE, results='hide'}
+kentucky_roads <- primary_secondary_roads(state = "Kentucky")
+```
+
+`roads()` represents all roads, including local neighborhood streets, as lines. You mush specify a state and county.
+
+```{r, message = FALSE, results='hide'}
+SLC_roads <- roads(state = "Utah", county = "Salt Lake")
+```
+
+`rails()` represents all rail lines as as lines. You can't specify a specific geography; this function will give you all the 
+rail lines in the United States.
+
+```{r, message = FALSE, results='hide'}
+USA_rail <- rails()
+```
+
+# Differentiating among types of features
+
+TIGER features (whether you download them using `tigris` or via the 
+web interface) will include a variable called MTFCC with a five-digit 
+code (a letter followed by four numbers). These codes classify features
+by type. For example, the boston_lakes dataset loaded above using the
+`area_water()` function has four different values for this variable: 
+H2030, H2040, H2051, and H3010. You can find definitions of these
+codes at the census website, 
+[here](https://www.census.gov/library/reference/code-lists/mt-feature-class-codes.html){target="_blank"}, where you'll see that:
+
+* H2030 indicates a lake/pond
+* H2040 indicates a resevoir
+* H2051 indicates a bay/estuary/gulf/sound
+* H3010 indicates a stream/river

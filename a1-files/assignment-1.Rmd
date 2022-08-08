@@ -18,7 +18,7 @@ the following information about each dataset.
 * The spatial extent
 * The unit of observation
 * The spatial data type (e.g. points, lines, or polygons)
-* The spatial data format (e.g. KML, geoJSON, shapefile)
+* The spatial data format (e.g. KML, geoJSON, shapefile, R simple features)
 * A description of each variable
 * The coordinate reference system
 * The data source (who created the data and where did you find it)
@@ -28,14 +28,23 @@ the remainder of this course.
 
 # Relevant Skills
 
-[Getting street data from OpenStreetMap (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-load-osm-data.html){target="_blank"}
-Getting spatial data from the R tidycensus package
-Getting spatial data from the R tigris package
-Getting spatial data from U.S. Census TIGER files (web interface)
-Getting national and subnational boundaries from rnaturalearth
-Saving data from R to another data format
-Determining the coordinate reference system for spatial data in R
-Determining the coordinate reference system for a dataset in ArcGIS
+You are unlikely to use all of these skills in this assignment, but all 
+of them are relevant and you will probably use several of them.
+
+* [Getting street data from OpenStreetMap (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-load-osm-data.html){target="_blank"}
+* [Getting spatial data from the tidycensus package (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-tidycensus.html){target="_blank"}
+* [Getting spatial data from the tigris package (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-tigris.html){target="_blank"}
+* [Getting spatial data from U.S. Census TIGER files (web interface)](https://harvard.zoom.us/rec/play/QV2SCI71O-N_cgWLR0k0BMTb_WeldF-C4CaEhNxOcpJ7HcdM5nv3g1Lmv_nyqQ7XOboT2HWXhRkJblNA.Gd0LSXr6MkFzVIYC?startTime=1602525515000){target="_blank"}
+* Getting national and subnational boundaries from rnaturalearth (R)
+* [Saving spatial data (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-save-spatial-data.html){target="_blank"}
+* [Plotting spatial data using ggplot (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-ggplot-map.html){target="_blank"}
+* Plotting spatial data using leaflet (R)
+* Determining the coordinate reference system for spatial data in R
+* Determining the coordinate reference system for a dataset in ArcGIS
+* Spatial filtering (R)
+* Aspatial filtering (R)
+* Spatial filtering (ArcGIS)
+* Aspatial filtering (ArgGIS)
 
 # Examples
 

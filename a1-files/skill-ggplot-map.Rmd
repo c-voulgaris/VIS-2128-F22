@@ -32,7 +32,6 @@ SLO_streets <- st_read(here("a1-files",
                             "SLO-streets.geojson"))
 ```
 
-
 # Plot data
 
 You can use the `ggplot()` for a wide variety of data 
