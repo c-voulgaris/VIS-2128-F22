@@ -1,0 +1,67 @@
+---
+title: "Viewing a dataset as a table"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The easiest way to figure out what the rows and columns in your 
+dataset represent will often be to view the rows and columns in 
+a table.
+
+# Required packages
+
+This example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tigris)
+library(here)
+```
+
+# Loading example data
+
+I'll start by loading a set of census tracts using the `tigris`
+package.
+
+```{r, message=FALSE, results='hide'}
+tracts <- tracts(state = "Illinois",
+                 county = "Cook") 
+```
+
+# Viewing your data
+
+Once you've loaded the data, you'll see its name on your environment
+tab in RStudio, along withe number of rows (observations or obs.) and the
+number of columns (variables)
+
+```{r env-pane, echo = FALSE, fig.asp=1.0, out.width='100%'}
+here("a1-files",
+     "images",
+     "environment-pane.png") %>%
+knitr::include_graphics()
+```
+
+If you click the blue icon next to the name of the data set, you'll see
+a list of the variables, and values for the first few rows.
+
+```{r env-pane2, echo = FALSE, fig.asp=1.0, out.width='100%'}
+here("a1-files",
+     "images",
+     "environment-pane2.png") %>%
+knitr::include_graphics()
+```
+
+If you click on the name of the data set, RStudio will open a tab showing the
+data in a table.
+
+```{r view-data, echo = FALSE, fig.asp=1.0, out.width='100%'}
+here("a1-files",
+     "images",
+     "view-data.png") %>%
+knitr::include_graphics()
+```
+
+You can also open that tabular view by typing `View(tracts)` into your
+console (note that the V is capitalized).
