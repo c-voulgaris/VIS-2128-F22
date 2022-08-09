@@ -1,0 +1,57 @@
+---
+title: "Spatial filtering"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+After you've loaded a dataset in R, you may only want to include
+certain features in your further analysis, based on feature locations.
+
+# Required packages
+
+This skills page uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tigris)
+library(tidyverse)
+library(sf)
+library(here)
+```
+
+# Loading sample data
+
+In this example, I'm going to start with Rhode Island landmark data 
+downloaded from the United States Census Bureau using the `tigris` 
+package (see more on getting data from the `tigris` package 
+[here](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-tigris.html){target="_blank"}.)
+
+```{r, message = FALSE, results='hide'}
+ri_landmark_pts <- landmarks(state = "Rhode Island", type = "point")
+```
+
+This gives me all the landmarks (as identified by the Census Bureau) in 
+Rhode Island. But I really only want the landmarks within the city
+of Providence. I can get the municipal boundary from the city's open
+data portal (see more on how to do that here). I'll need to convert the 
+coordinate reference system to match the one in my landmarks layer (more
+on that here).
+
+```{r, results='hide'}
+providence <- st_read("https://data.providenceri.gov/api/geospatial/b6kp-yncs?method=export&format=GeoJSON") %>%
+  st_transform(st_crs(ri_landmark_pts))
+```
+
+# Filtering data
+
+I can use the following code to create a new dataset called 
+`pro_landmark_pts`. I start with `ri_landmark_pts`, then use the 
+`st_filter()` function to indicate that I only want to keep the 
+points that are within the Providence boundary.
+
+```{r}
+pro_landmark_pts <- ri_landmark_pts %>%
+  st_filter(providence)
+```

@@ -11,7 +11,7 @@
 
 
 
-<title>Assignment 1</title>
+<title>Changing a dataset’s coordinate reference system</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -361,67 +361,53 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Assignment 1</h1>
+<h1 class="title toc-ignore">Changing a dataset’s coordinate reference
+system</h1>
 
 </div>
 
 
-<div id="deliverable" class="section level1">
-<h1>Deliverable</h1>
-<p>Submit a description each of three spatial datasets with
-approximately the same spatial extent. One dataset should be a set of
-points; one should be a set of polygons; and one should be a set of
-lines. Your description can be entirely text, and it may include tables
-and other graphics. You should include the following information about
-each dataset.</p>
-<ul>
-<li>The spatial extent</li>
-<li>The unit of observation</li>
-<li>The spatial data type (e.g. points, lines, or polygons)</li>
-<li>The spatial data format (e.g. KML, geoJSON, shapefile, R simple
-features)</li>
-<li>A description of each variable</li>
-<li>The coordinate reference system</li>
-<li>The data source (who created the data and where did you find
-it)</li>
-</ul>
-<p>Choose wisely and carefully! You will be working with these three
-datasets for the remainder of this course.</p>
+<p>It can often be important to know what coordinate reference system
+your data is in.</p>
+<div id="required-packages" class="section level1">
+<h1>Required packages</h1>
+<p>This example uses the following packages:</p>
+<pre class="r"><code>library(tidyverse)
+library(tigris)
+library(sf)
+library(here)</code></pre>
 </div>
-<div id="relevant-skills" class="section level1">
-<h1>Relevant Skills</h1>
-<p>You are unlikely to use all of these skills in this assignment, but
-all of them are relevant and you will probably use several of them. They
-are listed alphabetically.</p>
-<ul>
-<li>Aspatial filtering (ArcGIS)</li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-aspatial-filter.html" target="_blank">Aspatial filtering (R)</a></li>
-<li>Converting between coordinate reference systems (ArcGIS)</li>
-<li>Converting between coordinate reference systems (R)</li>
-<li>Determining the coordinate reference system for spatial data
-(ArcGIS)</li>
-<li>Determining the coordinate reference system for spatial data
-(R)</li>
-<li>Getting national and subnational boundaries from rnaturalearth
-(R)</li>
-<li><a href="https://harvard.zoom.us/rec/play/J2QqcFKKvWv6MuPYGof2qnIYPXkc3ZJAVymlYITcFQ-t9IC4TDu-pFBoRcUTat3s0LtVx-qKNrSeHNcS.TOsORH6w8UnLGQRb?autoplay=true&amp;startTime=1600374226000" target="_blank">Getting spatial data from a municipal open data
-portal</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-tidycensus.html" target="_blank">Getting spatial data from the tidycensus package
-(R)</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-tigris.html" target="_blank">Getting spatial data from the tigris package
-(R)</a></li>
-<li><a href="https://harvard.zoom.us/rec/play/QV2SCI71O-N_cgWLR0k0BMTb_WeldF-C4CaEhNxOcpJ7HcdM5nv3g1Lmv_nyqQ7XOboT2HWXhRkJblNA.Gd0LSXr6MkFzVIYC?startTime=1602525515000" target="_blank">Getting spatial data from U.S. Census TIGER files (web
-interface)</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-load-osm-data.html" target="_blank">Getting street data from OpenStreetMap (R)</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-ggplot-map.html" target="_blank">Plotting spatial data using ggplot (R)</a></li>
-<li>Plotting spatial data using leaflet (R)</li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-save-spatial-data.html" target="_blank">Saving spatial data (R)</a></li>
-<li>Spatial filtering (ArcGIS)</li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-aspatial-filter.html" target="_blank">Spatial filtering (R)</a></li>
-</ul>
+<div id="loading-example-data" class="section level1">
+<h1>Loading example data</h1>
+<p>I’ll start by loading a set of census tracts using the
+<code>tigris</code> package.</p>
+<pre class="r"><code>tracts &lt;- tracts(state = &quot;Illinois&quot;,
+                 county = &quot;Cook&quot;) </code></pre>
 </div>
-<div id="examples" class="section level1">
-<h1>Examples</h1>
+<div id="finding-the-coordinate-reference-system" class="section level1">
+<h1>Finding the Coordinate reference system</h1>
+<p>The <code>st_crs()</code> function returns some text that indicates
+the coordinate reference system for your data. You can also use this
+function to set the CRS for one layer to match another layer, as
+described <a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-convert-crs.html" target="_blank">here</a>.</p>
+<pre class="r"><code>st_crs(tracts)</code></pre>
+<pre><code>## Coordinate Reference System:
+##   User input: NAD83 
+##   wkt:
+## GEOGCRS[&quot;NAD83&quot;,
+##     DATUM[&quot;North American Datum 1983&quot;,
+##         ELLIPSOID[&quot;GRS 1980&quot;,6378137,298.257222101,
+##             LENGTHUNIT[&quot;metre&quot;,1]]],
+##     PRIMEM[&quot;Greenwich&quot;,0,
+##         ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##     CS[ellipsoidal,2],
+##         AXIS[&quot;latitude&quot;,north,
+##             ORDER[1],
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         AXIS[&quot;longitude&quot;,east,
+##             ORDER[2],
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##     ID[&quot;EPSG&quot;,4269]]</code></pre>
 </div>
 
 

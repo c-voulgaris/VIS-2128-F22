@@ -1,0 +1,54 @@
+---
+title: "Changing a dataset's coordinate reference system"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Spatial data can be stored using one of many coordinate reference 
+systems (CRS). If you need two layers of data to interact with one
+another, they need to be in the same CRS. Moreover, some packages and 
+functions in R require your data to be in a particular CRS (often WGS 
+84). So it's helpful to know how to convert your data from one CRS to 
+another.
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tigris)
+library(sf)
+library(here)
+```
+
+# Common geographic coordinate reference systems
+
+WGS 84, NAD 83, and NAD 27 are common coordinate reference systems for 
+data stored as latitude and longitude coordinates (geographic coordinate
+systems). You can use the function `st_transform()` to convert any spatial
+data set into any of these.
+
+In this code chunk, I'll read in a spatial dataset from a file and then use 
+`st_transform()` to convert it to NAD 83. To convert it to WGS 84, use 
+`"WGS84"` instead of `"NAD83"`. To convert it to NAD 27, use `"NAD27"`.
+
+```{r results='hide'}
+streets <- st_read(here("a1-files",
+                        "SLO-streets.geojson")) %>%
+  st_transform("NAD83")
+```
+
+# Matching coordinate reference systems
+
+In some cases, you may not really care what CRS your data is in, but you 
+do need it to be consistent across layers.
+
+In this example, I'll load a set of census tracts using the tigris package
+(more on that here) and set the CRS to match the CRS in the streets layer.
+
+```{r, message=FALSE, results='hide'}
+tracts <- tracts(state = "CA",
+                 county = "San Luis Obispo") %>%
+  st_transform(st_crs(streets))
+```
+

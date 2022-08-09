@@ -1,0 +1,43 @@
+---
+title: "Changing a dataset's coordinate reference system"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+It can often be important to know what coordinate reference system your
+data is in.
+
+# Required packages
+
+This example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tigris)
+library(sf)
+library(here)
+```
+
+# Loading example data
+
+I'll start by loading a set of census tracts using the `tigris`
+package.
+
+```{r, message=FALSE, results='hide'}
+tracts <- tracts(state = "Illinois",
+                 county = "Cook") 
+```
+
+# Finding the Coordinate reference system
+
+The `st_crs()` function returns some text that indicates the coordinate
+reference system for your data. You can also use this function to 
+set the CRS for one layer to match another layer, as described 
+[here](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-convert-crs.html){target="_blank"}.
+
+```{r}
+st_crs(tracts)
+```

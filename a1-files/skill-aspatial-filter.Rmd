@@ -1,0 +1,71 @@
+---
+title: "Aspatial filtering"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+After you've loaded a dataset in R, you may only want to include
+certain features in your further analysis, based on the values
+of a variable.
+
+# Required packages
+
+This skills page uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tigris)
+library(tidyverse)
+library(sf)
+library(here)
+```
+
+# Loading sample data
+
+In this example, I'm going to start with Rhode Island landmark data 
+downloaded from the United States Census Bureau using the `tigris` 
+package (see more on getting data from the `tigris` package 
+[here](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-tigris.html){target="_blank"}.)
+
+```{r, message = FALSE, results='hide'}
+ri_landmark_pts <- landmarks(state = "Rhode Island", type = "point")
+```
+
+TIGER features (whether you download them using `tigris` or via the 
+web interface) will include a variable called MTFCC with a five-digit 
+code (a letter followed by four numbers). These codes classify features
+by type. The landmark dataset loaded above using the
+has 16 different values for this variable, which I can list using the 
+following code.
+
+I start with the full dataset, then the `st_drop_geometry()` drops the 
+geometry column, and the `select()` function drops all the other columns
+except MTFCC. `distinct()` filters to only include the unique rows of
+this new one-variable dataset. Note that I am not editing the dataset;
+I'm creating a new dataframe and displaying its contents without saving 
+it anywhere.
+
+```{r}
+ri_landmark_pts %>%
+  st_drop_geometry() %>%
+  select(MTFCC) %>%
+  distinct()
+```
+
+You can find definitions of the MTFCC codes at the census website, 
+[here](https://www.census.gov/library/reference/code-lists/mt-feature-class-codes.html){target="_blank"}, 
+where you'll see that K2582 indicates a cemetery. 
+
+# Filtering data
+
+I can use the following code to create a new dataset called 
+`ri_cemeteries`. I start with `ri_landmark_pts`, then use the 
+`filter()` function to indicate that I only want to keep the 
+rows where the value of MTFCC is K2582 (the code for a cemetery).
+
+```{r}
+ri_cemeteries <- ri_landmark_pts %>%
+  filter(MTFCC == "K2582")
+```

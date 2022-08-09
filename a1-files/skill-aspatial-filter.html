@@ -11,7 +11,7 @@
 
 
 
-<title>Assignment 1</title>
+<title>Aspatial filtering</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -361,67 +361,75 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Assignment 1</h1>
+<h1 class="title toc-ignore">Aspatial filtering</h1>
 
 </div>
 
 
-<div id="deliverable" class="section level1">
-<h1>Deliverable</h1>
-<p>Submit a description each of three spatial datasets with
-approximately the same spatial extent. One dataset should be a set of
-points; one should be a set of polygons; and one should be a set of
-lines. Your description can be entirely text, and it may include tables
-and other graphics. You should include the following information about
-each dataset.</p>
-<ul>
-<li>The spatial extent</li>
-<li>The unit of observation</li>
-<li>The spatial data type (e.g. points, lines, or polygons)</li>
-<li>The spatial data format (e.g. KML, geoJSON, shapefile, R simple
-features)</li>
-<li>A description of each variable</li>
-<li>The coordinate reference system</li>
-<li>The data source (who created the data and where did you find
-it)</li>
-</ul>
-<p>Choose wisely and carefully! You will be working with these three
-datasets for the remainder of this course.</p>
+<p>After you’ve loaded a dataset in R, you may only want to include
+certain features in your further analysis, based on the values of a
+variable.</p>
+<div id="required-packages" class="section level1">
+<h1>Required packages</h1>
+<p>This skills page uses the following packages:</p>
+<pre class="r"><code>library(tigris)
+library(tidyverse)
+library(sf)
+library(here)</code></pre>
 </div>
-<div id="relevant-skills" class="section level1">
-<h1>Relevant Skills</h1>
-<p>You are unlikely to use all of these skills in this assignment, but
-all of them are relevant and you will probably use several of them. They
-are listed alphabetically.</p>
-<ul>
-<li>Aspatial filtering (ArcGIS)</li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-aspatial-filter.html" target="_blank">Aspatial filtering (R)</a></li>
-<li>Converting between coordinate reference systems (ArcGIS)</li>
-<li>Converting between coordinate reference systems (R)</li>
-<li>Determining the coordinate reference system for spatial data
-(ArcGIS)</li>
-<li>Determining the coordinate reference system for spatial data
-(R)</li>
-<li>Getting national and subnational boundaries from rnaturalearth
-(R)</li>
-<li><a href="https://harvard.zoom.us/rec/play/J2QqcFKKvWv6MuPYGof2qnIYPXkc3ZJAVymlYITcFQ-t9IC4TDu-pFBoRcUTat3s0LtVx-qKNrSeHNcS.TOsORH6w8UnLGQRb?autoplay=true&amp;startTime=1600374226000" target="_blank">Getting spatial data from a municipal open data
-portal</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-tidycensus.html" target="_blank">Getting spatial data from the tidycensus package
-(R)</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-tigris.html" target="_blank">Getting spatial data from the tigris package
-(R)</a></li>
-<li><a href="https://harvard.zoom.us/rec/play/QV2SCI71O-N_cgWLR0k0BMTb_WeldF-C4CaEhNxOcpJ7HcdM5nv3g1Lmv_nyqQ7XOboT2HWXhRkJblNA.Gd0LSXr6MkFzVIYC?startTime=1602525515000" target="_blank">Getting spatial data from U.S. Census TIGER files (web
-interface)</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-load-osm-data.html" target="_blank">Getting street data from OpenStreetMap (R)</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-ggplot-map.html" target="_blank">Plotting spatial data using ggplot (R)</a></li>
-<li>Plotting spatial data using leaflet (R)</li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-save-spatial-data.html" target="_blank">Saving spatial data (R)</a></li>
-<li>Spatial filtering (ArcGIS)</li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-aspatial-filter.html" target="_blank">Spatial filtering (R)</a></li>
-</ul>
+<div id="loading-sample-data" class="section level1">
+<h1>Loading sample data</h1>
+<p>In this example, I’m going to start with Rhode Island landmark data
+downloaded from the United States Census Bureau using the
+<code>tigris</code> package (see more on getting data from the
+<code>tigris</code> package <a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-tigris.html" target="_blank">here</a>.)</p>
+<pre class="r"><code>ri_landmark_pts &lt;- landmarks(state = &quot;Rhode Island&quot;, type = &quot;point&quot;)</code></pre>
+<p>TIGER features (whether you download them using <code>tigris</code>
+or via the web interface) will include a variable called MTFCC with a
+five-digit code (a letter followed by four numbers). These codes
+classify features by type. The landmark dataset loaded above using the
+has 16 different values for this variable, which I can list using the
+following code.</p>
+<p>I start with the full dataset, then the
+<code>st_drop_geometry()</code> drops the geometry column, and the
+<code>select()</code> function drops all the other columns except MTFCC.
+<code>distinct()</code> filters to only include the unique rows of this
+new one-variable dataset. Note that I am not editing the dataset; I’m
+creating a new dataframe and displaying its contents without saving it
+anywhere.</p>
+<pre class="r"><code>ri_landmark_pts %&gt;%
+  st_drop_geometry() %&gt;%
+  select(MTFCC) %&gt;%
+  distinct()</code></pre>
+<pre><code>##    MTFCC
+## 1  C3061
+## 2  C3081
+## 3  K2460
+## 4  C3022
+## 5  K2582
+## 6  K2561
+## 7  K2190
+## 8  K2451
+## 9  K2182
+## 10 K2191
+## 11 K2184
+## 12 K3544
+## 13 K1225
+## 14 K1231
+## 15 K2543
+## 16 K2165</code></pre>
+<p>You can find definitions of the MTFCC codes at the census website, <a href="https://www.census.gov/library/reference/code-lists/mt-feature-class-codes.html" target="_blank">here</a>, where you’ll see that K2582 indicates a
+cemetery.</p>
 </div>
-<div id="examples" class="section level1">
-<h1>Examples</h1>
+<div id="filtering-data" class="section level1">
+<h1>Filtering data</h1>
+<p>I can use the following code to create a new dataset called
+<code>ri_cemeteries</code>. I start with <code>ri_landmark_pts</code>,
+then use the <code>filter()</code> function to indicate that I only want
+to keep the rows where the value of MTFCC is K2582 (the code for a
+cemetery).</p>
+<pre class="r"><code>ri_cemeteries &lt;- ri_landmark_pts %&gt;%
+  filter(MTFCC == &quot;K2582&quot;)</code></pre>
 </div>
 
 

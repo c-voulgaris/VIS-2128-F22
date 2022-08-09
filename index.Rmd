@@ -18,10 +18,11 @@ Graduate School of Design.
     * Spatial data format
     * Unit of analysis
     * Variables
+    * Coordinate reference systems
     
 * Week 2: Visualizing (spatial) data
     * Symbology for points, lines, and polygons
-    * Coordinate reference systems and map projection
+    * Map projection
     
 * Week 3: Calculating variables
     * Areas and densities
