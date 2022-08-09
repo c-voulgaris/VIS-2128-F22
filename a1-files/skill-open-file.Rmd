@@ -1,0 +1,43 @@
+---
+title: "Opening spatial data files in R"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+You can download spatial data files from a variety of sources, to 
+analyze and display your data in R, you'll need to open these
+files in R
+
+# Required packages
+
+This skills page uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(sf)
+library(here)
+```
+
+# Opening a file
+
+The function `st_read()` will open spatial data from almost any
+common data format. For shapefiles, you can use the name of the
+folder containing the set of files, or the name of the file with the
+*.shp extension (as long as the other files are in the same directory
+and have the same root name).
+
+```{r}
+boston_bikes <- st_read(here("a1-files",
+                             "Existing_Bike_Network"))
+```
+
+For other file formats that just use a single file, use the filename.
+
+```{r}
+SLO_streets <- st_read(here("a1-files",
+                            "SLO-streets.geojson"))
+```
+

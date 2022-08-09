@@ -11,7 +11,7 @@
 
 
 
-<title>Assignment 1</title>
+<title>Opening spatial data files in R</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -361,71 +361,51 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Assignment 1</h1>
+<h1 class="title toc-ignore">Opening spatial data files in R</h1>
 
 </div>
 
 
-<div id="deliverable" class="section level1">
-<h1>Deliverable</h1>
-<p>Submit a description each of at least three spatial datasets with
-approximately the same spatial extent. At least one dataset should be a
-set of points; atleast one should be a set of polygons; and at least one
-should be a set of lines. Your description can be entirely text, and it
-may include tables and other graphics. You should include the following
-information about each dataset:</p>
-<ul>
-<li>The spatial extent</li>
-<li>The unit of observation</li>
-<li>The spatial data type (e.g. points, lines, or polygons)</li>
-<li>The spatial data format (e.g. KML, geoJSON, shapefile, R simple
-features)</li>
-<li>A description of each variable that you might use in future
-analysis</li>
-<li>The coordinate reference system</li>
-<li>The data source (who created the data and where did you find
-it)</li>
-</ul>
-<p>Choose wisely and carefully! You will be working with these three
-datasets for the remainder of this course.</p>
+<p>You can download spatial data files from a variety of sources, to
+analyze and display your data in R, you’ll need to open these files in
+R</p>
+<div id="required-packages" class="section level1">
+<h1>Required packages</h1>
+<p>This skills page uses the following packages:</p>
+<pre class="r"><code>library(tidyverse)
+library(sf)
+library(here)</code></pre>
 </div>
-<div id="relevant-skills" class="section level1">
-<h1>Relevant Skills</h1>
-<p>You are unlikely to use all of these skills in this assignment, but
-all of them are relevant and you will probably use several of them. They
-are listed alphabetically.</p>
-<ul>
-<li>Aspatial filtering (ArcGIS) (link to tutorial forthcoming)</li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-aspatial-filter.html" target="_blank">Aspatial filtering (R)</a></li>
-<li>Converting between coordinate reference systems (ArcGIS) (link to
-tutorial forthcoming)</li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-convert-crs.html" target="_blank">Converting between coordinate reference systems
-(R)</a></li>
-<li>Determining the coordinate reference system for spatial data
-(ArcGIS) (link to tutorial forthcoming)</li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-get-crs.html" target="_blank">Determining the coordinate reference system for spatial
-data (R)</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-rnaturalearth.html" target="_blank">Getting national and subnational boundaries from
-rnaturalearth (R)</a></li>
-<li><a href="https://harvard.zoom.us/rec/play/J2QqcFKKvWv6MuPYGof2qnIYPXkc3ZJAVymlYITcFQ-t9IC4TDu-pFBoRcUTat3s0LtVx-qKNrSeHNcS.TOsORH6w8UnLGQRb?autoplay=true&amp;startTime=1600374226000" target="_blank">Getting spatial data from a municipal open data
-portal</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-tidycensus.html" target="_blank">Getting spatial data from the tidycensus package
-(R)</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-tigris.html" target="_blank">Getting spatial data from the tigris package
-(R)</a></li>
-<li><a href="https://harvard.zoom.us/rec/play/QV2SCI71O-N_cgWLR0k0BMTb_WeldF-C4CaEhNxOcpJ7HcdM5nv3g1Lmv_nyqQ7XOboT2HWXhRkJblNA.Gd0LSXr6MkFzVIYC?startTime=1602525515000" target="_blank">Getting spatial data from U.S. Census TIGER files (web
-interface)</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-load-osm-data.html" target="_blank">Getting street data from OpenStreetMap (R)</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-ggplot-map.html" target="_blank">Plotting spatial data using ggplot (static) (R)</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-open-file.html" target="_blank">Open a spatial data set from a file (R)</a></li>
-<li>Plotting spatial data using leaflet (interactive) (R)</li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-save-spatial-data.html" target="_blank">Saving spatial data (R)</a></li>
-<li>Spatial filtering (ArcGIS) (link to tutorial forthcoming)</li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-aspatial-filter.html" target="_blank">Spatial filtering (R)</a></li>
-</ul>
-</div>
-<div id="examples" class="section level1">
-<h1>Examples</h1>
+<div id="opening-a-file" class="section level1">
+<h1>Opening a file</h1>
+<p>The function <code>st_read()</code> will open spatial data from
+almost any common data format. For shapefiles, you can use the name of
+the folder containing the set of files, or the name of the file with the
+*.shp extension (as long as the other files are in the same directory
+and have the same root name).</p>
+<pre class="r"><code>boston_bikes &lt;- st_read(here(&quot;a1-files&quot;,
+                             &quot;Existing_Bike_Network&quot;))</code></pre>
+<pre><code>## Reading layer `Existing_Bike_Network_2022&#39; from data source 
+##   `C:\Users\cav223\Documents\GitHub\VIS-2128-F22\a1-files\Existing_Bike_Network&#39; 
+##   using driver `ESRI Shapefile&#39;
+## replacing null geometries with empty geometries
+## Simple feature collection with 3166 features and 10 fields (with 7 geometries empty)
+## Geometry type: GEOMETRY
+## Dimension:     XY
+## Bounding box:  xmin: -7924541 ymin: 5196918 xmax: -7898491 ymax: 5219925
+## Projected CRS: WGS 84 / Pseudo-Mercator</code></pre>
+<p>For other file formats that just use a single file, use the
+filename.</p>
+<pre class="r"><code>SLO_streets &lt;- st_read(here(&quot;a1-files&quot;,
+                            &quot;SLO-streets.geojson&quot;))</code></pre>
+<pre><code>## Reading layer `SLO-streets&#39; from data source 
+##   `C:\Users\cav223\Documents\GitHub\VIS-2128-F22\a1-files\SLO-streets.geojson&#39; 
+##   using driver `GeoJSON&#39;
+## Simple feature collection with 45464 features and 9 fields
+## Geometry type: LINESTRING
+## Dimension:     XY
+## Bounding box:  xmin: -121.3872 ymin: 34.81179 xmax: -119.4287 ymax: 36.06986
+## Geodetic CRS:  WGS 84</code></pre>
 </div>
 
 

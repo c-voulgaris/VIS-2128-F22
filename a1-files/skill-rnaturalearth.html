@@ -11,7 +11,7 @@
 
 
 
-<title>Assignment 1</title>
+<title>Getting national and subnational boundaries from rnaturalearth</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -361,71 +361,53 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Assignment 1</h1>
+<h1 class="title toc-ignore">Getting national and subnational boundaries
+from rnaturalearth</h1>
 
 </div>
 
 
-<div id="deliverable" class="section level1">
-<h1>Deliverable</h1>
-<p>Submit a description each of at least three spatial datasets with
-approximately the same spatial extent. At least one dataset should be a
-set of points; atleast one should be a set of polygons; and at least one
-should be a set of lines. Your description can be entirely text, and it
-may include tables and other graphics. You should include the following
-information about each dataset:</p>
-<ul>
-<li>The spatial extent</li>
-<li>The unit of observation</li>
-<li>The spatial data type (e.g. points, lines, or polygons)</li>
-<li>The spatial data format (e.g. KML, geoJSON, shapefile, R simple
-features)</li>
-<li>A description of each variable that you might use in future
-analysis</li>
-<li>The coordinate reference system</li>
-<li>The data source (who created the data and where did you find
-it)</li>
-</ul>
-<p>Choose wisely and carefully! You will be working with these three
-datasets for the remainder of this course.</p>
+<p><code>rnaturalearth</code> is a useful package for loading data from
+<a href="https://www.naturalearthdata.com/">Natural Earth</a>.</p>
+<div id="required-packages" class="section level1">
+<h1>Required packages</h1>
+<p>This skills page uses the following packages:</p>
+<pre class="r"><code>library(rnaturalearthdata)
+library(rnaturalearth)
+library(tidyverse)
+library(sf)
+library(here)</code></pre>
 </div>
-<div id="relevant-skills" class="section level1">
-<h1>Relevant Skills</h1>
-<p>You are unlikely to use all of these skills in this assignment, but
-all of them are relevant and you will probably use several of them. They
-are listed alphabetically.</p>
-<ul>
-<li>Aspatial filtering (ArcGIS) (link to tutorial forthcoming)</li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-aspatial-filter.html" target="_blank">Aspatial filtering (R)</a></li>
-<li>Converting between coordinate reference systems (ArcGIS) (link to
-tutorial forthcoming)</li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-convert-crs.html" target="_blank">Converting between coordinate reference systems
-(R)</a></li>
-<li>Determining the coordinate reference system for spatial data
-(ArcGIS) (link to tutorial forthcoming)</li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-get-crs.html" target="_blank">Determining the coordinate reference system for spatial
-data (R)</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-rnaturalearth.html" target="_blank">Getting national and subnational boundaries from
-rnaturalearth (R)</a></li>
-<li><a href="https://harvard.zoom.us/rec/play/J2QqcFKKvWv6MuPYGof2qnIYPXkc3ZJAVymlYITcFQ-t9IC4TDu-pFBoRcUTat3s0LtVx-qKNrSeHNcS.TOsORH6w8UnLGQRb?autoplay=true&amp;startTime=1600374226000" target="_blank">Getting spatial data from a municipal open data
-portal</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-tidycensus.html" target="_blank">Getting spatial data from the tidycensus package
-(R)</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-tigris.html" target="_blank">Getting spatial data from the tigris package
-(R)</a></li>
-<li><a href="https://harvard.zoom.us/rec/play/QV2SCI71O-N_cgWLR0k0BMTb_WeldF-C4CaEhNxOcpJ7HcdM5nv3g1Lmv_nyqQ7XOboT2HWXhRkJblNA.Gd0LSXr6MkFzVIYC?startTime=1602525515000" target="_blank">Getting spatial data from U.S. Census TIGER files (web
-interface)</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-load-osm-data.html" target="_blank">Getting street data from OpenStreetMap (R)</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-ggplot-map.html" target="_blank">Plotting spatial data using ggplot (static) (R)</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-open-file.html" target="_blank">Open a spatial data set from a file (R)</a></li>
-<li>Plotting spatial data using leaflet (interactive) (R)</li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-save-spatial-data.html" target="_blank">Saving spatial data (R)</a></li>
-<li>Spatial filtering (ArcGIS) (link to tutorial forthcoming)</li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-aspatial-filter.html" target="_blank">Spatial filtering (R)</a></li>
-</ul>
+<div id="loading-country-boundaries" class="section level1">
+<h1>Loading country boundaries</h1>
+<p>The <code>ne_countries()</code> function will load national
+boundaries.</p>
+<p>Here is how you would load a set of 177 countries available from
+rnaturalearth.</p>
+<pre class="r"><code>world &lt;- ne_countries(returnclass = &quot;sf&quot;)</code></pre>
+<p>Here is how you would load the boundaries of South Africa, Namibia,
+Lesotho, and Botswana.</p>
+<pre class="r"><code>s_africa &lt;- ne_countries(country = c(&quot;South Africa&quot;, 
+                                  &quot;Namibia&quot;,
+                                  &quot;Botswana&quot;,
+                                  &quot;Lesotho&quot;),
+                      returnclass = &quot;sf&quot;)</code></pre>
+<p>Here is how you would load the boundaries of all the countries in
+South America.</p>
+<pre class="r"><code>s_africa &lt;- ne_countries(continent = &quot;South America&quot;,
+                      returnclass = &quot;sf&quot;)</code></pre>
 </div>
-<div id="examples" class="section level1">
-<h1>Examples</h1>
+<div id="loading-stateprovince-boundaries" class="section level1">
+<h1>Loading state/province boundaries</h1>
+<p>The <code>ne_states()</code> function returns state/provincial
+boundaries (administrative level 1).</p>
+<p>Here’s how you would load the boundaries of Canadian provinces.</p>
+<p>Note: you may need to install rnaturalearthhires for this to work.
+You can install it from GitHub by typing
+<code>devtools::install_git(&quot;https://github.com/ropensci/rnaturalearthhires&quot;)</code>
+into your console. You’ll only need to ever do this once.</p>
+<pre class="r"><code>canada_prov &lt;- ne_states(country = &quot;Canada&quot;,
+                         returnclass = &quot;sf&quot;)</code></pre>
 </div>
 
 

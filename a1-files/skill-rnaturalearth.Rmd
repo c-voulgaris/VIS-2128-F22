@@ -1,5 +1,5 @@
 ---
-title: "Getting data from rnaturalearth"
+title: "Getting national and subnational boundaries from rnaturalearth"
 output: html_document
 ---
 
@@ -26,16 +26,45 @@ library(here)
 
 The `ne_countries()` function will load national boundaries.
 
-Here is how you load the full set of 177 countries available from rnaturalearth
+Here is how you would load a set of 177 countries available from rnaturalearth.
 
 ```{r}
 world <- ne_countries(returnclass = "sf")
 ```
 
-There are 
+Here is how you would load the boundaries of South Africa, Namibia, Lesotho, and Botswana.
 
 ```{r}
-world <- ne_countries(type = "tiny_countries",
+s_africa <- ne_countries(country = c("South Africa", 
+                                  "Namibia",
+                                  "Botswana",
+                                  "Lesotho"),
                       returnclass = "sf")
 ```
+
+Here is how you would load the boundaries of all the countries in South America.
+
+```{r}
+s_africa <- ne_countries(continent = "South America",
+                      returnclass = "sf")
+```
+
+# Loading state/province boundaries
+
+The `ne_states()` function returns state/provincial boundaries (administrative level 1).
+
+Here's how you would load the boundaries of Canadian provinces. 
+
+Note: you may need to install rnaturalearthhires for this to work. You can install it from GitHub
+by typing `devtools::install_git("https://github.com/ropensci/rnaturalearthhires")` into your 
+console. You'll only need to ever do this once.
+
+```{r}
+canada_prov <- ne_states(country = "Canada",
+                         returnclass = "sf")
+```
+
+
+
+
 
