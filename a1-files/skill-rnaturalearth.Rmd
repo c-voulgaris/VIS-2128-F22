@@ -1,0 +1,41 @@
+---
+title: "Getting data from rnaturalearth"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+`rnaturalearth` is a useful package for loading data from 
+[Natural Earth](https://www.naturalearthdata.com/).
+
+# Required packages
+
+This skills page uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(rnaturalearthdata)
+library(rnaturalearth)
+library(tidyverse)
+library(sf)
+library(here)
+```
+
+# Loading country boundaries
+
+The `ne_countries()` function will load national boundaries.
+
+Here is how you load the full set of 177 countries available from rnaturalearth
+
+```{r}
+world <- ne_countries(returnclass = "sf")
+```
+
+There are 
+
+```{r}
+world <- ne_countries(type = "tiny_countries",
+                      returnclass = "sf")
+```
+

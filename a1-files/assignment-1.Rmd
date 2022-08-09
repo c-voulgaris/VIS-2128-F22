@@ -19,7 +19,7 @@ the following information about each dataset.
 * The unit of observation
 * The spatial data type (e.g. points, lines, or polygons)
 * The spatial data format (e.g. KML, geoJSON, shapefile, R simple features)
-* A description of each variable
+* A description of each variable that you might use in future analysis
 * The coordinate reference system
 * The data source (who created the data and where did you find it)
 
@@ -32,11 +32,11 @@ You are unlikely to use all of these skills in this assignment, but all
 of them are relevant and you will probably use several of them. They are
 listed alphabetically.
 
-* Aspatial filtering (ArcGIS)
+* Aspatial filtering (ArcGIS) (link to tutorial forthcoming)
 * [Aspatial filtering (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-aspatial-filter.html){target="_blank"}
-* Converting between coordinate reference systems (ArcGIS)
+* Converting between coordinate reference systems (ArcGIS) (link to tutorial forthcoming)
 * [Converting between coordinate reference systems (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-convert-crs.html){target="_blank"}
-* Determining the coordinate reference system for spatial data (ArcGIS)
+* Determining the coordinate reference system for spatial data (ArcGIS) (link to tutorial forthcoming)
 * [Determining the coordinate reference system for spatial data (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-get-crs.html){target="_blank"}
 * Getting national and subnational boundaries from rnaturalearth (R)
 * [Getting spatial data from a municipal open data portal](https://harvard.zoom.us/rec/play/J2QqcFKKvWv6MuPYGof2qnIYPXkc3ZJAVymlYITcFQ-t9IC4TDu-pFBoRcUTat3s0LtVx-qKNrSeHNcS.TOsORH6w8UnLGQRb?autoplay=true&startTime=1600374226000){target="_blank"}
@@ -45,7 +45,7 @@ listed alphabetically.
 * [Getting spatial data from U.S. Census TIGER files (web interface)](https://harvard.zoom.us/rec/play/QV2SCI71O-N_cgWLR0k0BMTb_WeldF-C4CaEhNxOcpJ7HcdM5nv3g1Lmv_nyqQ7XOboT2HWXhRkJblNA.Gd0LSXr6MkFzVIYC?startTime=1602525515000){target="_blank"}
 * [Getting street data from OpenStreetMap (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-load-osm-data.html){target="_blank"}
 * [Plotting spatial data using ggplot (static) (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-ggplot-map.html){target="_blank"}
-* Open a spatial data from a file (R)
+* Open a spatial data set from a file (R)
 * Plotting spatial data using leaflet (interactive) (R)
 * [Saving spatial data (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-save-spatial-data.html){target="_blank"}
 * Spatial filtering (ArcGIS)

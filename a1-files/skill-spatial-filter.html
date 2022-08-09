@@ -396,10 +396,10 @@ on that here).</p>
 <div id="filtering-data" class="section level1">
 <h1>Filtering data</h1>
 <p>I can use the following code to create a new dataset called
-<code>pro_landmark_pts</code>. I start with
-<code>ri_landmark_pts</code>, then use the <code>st_filter()</code>
-function to indicate that I only want to keep the points that are within
-the Providence boundary.</p>
+<code>pro_landmark_pts</code> that only includes the points in the city
+of Providence. I start with <code>ri_landmark_pts</code>, then use the
+<code>st_filter()</code> function to indicate that I only want to keep
+the points that are within the Providence boundary.</p>
 <pre class="r"><code>pro_landmark_pts &lt;- ri_landmark_pts %&gt;%
   st_filter(providence)</code></pre>
 </div>

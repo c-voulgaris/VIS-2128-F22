@@ -47,7 +47,8 @@ providence <- st_read("https://data.providenceri.gov/api/geospatial/b6kp-yncs?me
 # Filtering data
 
 I can use the following code to create a new dataset called 
-`pro_landmark_pts`. I start with `ri_landmark_pts`, then use the 
+`pro_landmark_pts` that only includes the points in the city of 
+Providence. I start with `ri_landmark_pts`, then use the 
 `st_filter()` function to indicate that I only want to keep the 
 points that are within the Providence boundary.
 
