@@ -403,11 +403,12 @@ are actually coordinates. You’ll also need to specify a coordinate
 reference system (other spatial data formats will include this
 information, but a csv file will not). If you know the coordinates are
 latitude/longitude values, WGS 84 is a pretty safe CRS to guess, if you
-don’t have information indicating otherwise.</p>
+don’t have information indicating otherwise. This example uses a csv
+file from a GTFS feed (more on that <a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-get-gtfs-data.html" target="_blank">here</a>), so we know the coordinates are in WGS 84.</p>
 <pre class="r"><code>bus_stops &lt;- st_read(here(&quot;a1-files&quot;,
                           &quot;bus-stops.csv&quot;),
-                     options=c(&quot;X_POSSIBLE_NAMES=stop_lat&quot;,
-                               &quot;Y_POSSIBLE_NAMES=stop_lon&quot;)) %&gt;%
+                     options=c(&quot;X_POSSIBLE_NAMES=stop_lon&quot;,
+                               &quot;Y_POSSIBLE_NAMES=stop_lat&quot;)) %&gt;%
   st_set_crs(&quot;WGS84&quot;)</code></pre>
 </div>
 

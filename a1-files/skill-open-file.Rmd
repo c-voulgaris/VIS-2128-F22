@@ -56,13 +56,16 @@ which columns are actually coordinates. You'll also need to
 specify a coordinate reference system (other spatial data formats
 will include this information, but a csv file will not). If you 
 know the coordinates are latitude/longitude values, WGS 84 is a pretty safe
-CRS to guess, if you don't have information indicating otherwise.
+CRS to guess, if you don't have information indicating otherwise. This 
+example uses a csv file from a GTFS feed (more on that 
+[here](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-get-gtfs-data.html){target="_blank"}), 
+so we know the coordinates are in WGS 84.
 
 ```{r, results='hide'}
 bus_stops <- st_read(here("a1-files",
                           "bus-stops.csv"),
-                     options=c("X_POSSIBLE_NAMES=stop_lat",
-                               "Y_POSSIBLE_NAMES=stop_lon")) %>%
+                     options=c("X_POSSIBLE_NAMES=stop_lon",
+                               "Y_POSSIBLE_NAMES=stop_lat")) %>%
   st_set_crs("WGS84")
 ```
 

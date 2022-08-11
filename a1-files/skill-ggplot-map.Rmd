@@ -23,19 +23,26 @@ library(sf)
 library(here)
 ```
 
-# Load data from a  file
+# Load data
 
-I'll start by reading in some data. 
+I'll start by reading in some data You can read more about that 
+[here](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-open-file.html){target="_blank"}. 
 
 ```{r, message=FALSE, warning=FALSE}
 SLO_streets <- st_read(here("a1-files",
                             "SLO-streets.geojson"))
+
+bus_stops <- st_read(here("a1-files",
+                          "bus-stops.csv"),
+                     options=c("X_POSSIBLE_NAMES=stop_lon",
+                               "Y_POSSIBLE_NAMES=stop_lat")) %>%
+  st_set_crs("WGS84")
 ```
 
 # Plot data
 
 You can use the `ggplot()` for a wide variety of data 
-visulalizations, including scatter plots, bar charts, histograms,
+visualizations, including scatter plots, bar charts, histograms,
 and (what we'll use it for here) maps.
 
 The first line in the code chunk below sets up the plot and 
@@ -45,4 +52,17 @@ that we want to plot the spatial data as a map.
 ```{r}
 ggplot(SLO_streets) +
   geom_sf()
+```
+
+If you want to plot another layer on top of that (perhaps just to
+confirm that it has about the same spatial extent), you can call
+`geom_sf()` again, but this time you'll need to specify the data
+layer within that function. You might also want to change the color
+of the second layer to make it easier to see.
+
+```{r}
+ggplot(SLO_streets) +
+  geom_sf() +
+  geom_sf(data = bus_stops,
+          color = "red")
 ```
