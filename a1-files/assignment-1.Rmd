@@ -10,16 +10,17 @@ knitr::opts_chunk$set(echo = TRUE)
 # Deliverable
 
 Submit a description each of at least three spatial datasets with approximately 
-the same spatial extent. At least one dataset should be a set of points; atleast 
+the same spatial extent. At least one dataset should be a set of points; at least 
 one should be a set of polygons; and at least one should be a set of lines. Your 
 description can be entirely text, and it may include tables and other graphics. 
 You should include the following information about each dataset:
 
 * The spatial extent
 * The unit of observation
+* The number of observations
 * The spatial data type (e.g. points, lines, or polygons)
 * The spatial data format (e.g. KML, geoJSON, shapefile, R simple features)
-* A description of each variable that you might use in future analysis
+* A description of each variable (that you might use in future analysis)
 * The coordinate reference system
 * The data source (who created the data and where did you find it)
 
@@ -44,16 +45,28 @@ listed alphabetically.
 * [Getting spatial data from the tigris package (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-tigris.html){target="_blank"}
 * [Getting spatial data from U.S. Census TIGER files (web interface)](https://harvard.zoom.us/rec/play/QV2SCI71O-N_cgWLR0k0BMTb_WeldF-C4CaEhNxOcpJ7HcdM5nv3g1Lmv_nyqQ7XOboT2HWXhRkJblNA.Gd0LSXr6MkFzVIYC?startTime=1602525515000){target="_blank"}
 * [Getting street data from OpenStreetMap (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-load-osm-data.html){target="_blank"}
+* [Getting transit stop locations from a GTFS feed](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-get_gtfs-data.html){target="_blank"}
+* Loading point data stored as coordinates in a csv file (ArcGIS) (link to tutorial forthcoming)
+* Opening a shapefile (ArcGIS) (link to tutorial forthcoming)
+* [Opening a spatial data set from a file (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-open-file.html){target="_blank"}
 * [Plotting spatial data using ggplot (static) (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-ggplot-map.html){target="_blank"}
-* [Open a spatial data set from a file (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-open-file.html){target="_blank"}
 * Plotting spatial data using leaflet (interactive) (R)
 * [Saving spatial data (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-save-spatial-data.html){target="_blank"}
 * Spatial filtering (ArcGIS)  (link to tutorial forthcoming)
 * [Spatial filtering (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-aspatial-filter.html){target="_blank"}
-* [Viewing spatial data as a table (ArcGIS)](link to tutorial forthcoming)
+* Viewing spatial data as a table (ArcGIS) (link to tutorial forthcoming)
 * [Viewing spatial data as a table (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-view-dataframe.html){target="_blank"}
+
+# Other resources
+
+* [The World Bank Data Catalog](https://datacatalog.worldbank.org/home){target="_blank"}
+* [The Africa GeoPortal](https://www.africageoportal.com/){target="_blank"}
+* [ESRI Open Data Hub](https://hub.arcgis.com/search){target="_blank"}
+* [Natural Earth Data](https://www.naturalearthdata.com/){target="_blank"}
 
 # Examples
 
+Each of the examples below fully meets the requirements for this assignment.
 
-
+* [Example 1](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/examples/slo-example.pdf){target="_blank"}
+* [Example 2](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/examples/africa-example.pdf){target="_blank"}

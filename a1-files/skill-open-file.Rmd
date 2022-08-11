@@ -21,7 +21,7 @@ library(sf)
 library(here)
 ```
 
-# Opening a file
+# Opening a spatial data file
 
 The function `st_read()` will open spatial data from almost any
 common data format. For shapefiles, you can use the name of the
@@ -29,15 +29,40 @@ folder containing the set of files, or the name of the file with the
 *.shp extension (as long as the other files are in the same directory
 and have the same root name).
 
-```{r}
+```{r, results='hide'}
 boston_bikes <- st_read(here("a1-files",
                              "Existing_Bike_Network"))
 ```
 
 For other file formats that just use a single file, use the filename.
 
-```{r}
+```{r, results='hide'}
 SLO_streets <- st_read(here("a1-files",
                             "SLO-streets.geojson"))
+```
+
+# Opening a CSV file
+
+A csv file is not exactly a spatial data file. It is basically
+a text file with tabular data, where rows are in separate
+lines and columns are separated by columns. Sometimes point
+data will be stored in a csv file, with a column for an 
+x-coordinate (longitude) and a column for a y-coordinate 
+(latitude). 
+
+The `st_read()` function can also read point data 
+from a csv file, but you'll need to set some options indicating
+which columns are actually coordinates. You'll also need to
+specify a coordinate reference system (other spatial data formats
+will include this information, but a csv file will not). If you 
+know the coordinates are latitude/longitude values, WGS 84 is a pretty safe
+CRS to guess, if you don't have information indicating otherwise.
+
+```{r, results='hide'}
+bus_stops <- st_read(here("a1-files",
+                          "bus-stops.csv"),
+                     options=c("X_POSSIBLE_NAMES=stop_lat",
+                               "Y_POSSIBLE_NAMES=stop_lon")) %>%
+  st_set_crs("WGS84")
 ```
 

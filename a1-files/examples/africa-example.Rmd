@@ -1,0 +1,70 @@
+---
+title: "Assignment 1"
+author: "Carole Voulgaris"
+date: '2022-08-11'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library(sf)
+library(tidyverse)
+library(here)
+library(rnaturalearth)
+
+countries <- ne_countries(continent = "Africa",
+                          returnclass = "sf")
+
+airports <- here("a1-files",
+              "sample-files",
+              "airports") %>%
+  st_read() %>%
+  st_filter(countries)
+
+rail <- here("a1-files",
+              "sample-files",
+              "rail") %>%
+  st_read() %>%
+  st_filter(countries)
+```
+
+I have selected the following three datasets, all of which are in the 
+WGS 84 coordinate reference system:
+
+1. A set of polygons representing national boundaries in Africa (shown below 
+as gray polygons with black borders). They are downloaded from Natural Earth 
+Data via the rnaturalearth package as R simple features. The dataset 
+includes 51 polygons, each representing a country. There are 64 variables, 
+including the following that I might include in future analyses:
+    * pop_est: The estimated population
+    * gdp_md_est: The estimated GDP in millions of US dollars 
+    * economy: Economic classification as "Emerging region: G20", "Developing region", or "Least developed region".
+    * income_grp: Classification as high income, upper middle income, 
+    lower middle income, or low income.
+2. A set of lines representing railway lines in Africa, shown below as red 
+lines. I downloaded them from Natural Earth Data (www.naturalearthdata.com) 
+via the web interface as an ESRI shapefile including global railways, then I 
+filtered them to include only the railways located within the set of polygons
+described above. There are 751 rail lines included in the data and 13 
+variables. I don't anticipate using any of these 13 variables in future 
+analysis.
+3. A set of points representing airports in Africa, shown below as black 
+dots. I downloaded them from Natural Earth Data (www.naturalearthdata.com) 
+via the web interface as an ESRI shapefile including global airports, then I 
+filtered them to include only points located within the set of polygons 
+representing African countries. There are 85 rail lines included in the data 
+and 41 variables, 27 of which are the names of the airport in each of 27 
+languages. I don't anticipate using any of these variables in future 
+analysis.
+
+```{r, echo=FALSE}
+ggplot(countries) +
+  geom_sf() +
+  geom_sf(data = airports) +
+  geom_sf(data = rail, color = "red")
+```
+
+

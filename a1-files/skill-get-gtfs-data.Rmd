@@ -1,0 +1,64 @@
+---
+title: "Getting transit stop locations from a GTFS feed"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The General Transit Feed Specification (GTFS) is a common data
+format used throughout the world for describing transit route
+and schedule data. A full explanation of the GTFS format is outside
+the scope of this course, but you can read about it [here](https://gtfs.org/schedule/reference/){target="_blank"}. 
+
+This page explains how to extract transit stop locations from a GTFS feed.
+
+# Finding a GTFS feed
+
+For most transit agencies, the easiest way to find the current GTFS
+feed will be to enter the name of the agency and "GTFS" into a web 
+browser search engine. The top result will usually be a page on the
+transit agency's website called something like "Developer Resources" 
+and there will be a link somewhere to download the current GTFS feed.
+
+There are also a few online repositories that archive GTFS feeds from
+around the world:
+
+* https://openmobilitydata.org/
+* http://www.gtfs-data-exchange.com/
+* https://www.transit.land/feeds
+
+These aren't guaranteed to be current (in fact, some
+are no longer maintained and are guaranteed not to be current), but they
+are a good source of historic feeds (the GTFS standard was developed about 
+fifteen years ago, so you won't find anything older than that).
+
+# Navigating a GTFS feed
+
+When you download a GTFS feed, it will be a zipped file (with a \*.zip 
+extension). Within that zipped file, there will be several files
+with a \*.txt extension. In spite of the file name, most of these
+are actually csv files. If you want to, you can extract these files and
+rename them to replace the \*.txt extension to a \*.csv extension. 
+From that point, you can treat these files like csv files (e.g. open them 
+in Excel, R, or ArcGIS).
+
+# Finding stop locations
+ 
+The file in a GTFS feed called "stops.txt" is a csv file with a row for
+each transit stop and the following four required columns (there may be 
+other optional columns as well):
+
+* stop_id: A unique identifier for the stop that links it to the information 
+in other GTFS files
+* stop_name: The name of the stop
+* stop_lon: The longitude coordinate (x-coordinate) for the stop location.
+* stop_lat: The latitude coordinate (y-coordinate) for the stop location.
+
+You will need to specify stop_lon and stop_lat as x and y coordinates when you
+bring the data into R (see more in this topic 
+[here](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-open-file.html){target="_blank"}), 
+ArcGIS, or another software. When you import the data, you'll need to specify a 
+coordinate reference system, so it's helpful to know that the GTFS data standard
+requires stop locations to be stored as WGS 84 coordinates.

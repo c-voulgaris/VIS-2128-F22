@@ -1,0 +1,346 @@
+﻿stop_id,stop_code,stop_name,stop_lat,stop_lon,stop_url,zone_id
+82,"3833","13th & Long Branch",35.119411,-120.615530,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=82",6
+83,"3834","13th & Mentone",35.115310,-120.615841,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=83",6
+84,"3835","13th & Messina",35.110747,-120.616503,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=84",6
+85,"3836","13th & Belridge",35.104881,-120.616005,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=85",6
+88,"3827","Elm & Fair Oaks",35.112512,-120.600436,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=88",6
+89,"3840","Arroyo Grande Hospital",35.112616,-120.591185,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=89",6
+90,"3841","Arroyo Grande High School",35.117010,-120.581415,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=90",6
+91,"3531","Vine & 1st",35.615033,-120.692896,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=91",5
+92,"3551","1st & Oak",35.615394,-120.691468,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=92",5
+93,"3532","Spring & 3rd",35.617126,-120.690476,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=93",5
+94,"3533","Spring & 5th",35.619445,-120.690693,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=94",5
+95,"3534","North County Transportation Center",35.622500,-120.688292,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=95",5
+96,"3535","Cuesta College North",35.651340,-120.670870,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=96",5
+97,"3536","Mission & 14th",35.752511,-120.696266,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=97",8
+99,"3550","Spring & 4th",35.618703,-120.690830,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=99",5
+100,"3650","Oak & 2nd",35.615832,-120.691859,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=100",5
+101,"3651","Walmart Shopping Center",35.614891,-120.681550,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=101",5
+102,"3652","Niblick & Nicklaus",35.615685,-120.674879,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=102",5
+103,"3653","Paso Robles High School",35.615657,-120.670484,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=103",5
+104,"3654","Rambouillet & Wade",35.612730,-120.669240,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=104",5
+105,"3655","Rambouillet & Torrey Pines",35.606773,-120.668847,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=105",5
+106,"3656","Stoney Creek Rd @ Dry Creek Apartments",35.605177,-120.660049,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=106",5
+107,"3633","Stoney Creek Rd @ Dry Creek Apartments",35.605305,-120.660230,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=107",5
+108,"3657","Creston & Myrtlewood",35.606426,-120.658872,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=108",5
+109,"3658","Scott & Paso Robles Senior Center",35.608415,-120.655253,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=109",5
+110,"3659","Scott & Westfield",35.608426,-120.650116,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=110",5
+111,"3630","Scott & Westfield",35.608554,-120.650311,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=111",5
+112,"3661","Airport & Scott",35.608221,-120.643325,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=112",5
+113,"3628","Airport & Scott",35.608062,-120.643608,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=113",5
+114,"3662","Airport & Parkview",35.610431,-120.643956,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=114",5
+115,"3663","Sherwood & Quail Run",35.615812,-120.653893,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=115",5
+116,"3664","Creston & Niblick",35.616642,-120.659003,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=116",5
+117,"3666","Creston & Melody",35.623327,-120.662494,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=117",5
+118,"3667","Creston & Nickerson",35.625035,-120.669599,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=118",5
+119,"3668","Creston & Bolen",35.627269,-120.673494,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=119",5
+120,"3669","Creston & Shannon Hill",35.628968,-120.677203,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=120",5
+121,"3670","Creston & Capitol Hill",35.628993,-120.680872,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=121",5
+122,"3671","Riverside & 17th",35.632628,-120.687302,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=122",5
+123,"3672","Riverside & 20th",35.634997,-120.687474,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=123",5
+124,"3615","Riverside & 26th",35.641018,-120.688303,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=124",5
+125,"3616","Ysabel & 24th",35.641982,-120.687416,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=125",5
+126,"3617","Riverside & 24th",35.638242,-120.687957,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=126",5
+127,"3618","Riverside & 18th",35.632939,-120.687489,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=127",5
+128,"3585","Riverside & 14th",35.629241,-120.687183,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=128",5
+129,"3602","Spring & 14th",35.628497,-120.691462,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=129",5
+130,"3603","Spring & 17th",35.631755,-120.691734,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=130",5
+131,"3604","Spring & 21st",35.636469,-120.692146,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=131",5
+132,"3614","24th & Park",35.639134,-120.691559,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=132",5
+133,"3605","Spring & 24th",35.639629,-120.692389,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=133",5
+134,"3606","Spring & 28th",35.642943,-120.692663,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=134",5
+135,"3607","Spring & 30th",35.645139,-120.692857,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=135",5
+136,"3608","Oak & 34th",35.649409,-120.694492,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=136",5
+137,"3609","Spring & 34th",35.649171,-120.693385,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=137",5
+138,"3610","Spring & 32nd",35.647621,-120.693256,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=138",5
+139,"3676","Spring & 30th",35.645120,-120.693018,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=139",5
+140,"3674","Spring & 28th",35.643504,-120.692916,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=140",5
+141,"3677","Spring & 23rd",35.638449,-120.692494,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=141",5
+142,"3678","Spring & 22nd",35.636803,-120.692359,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=142",5
+143,"3679","Spring & 18th",35.632508,-120.691980,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=143",5
+144,"3680","Spring & 16th",35.630456,-120.691830,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=144",5
+145,"3570","El Camino Real & Patria",35.458697,-120.642612,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=145",9
+147,"3573","El Camino Real & Santa Clara",35.439682,-120.627785,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=147",9
+148,"3574","El Camino Real & Carmel",35.432733,-120.614150,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=148",9
+149,"3575","El Camino Real & Santa Margarita",35.429149,-120.606418,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=149",9
+150,"3576","Garden Farms",35.417958,-120.604468,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=150",9
+151,"3577","El Camino Real & Encina",35.392107,-120.607123,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=151",9
+152,"3503","El Camino Real & Encina",35.392005,-120.606846,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=152",9
+153,"3502","El Camino Real & Maria",35.388531,-120.613306,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=153",9
+154,"3504","El Camino Real & Pine",35.418336,-120.604269,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=154",9
+155,"3505","El Camino Real & Santa Margarita",35.429271,-120.606280,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=155",9
+156,"3506","El Camino Real & Carmel",35.433076,-120.614535,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=156",9
+157,"3507","El Camino Real & Santa Clara",35.440301,-120.628343,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=157",9
+158,"3572","Viejo Camino & Santa Barbara",35.449564,-120.632556,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=158",9
+159,"3549","Viejo Camino & Santa Barbara",35.449942,-120.632709,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=159",9
+160,"3509","Viejo Camino & Bocina",35.454516,-120.637844,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=160",9
+161,"3571","Viejo Camino & Bocina",35.454349,-120.637749,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=161",9
+162,"3510","El Camino Real & Buena Fortuna",35.457477,-120.641288,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=162",9
+163,"3511","El Camino Real & Musselman",35.461543,-120.644680,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=163",9
+164,"3512","El Camino Real & El Bordo",35.464943,-120.647552,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=164",9
+165,"3513","El Camino Real & Principal",35.467484,-120.650035,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=165",9
+166,"3514","El Camino Real & Solano",35.471963,-120.653287,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=166",9
+167,"3515","El Camino Real & Palomar",35.475369,-120.654752,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=167",9
+168,"3516","El Camino Real & Pueblo",35.480361,-120.657986,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=168",9
+170,"3517","El Camino Real & Highway 41",35.484990,-120.663082,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=170",9
+172,"3518","Atascadero Transit Center",35.489141,-120.664832,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=172",9
+173,"3519","El Camino Real & Traffic Way",35.489646,-120.670740,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=173",9
+174,"3520","El Camino Real & Rosario",35.490791,-120.673052,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=174",9
+175,"3521","El Camino Real & San Jacinto",35.495531,-120.679610,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=175",9
+176,"3522","El Camino Real & San Anselmo",35.499841,-120.683523,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=176",9
+177,"3523","El Camino Real & Maya",35.502226,-120.687059,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=177",9
+178,"3524","El Camino Real & San Benito",35.507521,-120.693052,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=178",9
+179,"3525","El Camino Real & Del Rio",35.513333,-120.697368,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=179",9
+180,"3529","Templeton Park & Ride",35.554189,-120.713889,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=180",11
+181,"3530","Theatre @ Gahan",35.587203,-120.697154,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=181",5
+182,"3552","Theatre @ Alexa",35.587080,-120.696855,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=182",5
+183,"3553","Target Shopping Center",35.583915,-120.696831,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=183",5
+184,"3554","Theatre & Via Santa Barbara",35.576105,-120.697883,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=184",5
+185,"3729","Morro Bay Park",35.366461,-120.844514,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=185",3
+188,"3757","Ocean & Old Creek",35.428903,-120.881363,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=188",3
+189,"3758","Ocean & 8th",35.444286,-120.895027,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=189",3
+190,"3759","Ocean & 3rd",35.445915,-120.898234,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=190",3
+191,"3737","South Bay & Quintana",35.361647,-120.824679,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=191",3
+192,"3728","South Bay & Quintana",35.362039,-120.824239,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=192",3
+193,"3720","Santa Ysabel & 15th",35.329916,-120.826691,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=193",3
+194,"3727","Santa Ysabel & 15th",35.330011,-120.827072,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=194",3
+195,"3721","11th & El Morro",35.326458,-120.831094,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=195",3
+196,"3722","11th & Ramona",35.320599,-120.831109,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=196",3
+197,"3723","10th & Santa Ynez",35.314842,-120.832274,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=197",3
+198,"3724","10th & Los Osos Valley",35.311835,-120.832293,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=198",3
+199,"3730","Los Osos Valley Rd & Palisades",35.311908,-120.836071,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=199",3
+200,"3731","Los Osos Valley Rd & Pine",35.313082,-120.844782,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=200",3
+201,"3732","Pine & Loma",35.318176,-120.844808,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=201",3
+202,"3733","Ramona & 7th",35.320631,-120.835852,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=202",3
+203,"3725","7th & El Morro",35.326045,-120.835378,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=203",3
+204,"3734","2nd & Santa Maria",35.328325,-120.840876,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=204",3
+205,"3726","Santa Ysabel & 7th",35.329959,-120.834993,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=205",3
+206,"3583","Cal Poly Library",35.302311,-120.663581,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=206",7
+207,"3537","Cal Poly Library",35.302317,-120.663206,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=207",7
+208,"3538","Cal Poly Performing Arts Center",35.300265,-120.657669,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=208",7
+209,"3582","Cal Poly Performing Arts Center",35.300397,-120.657523,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=209",7
+210,"3541","Santa Rosa & Murray",35.291563,-120.667006,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=210",7
+214,"3613","Spring & 26th",35.641124,-120.692695,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=214",5
+215,"3681","Spring & 13th",35.627095,-120.691539,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=215",5
+216,"3601","Spring & 11th",35.625284,-120.691171,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=216",5
+217,"3682","Spring & 10th",35.624825,-120.691335,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=217",5
+218,"3640","7th & Park",35.621461,-120.689872,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=218",5
+220,"3620","Creston & Capitol Hill",35.628809,-120.680846,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=220",5
+221,"3621","Creston & Bolen",35.627456,-120.674145,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=221",5
+222,"3622","Daniel Lewis Middle School",35.624513,-120.668260,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=222",5
+223,"3546","Creston & Melody",35.623064,-120.662328,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=223",5
+224,"3624","Creston & Oak Meadow",35.619365,-120.659290,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=224",5
+225,"3625","Sherwood & Creston",35.615646,-120.658604,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=225",5
+226,"3611","Sherwood & Quail Run",35.615726,-120.653177,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=226",5
+227,"3626","Fontana & Linne",35.613548,-120.650252,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=227",5
+228,"3627","Airport & Turtle Creek",35.611252,-120.644398,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=228",5
+229,"3631","Scott & Paso Robles Senior Center",35.608534,-120.656234,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=229",5
+230,"3632","Creston & Cedarwood",35.606890,-120.659118,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=230",5
+231,"3634","Rambouillet & Torrey Pines",35.606488,-120.668430,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=231",5
+232,"3636","Paso Robles High School",35.615874,-120.670717,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=232",5
+234,"3527","El Camino Real & Santa Cruz",35.524066,-120.703597,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=234",9
+235,"3555","El Camino Real & Atalaya",35.520325,-120.703141,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=235",9
+236,"3526","El Camino Real & Atalaya",35.520236,-120.702924,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=236",9
+237,"3556","El Camino Real & Del Rio",35.512902,-120.697411,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=237",9
+238,"3557","El Camino Real & San Benito",35.506865,-120.692689,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=238",9
+239,"3558","El Camino Real & Maya",35.501984,-120.687143,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=239",9
+240,"3559","K Mart",35.499558,-120.683547,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=240",9
+241,"3560","El Camino Real & San Anselmo",35.497549,-120.681657,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=241",9
+242,"3561","El Camino Real & Rosario",35.490575,-120.673052,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=242",9
+243,"3562","El Camino Real & Entrada",35.488833,-120.669550,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=243",9
+244,"3563","El Camino Real & Highway 41",35.484711,-120.663087,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=244",9
+246,"3564","El Camino Real & Pueblo",35.480052,-120.658080,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=246",9
+247,"3565","El Camino Real & Junipero",35.475855,-120.655322,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=247",9
+248,"3566","El Camino Real & Plata",35.472828,-120.653923,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=248",9
+249,"3567","El Camino Real @ Santa Rosa",35.467481,-120.650386,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=249",9
+250,"3568","El Camino Real & El Bordo",35.464464,-120.647471,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=250",9
+251,"3569","El Camino Real & Maple",35.461691,-120.645125,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=251",9
+252,"3581","Grand & McCollum",35.294090,-120.653012,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=252",7
+253,"3539","Grand & McCollum",35.294289,-120.653282,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=253",7
+254,"3540","Grand & Wilson",35.291075,-120.653343,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=254",7
+256,"3888","Grand @ AM PM",35.120717,-120.585880,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=256",6
+257,"3805","Grand & Halcyon",35.118855,-120.591279,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=257",6
+258,"3806","Grand & Alder",35.118934,-120.594415,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=258",6
+259,"3807","Grand & Elm",35.120665,-120.600812,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=259",6
+260,"3808","Grand & Courtland",35.121002,-120.607220,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=260",6
+261,"3809","Grand & 16th",35.121186,-120.611830,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=261",6
+262,"3810","Grand & 13th",35.121373,-120.615592,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=262",6
+263,"3784","West Grand Ave & Nth 6th St",35.121767,-120.623841,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=263",6
+264,"3785","Grand & 2nd",35.121993,-120.628589,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=264",6
+265,"3786","Highway 1 & Le Sage",35.124149,-120.630715,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=265",6
+266,"3878","Highway 1 & Le Sage",35.123908,-120.630807,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=266",6
+267,"3879","Grand & 3rd",35.121722,-120.627300,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=267",6
+268,"3861","Grand & 7th",35.121505,-120.622850,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=268",6
+269,"3832","Grand & 13th",35.121164,-120.615735,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=269",6
+270,"3815","Grand & 16th",35.120983,-120.611948,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=270",6
+271,"3862","Grand & Oak Park",35.120801,-120.608232,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=271",6
+272,"3863","Grand & Elm",35.120499,-120.601791,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=272",6
+273,"3864","Grand & Alder",35.118548,-120.593406,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=273",6
+274,"3865","Grand & Branch",35.122006,-120.582030,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=274",6
+275,"3842","Traffic & Firefighters Park",35.121136,-120.577681,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=275",6
+276,"3866","Arroyo Grande City Hall",35.124232,-120.577198,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=276",6
+277,"3803","Grand & Branch",35.121971,-120.582416,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=277",6
+278,"3889","Halcyon Park & Ride",35.122760,-120.589812,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=278",6
+281,"3845","Oak Park & Ramona",35.121790,-120.609230,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=281",6
+282,"3846","Oak Park & Long Branch",35.119654,-120.609369,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=282",6
+287,"3849","Elm & Paul",35.104262,-120.600542,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=287",6
+288,"3850","Highway 1 & 25th",35.098224,-120.602100,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=288",6
+289,"3851","Highway 1 & 21st",35.098243,-120.608930,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=289",6
+291,"3854","13th & Highway 1",35.101663,-120.615812,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=291",6
+296,"3783","Ramona Garden Park",35.122622,-120.620011,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=296",6
+297,"3787","Dolliver & Frady",35.134127,-120.635660,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=297",6
+298,"3877","Dolliver @ Butterfly Tree",35.128499,-120.631953,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=298",6
+299,"3876","Pismo Coast Village",35.134697,-120.636536,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=299",6
+300,"3788","Dolliver & Pomeroy",35.140551,-120.641145,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=300",6
+301,"3875","Dolliver & Hinds",35.139752,-120.640460,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=301",6
+302,"3789","Dolliver & San Luis",35.143580,-120.644000,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=302",6
+303,"3874","Dolliver & Bay",35.145369,-120.644890,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=303",6
+304,"3831","Price & Stimson",35.140580,-120.638888,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=304",6
+305,"3872","Price & Hinds",35.140903,-120.638967,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=305",6
+306,"3873","Price & Wadsworth",35.143718,-120.642118,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=306",6
+307,"3790","Price & Harbor View",35.147214,-120.646026,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=307",6
+309,"3791","Lighthouse Inn North",35.149566,-120.651741,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=309",6
+310,"3795","Shell Beach & Seacliff",35.163022,-120.686202,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=310",6
+311,"3796","Shell Beach & Terrace",35.159668,-120.677438,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=311",6
+312,"3797","Shell Beach & Cuyama",35.158796,-120.675246,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=312",6
+313,"3798","Shell Beach & Cliff",35.155230,-120.666070,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=313",6
+316,"3792","Mattie & Foothill",35.153803,-120.660601,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=316",6
+317,"3793","Pismo Beach City Hall",35.157011,-120.668586,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=317",6
+318,"3794","Mattie & Valencia",35.161853,-120.680686,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=318",6
+319,"3799","James Way & 4th",35.137308,-120.621042,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=319",6
+320,"3800","James Way & Ridge",35.137076,-120.614726,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=320",6
+321,"3801","James Way & Oak Park",35.134137,-120.606425,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=321",6
+322,"3821","Branch & Vernon",35.122458,-120.585023,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=322",6
+323,"3867","South County Library",35.123892,-120.590345,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=323",6
+324,"3868","Carl's Junior",35.130264,-120.604824,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=324",6
+325,"3869","James Way & Oak Park",35.134320,-120.606456,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=325",6
+326,"3870","James Way & Ridge",35.137202,-120.614716,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=326",6
+327,"3871","James Way & 4th",35.137429,-120.621390,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=327",6
+328,"3880","Avila Hot Springs",35.181425,-120.703899,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=328",6
+329,"3881","Avila Beach & First",35.180665,-120.735812,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=329",6
+330,"3882","Port San Luis",35.172278,-120.756540,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=330",6
+331,"3883","Avila Beach & First",35.180628,-120.735496,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=331",6
+334,"3760","Cayucos & Ocean",35.449881,-120.905448,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=334",3
+335,"3761","Ardath & Green",35.550337,-121.072635,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=335",1
+336,"3751","Ardath & Green",35.550360,-121.072401,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=336",1
+337,"3762","Burton & Lucille",35.551288,-121.080099,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=337",1
+338,"3750","Burton & Ardath",35.550925,-121.080036,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=338",1
+339,"3749","Burton & Burton Cir",35.556184,-121.082757,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=339",1
+340,"3763","Burton & Yorkshire",35.557179,-121.082162,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=340",1
+341,"3748","Burton & Patterson",35.557999,-121.080708,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=341",1
+342,"3777","Burton & Main",35.563739,-121.082531,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=342",1
+343,"3747","Burton & Main",35.563622,-121.082626,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=343",1
+344,"3746","Bluebird Inn",35.563285,-121.085694,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=344",1
+345,"3765","Main & Bluebird Inn",35.563308,-121.086140,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=345",1
+346,"3766","Main & Tamson",35.562936,-121.092055,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=346",1
+347,"3745","Main & Tamson",35.562806,-121.092081,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=347",1
+348,"3744","Main & Cambria Drive",35.564661,-121.096388,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=348",1
+349,"3767","Main & Cambria Drive",35.564831,-121.096389,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=349",1
+350,"3768","Main & Cornwall",35.567958,-121.100899,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=350",1
+351,"3743","Main & Arlington",35.567191,-121.100094,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=351",1
+352,"3769","Moonstone Beach & Windsor",35.568934,-121.104932,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=352",1
+353,"3742","Moonstone Beach & Windsor",35.568797,-121.104882,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=353",1
+354,"3770","Cambria Beach Lodge",35.572089,-121.112245,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=354",1
+355,"3741","Cambria Beach Lodge",35.572283,-121.112475,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=355",1
+356,"3740","Castle Inn",35.577625,-121.115138,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=356",1
+357,"3771","Moonstone & Fireside Inn",35.578663,-121.115975,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=357",1
+358,"3739","Oceanpoint Ranch",35.583482,-121.120563,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=358",1
+359,"3772","Oceanpoint Ranch",35.584635,-121.121135,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=359",1
+360,"3773","Castillo @ Quality Inn",35.613016,-121.143648,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=360",1
+361,"3774","Hearst Castle Visitor Center",35.650392,-121.186588,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=361",1
+362,"3738","Hearst & San Simeon",35.612404,-121.143974,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=362",1
+363,"3752","Ocean & Cayucos",35.449786,-120.906513,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=363",3
+364,"3753","Ocean & 3rd",35.445956,-120.898721,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=364",3
+365,"3754","Ocean & 9th",35.443812,-120.894304,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=365",3
+366,"3755","Ocean & Old Creek",35.429211,-120.881836,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=366",3
+367,"3756","Highway 1 & San Jacinto",35.393256,-120.860517,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=367",3
+368,"3890","James Way & Highland",35.138575,-120.629911,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=368",6
+370,"3710","Higuera & South",35.270430,-120.670050,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=370",7
+371,"3711","Marsh & Broad",35.277964,-120.663928,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=371",7
+373,"3690","Higuera & South",35.271060,-120.670130,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=373",7
+375,"3689","DMV",35.256382,-120.668824,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=375",7
+376,"3696","Nipomo High School",35.052291,-120.486401,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=376",4
+377,"3697","Thompson & Branch",35.043810,-120.477096,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=377",4
+378,"3698","Tefft & Carillo",35.039654,-120.480521,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=378",4
+379,"3699","Hancock College",34.944001,-120.418266,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=379",10
+380,"3702","Cypress & Nicholson",34.951041,-120.415996,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=380",10
+381,"3701","Marian Medical Center",34.952009,-120.413275,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=381",10
+382,"3703","Tefft & Carillo",35.039620,-120.480348,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=382",4
+383,"3704","Thompson & Branch",35.044050,-120.477084,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=383",4
+384,"3705","Nipomo High School",35.052439,-120.486288,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=384",4
+386,"3708","Higuera & Suburban",35.244406,-120.675079,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=386",7
+387,"3709","DMV",35.256393,-120.668556,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=387",7
+388,"3501","Osos St & Palm St",35.282660,-120.662032,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=388",7
+390,"3542","Santa Rosa & Foothill",35.295596,-120.668936,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=390",7
+391,"3735","California Men's Colony",35.323142,-120.695011,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=391",2
+393,"3544","Achievement House",35.324802,-120.744411,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=393",2
+394,"3736","Kansas Ave & Highway 1",35.320612,-120.716746,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=394",2
+395,"3584","Santa Rosa & Foothill",35.293039,-120.667706,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=395",7
+396,"3700","Santa Maria Transit Center",34.945841,-120.430601,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=396",10
+397,"3802","Walmart Shopping Center",35.128057,-120.596584,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=397",6
+399,"3528","Twin Cities Hospital",35.554813,-120.719989,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=399",11
+401,"3635","Rambouillet & Wade",35.612911,-120.669078,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=401",5
+402,"3637","Niblick & South River",35.615083,-120.682500,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=402",5
+403,"3660","Scott & Larkellen",35.607952,-120.646928,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=403",5
+404,"3629","Scott & Larkellen",35.608028,-120.646939,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=404",5
+405,"3665","Creston & Oak Meadow",35.619816,-120.659103,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=405",5
+408,,"Templeton",35.552873,-120.713059,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=408",11
+410,"3545","Monterey @ Peach Tree Inn",35.290252,-120.649723,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=410",7
+413,"3578","El Camino Real & Maria",35.388722,-120.613256,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=413",9
+414,,"San Luis Obispo",35.291991,-120.647603,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=414",7
+415,"3579","Monterey & Grand",35.289536,-120.650864,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=415",7
+416,"3580","Grand & Abbott",35.291390,-120.653049,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=416",7
+418,"3600","North County Transportation Center",35.622423,-120.688066,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=418",5
+419,"3692","Higuera & Suburban",35.244527,-120.675266,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=419",7
+420,"3781","Pismo Beach Premium Outlets",35.136274,-120.626463,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=420",6
+422,"3695","Thompson & Cimarron",35.071771,-120.513571,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=422",4
+423,,"Santa Maria",34.955424,-120.417554,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=423",10
+424,,"Nipomo",35.036022,-120.483178,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=424",4
+425,,"Arroyo Grande",35.121124,-120.581862,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=425",6
+426,,"San Luis Obispo",35.221784,-120.691832,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=426",7
+429,,"Arroyo Grande",35.121786,-120.586089,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=429",6
+431,,"Morro Bay",35.366959,-120.837186,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=431",3
+432,,"Cayucos",35.449778,-120.917947,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=432",3
+433,,"Cayucos",35.421176,-120.877267,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=433",3
+435,,"Cambria",35.550801,-121.070946,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=435",1
+436,,"Paso Robles",35.554789,-120.711182,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=436",11
+437,,"Atascadero",35.525788,-120.704731,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=437",9
+438,,"Templeton",35.555616,-120.711447,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=438",11
+439,,"Paso Robles",35.633632,-120.686387,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=439",5
+442,"3886","Ontario @ Bob Jones Trail",35.185582,-120.703054,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=442",6
+444,"3853","Oceano Airport",35.104587,-120.624791,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=444",6
+450,"3893","13th & Wilmar",35.104232,-120.615782,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=450",6
+451,"3892","James Way & Ventana",35.137529,-120.624669,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=451",6
+452,"3643","Santa Rosa & Higuera",35.281904,-120.659246,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=452",7
+453,"3644","Santa Rosa & Murray",35.290697,-120.667119,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=453",7
+464,"3646","Nipomo & Higuera",35.278453,-120.666068,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=464",7
+469,"3894","Pismo Beach Premium Outlets",35.136588,-120.627456,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=469",6
+470,"3899","Avila Barn",35.181919,-120.704078,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=470",6
+471,"3898","Ontario & Bob Jones Trail",35.185306,-120.703342,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=471",6
+473,"3897","Avila Beach & Cave Landing",35.182598,-120.723263,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=473",6
+474,"3896","Avila Beach & San Luis Bay Inn",35.179037,-120.738829,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=474",6
+479,"3824","Wilmar & 19th",35.104083,-120.610937,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=479",6
+480,"3887","Highway 1 & 21st",35.098083,-120.608694,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=480",6
+481,"3891","Highway 1 & 25th St",35.098079,-120.601519,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=481",6
+482,"3900","Elm & The Pike",35.106667,-120.600472,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=482",6
+483,"3775","Oak Park & Newport",35.125194,-120.608889,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=483",6
+484,"3804","Oak Park & Grand",35.121405,-120.608974,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=484",6
+485,"3811","Oak Park & Newport",35.124694,-120.608750,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=485",6
+488,"3816","Fair Oaks & Traffic Way",35.119500,-120.577067,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=488",6
+489,"3817","Arroyo Grande High School",35.116250,-120.583000,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=489",6
+490,"3818","Fair Oaks & Halcyon",35.112808,-120.591342,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=490",6
+491,"3819","Elm & Fair Oaks",35.112472,-120.600667,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=491",6
+492,"3820","Elm & The Pike",35.106028,-120.600583,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=492",6
+493,"3822","19th & Wilmar",35.103861,-120.610693,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=493",6
+494,"3823","Wilmar & 13th",35.104167,-120.615639,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=494",6
+495,"3825","13th & Farroll",35.112083,-120.615833,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=495",6
+496,"3826","13th & Trouville",35.116461,-120.615543,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=496",6
+497,"3547","Cuesta College",35.327184,-120.740882,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=497",2
+498,,"Santa Margarita",35.412271,-120.605350,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=498",9
+499,,"Pismo Beach",35.137364,-120.628300,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=499",6
+500,,"San Simeon",35.610419,-121.141131,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=500",1
+501,,"Cambria",35.585846,-121.121518,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=501",1
+502,,"Morro Bay",35.404120,-120.867915,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=502",3
+505,,"San Miguel",35.739003,-120.699921,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=505",8
+508,"3707","Higuera & Prado",35.254040,-120.669244,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=508",7
+510,,"Higuera & Prado",35.254116,-120.669411,"http://slo.connexionz.net/RTT/Public/Transit.aspx?page=text&plt=510",7
