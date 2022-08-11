@@ -57,7 +57,6 @@ listed alphabetically.
 * Opening a shapefile (ArcGIS) (link to tutorial forthcoming)
 * [Opening a spatial data set from a file (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-open-file.html){target="_blank"}
 * [Plotting spatial data using ggplot (static) (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-ggplot-map.html){target="_blank"}
-* Plotting spatial data using leaflet (interactive) (R)
 * [Saving spatial data (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-save-spatial-data.html){target="_blank"}
 * Spatial filtering (ArcGIS)  (link to tutorial forthcoming)
 * [Spatial filtering (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-aspatial-filter.html){target="_blank"}
