@@ -33,7 +33,6 @@ datasets for the remainder of this course.
 On your submission, list the name(s) of at least one student who was 
 especially helpful you you in completing this assignment, and describe 
 how they helped.
-the help they offered.
 
 # Relevant Skills
 
@@ -77,7 +76,7 @@ listed alphabetically.
 Each of the examples below fully meets the requirements for this assignment.
 
 * [Example 1](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/examples/slo-example.pdf){target="_blank"}
-* [Example 2](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/examples/africa-example.pdf){target="_blank"}
+* [Example 2](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/examples/africa-example.html){target="_blank"}
 
 # Grading rubric
 
