@@ -52,7 +52,7 @@ listed alphabetically.
 * [Getting spatial data from the tigris package (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-tigris.html){target="_blank"}
 * [Getting spatial data from U.S. Census TIGER files (web interface)](https://harvard.zoom.us/rec/play/QV2SCI71O-N_cgWLR0k0BMTb_WeldF-C4CaEhNxOcpJ7HcdM5nv3g1Lmv_nyqQ7XOboT2HWXhRkJblNA.Gd0LSXr6MkFzVIYC?startTime=1602525515000){target="_blank"}
 * [Getting street data from OpenStreetMap (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-load-osm-data.html){target="_blank"}
-* [Getting transit stop locations from a GTFS feed](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-get_gtfs-data.html){target="_blank"}
+* [Getting transit stop locations from a GTFS feed](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-get-gtfs-data.html){target="_blank"}
 * Loading point data stored as coordinates in a csv file (ArcGIS) (link to tutorial forthcoming)
 * Opening a shapefile (ArcGIS) (link to tutorial forthcoming)
 * [Opening a spatial data set from a file (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-open-file.html){target="_blank"}

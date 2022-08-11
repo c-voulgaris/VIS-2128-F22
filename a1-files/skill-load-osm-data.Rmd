@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 OpenStreetMap can be a good sources of street data for many areas of the world.
 `osmextract` is one of a few different R packages that make it easy to download
-OpenStreetMap data directly into R. YOu can find more details on the package 
+OpenStreetMap data directly into R. You can find more details on the package 
 and how to use it [here](https://cran.r-project.org/web/packages/osmextract/vignettes/osmextract.html){target="_blank"}.
 
 # Required packages

@@ -44,7 +44,7 @@ In some cases, you may not really care what CRS your data is in, but you
 do need it to be consistent across layers.
 
 In this example, I'll load a set of census tracts using the tigris package
-(more on that here) and set the CRS to match the CRS in the streets layer.
+(more on that [here](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-tigris.html){target="_blank"}) and set the CRS to match the CRS in the streets layer.
 
 ```{r, message=FALSE, results='hide'}
 tracts <- tracts(state = "CA",

@@ -55,16 +55,11 @@ The `ne_states()` function returns state/provincial boundaries (administrative l
 
 Here's how you would load the boundaries of Canadian provinces. 
 
-Note: you may need to install rnaturalearthhires for this to work. You can install it from GitHub
-by typing `devtools::install_git("https://github.com/ropensci/rnaturalearthhires")` into your 
-console. You'll only need to ever do this once.
-
 ```{r}
 canada_prov <- ne_states(country = "Canada",
                          returnclass = "sf")
 ```
 
-
-
-
-
+Note: you may need to install rnaturalearthhires for this to work. You can install it from GitHub
+by typing `devtools::install_git("https://github.com/ropensci/rnaturalearthhires")` into your 
+console. You'll only need to ever do this once.

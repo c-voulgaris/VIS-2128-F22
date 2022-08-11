@@ -28,7 +28,7 @@ library(here)
 # Getting and installing a census API key
 
 Before you can use the `tidycensus` package, you will need to register for a 
-Census API key here. It can take one or two business days to get a key, so do 
+Census API key [here](https://api.census.gov/data/key_signup.html){target="_blank"}. It can take one or two business days to get a key, so do 
 this well before the assignment is due.
 
 Your API key will be a string of letters and numbers. If your API key is 

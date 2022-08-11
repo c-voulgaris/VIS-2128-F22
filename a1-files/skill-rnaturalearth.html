@@ -402,12 +402,12 @@ South America.</p>
 <p>The <code>ne_states()</code> function returns state/provincial
 boundaries (administrative level 1).</p>
 <p>Here’s how you would load the boundaries of Canadian provinces.</p>
+<pre class="r"><code>canada_prov &lt;- ne_states(country = &quot;Canada&quot;,
+                         returnclass = &quot;sf&quot;)</code></pre>
 <p>Note: you may need to install rnaturalearthhires for this to work.
 You can install it from GitHub by typing
 <code>devtools::install_git(&quot;https://github.com/ropensci/rnaturalearthhires&quot;)</code>
 into your console. You’ll only need to ever do this once.</p>
-<pre class="r"><code>canada_prov &lt;- ne_states(country = &quot;Canada&quot;,
-                         returnclass = &quot;sf&quot;)</code></pre>
 </div>
 
 
