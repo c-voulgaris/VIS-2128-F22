@@ -113,8 +113,3 @@ rubric <- tibble(Item = c("Name of a helpful classmate",
 
 kable(rubric)
 ```
-
-
-# Peer discussion
-
-
