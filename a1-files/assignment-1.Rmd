@@ -5,6 +5,9 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(knitr)
 ```
 
 # Deliverable
@@ -26,6 +29,11 @@ You should include the following information about each dataset:
 
 Choose wisely and carefully! You will be working with these three 
 datasets for the remainder of this course.
+
+On your submission, list the name(s) of at least one student who was 
+especially helpful you you in completing this assignment, and describe 
+how they helped.
+the help they offered.
 
 # Relevant Skills
 
@@ -70,3 +78,43 @@ Each of the examples below fully meets the requirements for this assignment.
 
 * [Example 1](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/examples/slo-example.pdf){target="_blank"}
 * [Example 2](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/examples/africa-example.pdf){target="_blank"}
+
+# Grading rubric
+
+```{r, echo=FALSE}
+rubric <- tibble(Item = c("Name of a helpful classmate",
+                          "How your classmate helped",
+                          "Identification of points dataset",
+                          "Identification of a line dataset",
+                          "Identification of a polygon dataset",
+                          "Spatial extent (points)",
+                          "Unit of analysis (points)",
+                          "Number of observations (points)",
+                          "Data format (points)",
+                          "Variable descriptions (points)",
+                          "Coordinate reference system (points)",
+                          "Spatial extent (lines)",
+                          "Unit of analysis (lines)",
+                          "Number of observations (lines)",
+                          "Data format (lines)",
+                          "Variable descriptions (lines)",
+                          "Coordinate reference system (lines)",
+                          "Spatial extent (polygons)",
+                          "Unit of analysis (polygons)",
+                          "Number of observations (polygons)",
+                          "Data format (polygons)",
+                          "Variable descriptions (polygons)",
+                          "Coordinate reference system (polygons)",
+                          "Total"),
+                 `No credit` = c(rep("Missing", 23), ""),
+                 `Half credit` = c(rep("Not adequately described", 23), ""),
+                 `Full credit` = c(rep("Adequately described", 23), ""),
+                 `Possible points` = c(rep(2, 2), rep(1, 21), 25))
+
+kable(rubric)
+```
+
+
+# Peer discussion
+
+
