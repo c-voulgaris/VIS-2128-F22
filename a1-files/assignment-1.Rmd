@@ -42,25 +42,25 @@ listed alphabetically.
 
 * [Aspatial filtering (ArcGIS)](https://harvard.zoom.us/rec/play/idIAcbFSILn-r5OFFhuWNlMck1SqSwIt85MlAIlhh15C2u8aK8Z3cdvr_v8U5f9ChqupnbJZMj6OkXuK.7m6bLNVDM5Z33DU8?autoplay=true&startTime=1660234253000){target="_blank"}
 * [Aspatial filtering (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-aspatial-filter.html){target="_blank"}
-* Converting between coordinate reference systems (ArcGIS) (link to tutorial forthcoming)
+* [Converting between coordinate reference systems (ArcGIS)](https://harvard.zoom.us/rec/play/2-aJVPZURC2JnmlDdZA1GqF6sVwB8Ft3EQlTULQdVBQnvbxIw5vCqz2G3RSaeB9kZCMiwmX1F_5o7c_l.IfrNdiQ2PhCD-7x-?autoplay=true&startTime=1660234717000){target="blank"}
 * [Converting between coordinate reference systems (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-convert-crs.html){target="_blank"}
-* Determining the coordinate reference system for spatial data (ArcGIS) (link to tutorial forthcoming)
 * [Determining the coordinate reference system for spatial data (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-get-crs.html){target="_blank"}
 * [Getting national and subnational boundaries from rnaturalearth (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-rnaturalearth.html){target="_blank"}
+* [Getting national and subnational boundaries from Esri Living Atlas (ArcGIS)](https://harvard.zoom.us/rec/play/1YKDpnwcfHPuLF0F0ioNqz561lGpv1qhGcz5J9nZCsYnJnAzH0I5SUCPXoNppMF6qdulS_rzm8wzeyKh.mc7Z1rVBnzdlkydB?autoplay=true&startTime=1660235103000){target="_blank"}
 * [Getting spatial data from a municipal open data portal](https://harvard.zoom.us/rec/play/J2QqcFKKvWv6MuPYGof2qnIYPXkc3ZJAVymlYITcFQ-t9IC4TDu-pFBoRcUTat3s0LtVx-qKNrSeHNcS.TOsORH6w8UnLGQRb?autoplay=true&startTime=1600374226000){target="_blank"}
 * [Getting spatial data from the tidycensus package (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-tidycensus.html){target="_blank"}
 * [Getting spatial data from the tigris package (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-tigris.html){target="_blank"}
 * [Getting spatial data from U.S. Census TIGER files (web interface)](https://harvard.zoom.us/rec/play/QV2SCI71O-N_cgWLR0k0BMTb_WeldF-C4CaEhNxOcpJ7HcdM5nv3g1Lmv_nyqQ7XOboT2HWXhRkJblNA.Gd0LSXr6MkFzVIYC?startTime=1602525515000){target="_blank"}
 * [Getting street data from OpenStreetMap (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-load-osm-data.html){target="_blank"}
 * [Getting transit stop locations from a GTFS feed](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-get-gtfs-data.html){target="_blank"}
-* Loading point data stored as coordinates in a csv file (ArcGIS) (link to tutorial forthcoming)
-* Opening a shapefile (ArcGIS) (link to tutorial forthcoming)
+* [Opening a shapefile (ArcGIS)](https://harvard.zoom.us/rec/play/p-3woeEKdW_vYgNCF5yFYhiQgTsSaYCLkuN1nCX3yQr7Ltqq1itds-5yjhGTxZxWPY9eZ2agmEbmToEj.EOS-w3ITfvAZsZlR?autoplay=true&startTime=1660233502000){target="_blank"}
+* [Loading point data stored as coordinates in a csv file (ArcGIS)](https://harvard.zoom.us/rec/play/R-Vmv22xvsy23sgR0XssZdTNjlaV7sJXWj-VIEgFfZYDPt3OOg_IRK8P8H7pxd1K5lI10YGXrttX-TRi.2faZGTWB_lkOPPWo?autoplay=true&startTime=1660233906000){target="_blank"}
 * [Opening a spatial data set from a file (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-open-file.html){target="_blank"}
 * [Plotting spatial data using ggplot (static) (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-ggplot-map.html){target="_blank"}
 * [Saving spatial data (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-save-spatial-data.html){target="_blank"}
-* Spatial filtering (ArcGIS)  (link to tutorial forthcoming)
+* [Spatial filtering (ArcGIS)](https://harvard.zoom.us/rec/play/0CoGI5lWn8pvX7wayiLa7IbHmjMJ43saghzcFYrd6V3rBzat5tR7TgZ2tEunqg4FUG-FvJSGtjFhuVNj.iwcbtdFO34aHyJjH?autoplay=true&startTime=1660236038000){target="_blank"}
 * [Spatial filtering (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-aspatial-filter.html){target="_blank"}
-* Viewing spatial data as a table (ArcGIS) (link to tutorial forthcoming)
+* [Viewing spatial data as a table (ArcGIS)](https://harvard.zoom.us/rec/play/tEjEgg_jWeSYQP3HVvhs--aoXWH9YbSI7PVlyDQsM7PjZQ-pxxSm4Vuhl6OS0CM69ckbBI6XWFKUws1T.0j9m-O3Re29XYa03?autoplay=true&startTime=1660235648000){target="_blank"}
 * [Viewing spatial data as a table (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-view-dataframe.html){target="_blank"}
 
 # Other resources
