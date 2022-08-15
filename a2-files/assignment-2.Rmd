@@ -42,7 +42,7 @@ listed alphabetically.
 * Changing the projection of a ggplot map (R)
 * Creating a legend for multiple layers in a ggplot map (R)
 * Creating a legend for one layer in a ggplot map (R)
-* Creating a map in leaflet (R)
+* Creating an interactive map with leaflet (R)
 * Customizing a ggplot theme (R)
 * Defining the bounding box for a ggplot map (R)
 * Editing a ggplot map further in Adobe Illustrator (Illustrator)
