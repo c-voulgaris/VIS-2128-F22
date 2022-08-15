@@ -1,0 +1,94 @@
+---
+title: "Assignment 3"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(knitr)
+```
+
+# Deliverable
+
+Submit a map with at least two layers. One should be an image of a map
+from the Harvard Map Collection (go to the Map 
+Collection at the Pusey library in Harvard Yard and a librarian will help you find
+and digitize a map) or an image of a historic map from an online source. 
+The other should be one of the layers you described in 
+Assignment 1 (you can use more than one layer from Assignment 1 if you 
+want to, but you only need to use one). 
+
+Your map should be attractive and informative (inset maps, north arrows, and 
+scale bars are very helpful in making a map informative, but I'm not 
+dogmatic about including them if your audience doesn't need them). It should 
+clearly indicate the source of each layer in your map. It should
+also include a couple of sentences describing the audience for your map and
+the argument you are making or the message you are conveying to them with
+your map.
+
+On your submission, list the name(s) of at least one student who was 
+especially helpful you you in completing this assignment, and describe 
+how they helped.
+
+# Relevant Skills
+
+You are unlikely to use all of these skills in this assignment, but all 
+of them are relevant and you will probably use several of them. They are
+listed alphabetically.
+
+* [Georeferencing a map image (ArcGIS)](https://harvard.zoom.us/rec/share/TruZkY4n-1zoylfrUpbc8MBSSIrW3j07DTqnCHAtLqCUYrl-0ZcM8HCc3K5lGTm2.seGOOjpp0slak0x3?startTime=1602621784000){target="_blank"}
+* [Georeferencing a map image (QGIS)](https://harvard.zoom.us/rec/play/_pwa91L5_JufyagpsybCG1Cb2yZ-vZeFWpEIss-SOui3dGSqUNjuJrEF_BFC1Ju3WbgUMOe1EKOmAnqW.HkmVHJXQGNTVxyT2?startTime=1602622287000&_x_zm_rtaid=RCRvcGukTr-LeAWdaueuWg.1660310247547.f660848fc828b97cf7ead655d36fbc62&_x_zm_rhtaid=879){target="_blank"}
+* Labeling a vector layer (QGIS)
+* Load an image as a raster (R)
+
+# Other resources
+
+* [Library of Congress maps](https://www.loc.gov/collections/?fa=original-format%3Amap%7Cpartof%3Ageography+and+map+division&c=160){target="_blank"}
+
+# Examples
+
+Each of the examples below fully meets the requirements for this assignment.
+
+* [Example 1]
+* [Example 2]
+
+# Grading rubric
+
+```{r, echo=FALSE}
+rubric <- tibble(Item = c("Name of a helpful classmate",
+                          "How your classmate helped",
+                          "Inclusion of a georeferenced map image",
+                          "Inclusion of a digital layer",
+                          "The map is informative",
+                          "The map is attractive",
+                          "Source attribution",
+                          "Description of audience",
+                          "Description of argument/message",
+                          "Total"),
+                 `No credit` = c(rep("Missing", 9), ""),
+                 `Half credit` = c("Not adequately described",
+                                   "Not adequately described",
+                                   "",
+                                   "",
+                                   "Minimal apparent effort",
+                                   "Minimal apparent effort",
+                                   "Not adequately described",
+                                   "Not adequately described",
+                                   "Not adequately described", 
+                                   ""),
+                 `Full credit` = c("Not adequately described",
+                                   "Not adequately described",
+                                   "Included",
+                                   "Included",
+                                   "Evident effort",
+                                   "Evident effort",
+                                   "Adequately described",
+                                   "Adequately described",
+                                   "Adequately described", 
+                                   ""),
+                 `Possible points` = c(2, 2, 4, 4, 3, 3, 1, 3, 3, 25))
+
+kable(rubric)
+```

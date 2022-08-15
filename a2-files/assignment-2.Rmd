@@ -12,16 +12,13 @@ library(knitr)
 
 # Deliverable
 
-Submit a map with at least two layers. One should be an image of a map
-from the Harvard Map Collection (go to the Map 
-Collection at the Widener library and a librarian will help you find
-and digitize a map). The other should be one of the layers you described in 
-Assignment 1 (you can use more than one layer from Assignment 1 if you 
-want to, but you only need to use one). 
+Submit a map with showing the data you described in 
+Assignment 1, with each dataset as a separate layer. 
 
 Your map should be attractive and informative (inset maps, north arrows, and 
 scale bars are very helpful in making a map informative, but I'm not 
-dogmatic about including them if your audience doesn't need them). It should
+dogmatic about including them if your audience doesn't need them). It should 
+clearly indicate the source of each layer in your map. It should
 also include a couple of sentences describing the audience for your map and
 the argument you are making or the message you are conveying to them with
 your map.
@@ -47,12 +44,10 @@ listed alphabetically.
 * Creating a legend for one layer in a ggplot map (R)
 * Creating a map in leaflet (R)
 * Customizing a ggplot theme (R)
+* Defining the bounding box for a ggplot map (R)
 * Editing a ggplot map further in Adobe Illustrator (Illustrator)
 * Fun with color palettes (R)
 * Fun with fonts (R)
-* [Georeferencing a map image (ArcGIS)](https://harvard.zoom.us/rec/share/TruZkY4n-1zoylfrUpbc8MBSSIrW3j07DTqnCHAtLqCUYrl-0ZcM8HCc3K5lGTm2.seGOOjpp0slak0x3?startTime=1602621784000){target="_blank"}
-* [Georeferencing a map image (QGIS)](https://harvard.zoom.us/rec/play/_pwa91L5_JufyagpsybCG1Cb2yZ-vZeFWpEIss-SOui3dGSqUNjuJrEF_BFC1Ju3WbgUMOe1EKOmAnqW.HkmVHJXQGNTVxyT2?startTime=1602622287000&_x_zm_rtaid=RCRvcGukTr-LeAWdaueuWg.1660310247547.f660848fc828b97cf7ead655d36fbc62&_x_zm_rhtaid=879){target="_blank"}
-* Labeling a vector layer (QGIS)
 * Saving a ggplot map as a PDF (R)
 
 # Other resources
@@ -71,10 +66,10 @@ Each of the examples below fully meets the requirements for this assignment.
 ```{r, echo=FALSE}
 rubric <- tibble(Item = c("Name of a helpful classmate",
                           "How your classmate helped",
-                          "Inclusion of a georeferenced map image",
-                          "Inclusion of a digital layer",
+                          "Inclusion of multiple layers",
                           "The map is informative",
                           "The map is attractive",
+                          "Source attribution",
                           "Description of audience",
                           "Description of argument/message",
                           "Total"),
@@ -82,22 +77,22 @@ rubric <- tibble(Item = c("Name of a helpful classmate",
                  `Half credit` = c("Not adequately described",
                                    "Not adequately described",
                                    "",
-                                   "",
                                    "Minimal apparent effort",
                                    "Minimal apparent effort",
+                                   "Not adequately described",
                                    "Not adequately described",
                                    "Not adequately described", 
                                    ""),
                  `Full credit` = c("Not adequately described",
                                    "Not adequately described",
                                    "Included",
-                                   "Included",
                                    "Evident effort",
                                    "Evident effort",
                                    "Adequately described",
+                                   "Adequately described",
                                    "Adequately described", 
                                    ""),
-                 `Possible points` = c(2, 2, 4, 4, 3, 3, 3, 4, 25))
+                 `Possible points` = c(2, 2, 4, 4, 4, 1, 4, 4, 25))
 
 kable(rubric)
 ```

@@ -40,4 +40,4 @@ vignettes/*.pdf
 .Renviron
 
 # Large image files from georeferencing exercise
-a2-files/large-image-files/
+*/large-image-files/
