@@ -58,8 +58,8 @@ listed alphabetically.
 
 Each of the examples below fully meets the requirements for this assignment.
 
-* [Example 1]
-* [Example 2]
+* [Example 1](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/Examples/slo-leaflet.html){target="_blank"}
+* [Example 2](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/Examples/Africa-a2.pdf){target="_blank"}
 
 # Grading rubric
 
