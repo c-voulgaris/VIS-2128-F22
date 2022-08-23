@@ -12,7 +12,7 @@ geometry is stored as geographic coordinates, you'll essentially end up with a
 Mercator projection that distorts areas on the map.
 
 This is less of a big deal for smaller areas like cities, and I guess it's not a 
-big deal if you and your audience don't hate the Mercator projection (and I do hate 
+big deal if you and your audience doesn't hate the Mercator projection (and I do hate 
 it).
 
 # Required packages
@@ -86,10 +86,17 @@ wgs84_world +
   coord_sf(crs = "+proj=eqearth") 
 ```
 
-# Projections for national maps
+# PROJ strings
 
-A projection that works well for a map of the world might be terrible for a 
-particular country or continent. For example, here is the azimuthal equidistant
+The examples above set the CRS with string starting with `+proj=`. This is
+proj4 notation, and it's a common way to refer to a projection. 
+
+proj4 notation lets you set several additional parameters. The most important
+ones will often be to center your projection on a point near the middle of 
+your map. If you don't set parameters to center your projection, your projection
+will be centered on a point near the western part of Africa (zero degrees latitude
+and zero degrees longitude). This will look wacky if you're mapping an area that's
+far away from that point. For example, here is the azimuthal equidistant
 projection applied to Canada.
 
 ```{r}
@@ -97,8 +104,7 @@ wgs84_provinces +
   coord_sf(crs = "+proj=aeqd") 
 ```
 
-Actually, this could still be a good projection for Canada, but it's centered 
-on a point in Africa (zero degrees longitude, zero degrees latitude). If you go 
+If you go 
 back to the page for that projection (https://proj.org/operations/projections/aeqd.html),
 scroll down to "Options" and you'll see that you can set parameters for `lat_0` and 
 `lon_0`. You can use these to recenter the projection at 60 degrees north,
@@ -127,7 +133,7 @@ wgs84_provinces +
   coord_sf(crs = "+proj=eqearth +lon_0=-106") 
 ```
 
-# Common projections
+# Other proj4 examples
 
 Feel free to experiment with different map projections for the area you are
 mapping! 
@@ -135,12 +141,78 @@ mapping!
 Here are some reasonable ones to consider:
 
 * **United States:** USA Contiguous Albers Equal Area Conic
-`+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs`
-* **Canada:** Statistics Canada Lambert: `+proj=lcc +lat_1=49 +lat_2=77 +lat_0=63.390675 +lon_0=-91.86666666666666 +x_0=6200000 +y_0=3000000 +ellps=GRS80 +units=m +no_defs `
-* Africa: Africa Lambert Conformal Conic: `+proj=lcc +lat_1=20 +lat_2=-23 +lat_0=0 +lon_0=25 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs `
-* **South America:** South America Equidistant Conic: `+proj=eqdc +lat_0=0 +lon_0=0 +lat_1=-5 +lat_2=-42 +x_0=0 +y_0=0 +ellps=aust_SA +units=m +no_defs `
-* **Russia:** Albers Equal Area Russia: `+proj=aea +lat_1=50 +lat_2=70 +lat_0=56 +lon_0=100 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs`
-* **China:*** China Albers Equal Area Conic: `+proj=aea +lat_1=27 +lat_2=45 +lat_0=35 +lon_0=105 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=mm +no_defs`
+`+proj=aea +lat_1=29.5 +lat_2=45.5 +lon_0=-96 +datum=NAD83 +units=m +no_defs`
+    * `+proj=aea` indicates an Albers Equal Area projection (prioritizing preserving relative areas).
+    * `+lat_1=29.5` indicates the projection plane intersects the ellipsoid at 29.5 degrees north.
+    * `+lat_2=45.5` indicates the projection plane intersects the ellipsoid at 45.5 degrees north.
+    * `+lon_0=-96` indicates the projection is centered at 96 degrees west.
+    * `+datum=NAD83` indicates the projection is based on the NAD83 datum.
+    * `units=m` indicates any distance measurements will be in meters.
+    * `+no_defs` is just something to add at the end to keep defaults from doing something surprising.
+* **Canada:** Statistics Canada Lambert: `+proj=lcc +lat_1=49 +lat_2=77 +lat_0=63.390675 +lon_0=-91.866667 +x_0=6200000 +y_0=3000000 +ellps=GRS80 +units=m +no_defs `
+    * `+proj=lcc` indicates an Lambert Conformal Conic projection (prioritizing preserving angles and shapes).
+    * `+lat_1=49` indicates the projection plane intersects the ellipsoid at 49 degrees north.
+    * `+lat_2=77` indicates the projection plane intersects the ellipsoid at 77 degrees north.
+    * `+lat_0=63.390675` indicates the projection is centered at 63.390675 degrees north.
+    * `+lon_0=-91` indicates the projection is centered at 91.866667 degrees west.
+    * `+x_0=6200000` means a value of 6,200,000 meters will be added to the map's x-coordinates 
+    (this is to avoid negative values to to the west of the projection's center).
+    * `+y_0=3000000` means a value of 3,000,000 meters will be added to the map's y-coordinates 
+    (this is to avoid negative values to to the south of the projection's center).
+    * `+ellps=GRS80` indicates the projection is based on the GRS 80 ellipsoid.
+    * `units=m` indicates any distance measurements will be in meters.
+    * `+no_defs` is just something to add at the end to keep defaults from doing something surprising.
+* **Africa:** Africa Lambert Conformal Conic: `+proj=lcc +lat_1=20 +lat_2=-23 +lat_0=0 +lon_0=25 +ellps=WGS84 +datum=WGS84 +units=m +no_defs`
+    * `+proj=lcc` indicates an Lambert Conformal Conic projection (prioritizing preserving angles and shapes).
+    * `+lat_1=20` indicates the projection plane intersects the ellipsoid at 20 degrees north.
+    * `+lat_2=-23` indicates the projection plane intersects the ellipsoid at 23 degrees south.
+    * `+lat_0=0` indicates the projection is centered at the equator.
+    * `+lon_0=25` indicates the projection is centered at 25 degrees east.
+    * `+ellps=WGS84` indicates the projection is based on the WGS 84 ellipsoid.
+    * `+datum=WGS84` indicates the projection is based on the WGS 84 datum.
+    * `units=m` indicates any distance measurements will be in meters.
+    * `+no_defs` is just something to add at the end to keep defaults from doing something surprising.
+* **South America:** South America Equidistant Conic: `+proj=eqdc +lon_0=-60 +lat_1=-5 +lat_2=-42 +ellps=aust_SA +units=m +no_defs`
+    * `+proj=eqdc` indicates an Equidistant Conic projection (prioritizing preserving relative distances).
+    * `+lat_1=-5` indicates the projection plane intersects the ellipsoid at 5 degrees south.
+    * `+lat_2=-42` indicates the projection plane intersects the ellipsoid at 42 degrees south.
+    * `+lon_0=-60` indicates the projection is centered at 60 degrees west.
+    * `+ellps=aust_SA` indicates the projection is based on the Australian National and South American ellipsoid.
+    * `units=m` indicates any distance measurements will be in meters.
+    * `+no_defs` is just something to add at the end to keep defaults from doing something surprising.
+* **Russia:** Albers Equal Area Russia: `+proj=aea +lat_1=50 +lat_2=70 +lon_0=100 +ellps=WGS84 +datum=WGS84 +units=m +no_defs`
+    * `+proj=aea` indicates an Albers Equal Area projection (prioritizing preserving relative areas).
+    * `+lat_1=50` indicates the projection plane intersects the ellipsoid at 50 degrees north.
+    * `+lat_2=70` indicates the projection plane intersects the ellipsoid at 70 degrees north.
+    * `+lon_0=100` indicates the projection is centered at 100 degrees east.
+    * `+ellps=WGS84` indicates the projection is based on the WGS 84 ellipsoid.
+    * `+datum=WGS84` indicates the projection is based on the WGS 84 datum.
+    * `units=m` indicates any distance measurements will be in meters.
+    * `+no_defs` is just something to add at the end to keep defaults from doing something surprising.
+* **China:*** China Albers Equal Area Conic: `+proj=aea +lat_1=27 +lat_2=45 +lon_0=105 +ellps=WGS84 +datum=WGS84 +units=m +no_defs`
+    * `+proj=aea` indicates an Albers Equal Area projection (prioritizing preserving relative areas).
+    * `+lat_1=27` indicates the projection plane intersects the ellipsoid at 50 degrees north.
+    * `+lat_2=45` indicates the projection plane intersects the ellipsoid at 70 degrees north.
+    * `+lon_0=105` indicates the projection is centered at 105 degrees east.
+    * `+ellps=WGS84` indicates the projection is based on the WGS 84 ellipsoid.
+    * `+datum=WGS84` indicates the projection is based on the WGS 84 datum.
+    * `units=m` indicates any distance measurements will be in meters.
+    * `+no_defs` is just something to add at the end to keep defaults from doing something surprising.
 * **Western Europe:** Lambert Azimuthal Equal Area: `+proj=laea +lat_0=52 +lon_0=20`
+    * `+proj=aea` indicates an Lambert Azimuthal Equal Area projection (prioritizing preserving relative areas).
+    * `+lat_0=52` indicates the projection is centered at 52 degrees north.
+    * `+lon_0=20` indicates the projection is centered at 20 degrees east.
+    
+# Other ways to indicate map projections
 
+The nice thing about proj4 notation is that a human can read and understand
+the parameters it's applying. `sf` functions like `coord_sf` and `st_transform` 
+will also understand other names for projections.
 
+If you want to go with a straight Mercator projection, you can set the CRS 
+for your map to `WGS84` or `NAD83` without dealing with a proj4 string. Just
+set it as `crs = "WGS84`.
+
+You can also use a 4-digit EPSG code for pre-defined map projections. Enter these
+as numbers rather than strings (without quotations). You can find EPSG codes in 
+a reference like [spatialrefernce.org](https://spatialreference.org/){target="_blank"}.

@@ -15,7 +15,7 @@ Graduate School of Design.
 
 * Week 1: Finding and describing (spatial) data
 * Week 2: Visualizing (spatial) data
-* Week 3: Raster data 
+* Week 3: Raster image data 
 * Week 4: Calculations within a data set
 * Week 5: Distances, centroids, buffers, and samples
 * Week 6: Relationships between data sets
@@ -25,7 +25,7 @@ Graduate School of Design.
 
 * [Assignment 1: Select and describe a dataset](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/assignment-1.html){target="_blank"}
 * [Assignment 2: Create a map](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/assignment-2.html){target="_blank"}
-* [Assignment 3: Georeference a map](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/assignment-3.html){target="_blank"}
+* [Assignment 3: Georeference a map](https://c-voulgaris.github.io/VIS-2128-F22/a3-files/assignment-3.html){target="_blank"}
 * Assignment 4: Generate new variables
 * Assignment 5: Generate new layers
 * Assignment 6: Generate variables based on spatial relationships
