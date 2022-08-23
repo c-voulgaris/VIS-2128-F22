@@ -1,0 +1,119 @@
+---
+title: "Trails, Transit, and Tracts"
+output: 
+  html_document:
+    theme: cosmo
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This map allows readers to explore the county trails of San Luis Obispo
+County in relation to the the locations of transit stops and census-tract-level
+median incomes. It shows that, for the most part, county trails are not
+accessible by public transit.
+
+The intended audience for this map is a resident of San Luis Obispo County
+who might appreciate the ability to interactively explore the trails and transit
+stops that serve the places where they live, work, and recreate.
+
+```{r load-packages, include=FALSE}
+library(tidyverse)
+library(leaflet)
+library(sf)
+library(tidycensus)
+library(here)
+library(htmltools)
+```
+
+```{r load-data, include=FALSE}
+trails <- here("a1-files",
+               "County_Trails.geojson") %>%
+  st_read() %>%
+  mutate(label_text = paste(TrailName, 
+                             "<br/>", 
+                             formatC(Length, digits = 2),
+                            LengthUnits))
+
+rta_stops <- here("a1-files",
+               "bus-stops.csv") %>%
+  st_read(options=c("X_POSSIBLE_NAMES=stop_lon",
+                               "Y_POSSIBLE_NAMES=stop_lat")) %>%
+    mutate(`Transit Provider` = "San Luis Obispo RTA") 
+
+slo_stops <- here("a2-files",
+                  "Examples",
+                  "slo-stops.csv") %>%
+  st_read(options=c("X_POSSIBLE_NAMES=stop_lon",
+                               "Y_POSSIBLE_NAMES=stop_lat")) %>%
+    mutate(`Transit Provider` = "SLO Transit") %>%
+  select(colnames(rta_stops)) 
+
+all_stops <- rbind(rta_stops, slo_stops)
+
+tracts <- get_acs(geography = "tract", 
+                  variables = "B06011_001", 
+                  output = "wide", 
+                  state = "CA",
+                  county = "San Luis Obispo",
+                  geometry = TRUE) %>%
+  st_transform("WGS84") %>%
+  mutate(label_text = paste0(NAME, 
+                             "<br/><b>Estimated median income:</b> $", 
+                             prettyNum(B06011_001E, big.mark = ",")))
+```
+
+```{r, echo=FALSE}
+income_pal <- colorNumeric(palette = "RdYlBu", domain = tracts$B06011_001E, na.color = NA)
+transit_pal <- colorFactor(palette = c("darkblue", "darkgreen"), domain = all_stops$`Transit Provider`)
+
+leaflet(width = "100%") %>%
+  addProviderTiles(providers$Stamen.TonerLite,
+                   options = providerTileOptions(minZoom = 9)) %>%
+  setView(lng = -120.6592, lat = 35.28190, zoom = 11) %>%
+  addPolygons(data = tracts,
+              color = "black",
+              weight = 0.3,
+              fillColor = ~income_pal(B06011_001E),
+              fillOpacity = 0.5,
+              popup = ~label_text,
+              highlightOptions = highlightOptions(fillOpacity = 0.7)) %>%
+  addCircleMarkers(data = all_stops,
+             lat = ~stop_lat,
+             lng = ~stop_lon,
+             radius = 4,
+             stroke = FALSE,
+             fillOpacity = 0.7,
+             fillColor = ~transit_pal(`Transit Provider`),
+             popup = ~stop_name) %>%
+  addPolylines(data = trails,
+               color = "#873e23",
+               weight = 2,
+               opacity = 1,
+               popup = ~label_text,
+               highlightOptions = highlightOptions(weight = 4)) %>%
+  addLegend(data = tracts,
+            "bottomleft", pal = income_pal, values = ~B06011_001E,
+            title = "Estimated Median Income",
+    labFormat = labelFormat(prefix = "$"),
+    opacity = 0.3) %>%
+  addLegend(data = all_stops,
+            "bottomright", 
+            pal = transit_pal, 
+            values = ~`Transit Provider`,
+            title = "Transit provider",
+    opacity = 0.7)
+```
+
+#### *Date Sources:*
+
+* Estimated median income from the 2019 American Community Survey (5-year sample), accessed via 
+[tidycensus](https://CRAN.R-project.org/package=tidycensus){target="_blank"} package
+* Trail data from [San Luis Opispo County Open Data](https://opendata.slocounty.ca.gov/datasets/county-trails/explore?location=35.284761%2C-120.639250%2C11.00){target="_blank"}
+* SLO Transit stop data from the [SLO Transit GTFS feed](https://app.mecatran.com/urb/ws/feed/c2l0ZT1zbG90cmFuc2l0O2NsaWVudD1zZWxmO2V4cGlyZT07dHlwZT1ndGZzO2tleT0zZTMwMzM1OTRiMTE2NzA0N2IxNjQwNjA0ZjQwMGMzMzdiM2E1MTQ0){target="_blank"}
+* RTA transit stop data from the [RTA GTFS feed](http://slo.connexionz.net/rtt/public/resource/gtfs.zip){target="_blank"}
+
+#### *Acknowldgments:*
+
+My classmate, Michael Lidwin, helped me with this assignment by showing me how to set the initial zoom level.

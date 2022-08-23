@@ -1,8 +1,8 @@
 ---
 title: "Assignment 1"
-author: "Carole Voulgaris"
-date: '2022-08-11'
-output: html_document
+output: 
+  html_document:
+    theme: cosmo
 ---
 
 ```{r setup, include=FALSE}
@@ -67,4 +67,5 @@ ggplot(countries) +
   geom_sf(data = rail, color = "red")
 ```
 
-
+My classmate, *Jonathan Lee*, helped me complete this assignment by brainstorming
+with me about potential topics.

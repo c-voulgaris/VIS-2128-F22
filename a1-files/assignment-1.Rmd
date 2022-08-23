@@ -58,6 +58,7 @@ listed alphabetically.
 * [Opening a spatial data set from a file (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-open-file.html){target="_blank"}
 * [Plotting spatial data using ggplot (static) (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-ggplot-map.html){target="_blank"}
 * [Saving spatial data (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-save-spatial-data.html){target="_blank"}
+* [Saving spatial data (ArcGIS)](https://harvard.zoom.us/rec/play/vDuk2HwdlNqS3WUfYLrJNHARQRIFLw8JetnT04mFtzhu4rhFYkauf7pUct4hq4SUeMRHuiBSYEeOPphq.VCmVoZTdupJIpElL?autoplay=true&startTime=1660831607000){target="_blank"}
 * [Spatial filtering (ArcGIS)](https://harvard.zoom.us/rec/play/0CoGI5lWn8pvX7wayiLa7IbHmjMJ43saghzcFYrd6V3rBzat5tR7TgZ2tEunqg4FUG-FvJSGtjFhuVNj.iwcbtdFO34aHyJjH?autoplay=true&startTime=1660236038000){target="_blank"}
 * [Spatial filtering (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-aspatial-filter.html){target="_blank"}
 * [Viewing spatial data as a table (ArcGIS)](https://harvard.zoom.us/rec/play/tEjEgg_jWeSYQP3HVvhs--aoXWH9YbSI7PVlyDQsM7PjZQ-pxxSm4Vuhl6OS0CM69ckbBI6XWFKUws1T.0j9m-O3Re29XYa03?autoplay=true&startTime=1660235648000){target="_blank"}
