@@ -33,22 +33,32 @@ You are unlikely to use all of these skills in this assignment, but all
 of them are relevant and you will probably use several of them. They are
 listed alphabetically.
 
+* [Adding a map layout (ArcGIS)](https://harvard.zoom.us/rec/play/NXs6WI6aTbaq1VwV6jJL9wWGBLpweSkK9t9ktZQ1ambeUJD0Kk6stBrrVUxngXFBsdXQJjSrDVHTqtU5.UzDytkbnGdiTaZzO?autoplay=true&startTime=1660838502000){target="_blank"}
+* [Add a north arrow, scale bar, and legend (ArcGIS)](https://harvard.zoom.us/rec/play/yA2FG1jRi-shr6JTJGxvFRxiwzhVahGMSR0w6zGUeecEf2BdWbzSJENjDMPwcnfHS7_o7BZdwtLeLQmz.7Nn3qaXIs_65VHpM?autoplay=true&startTime=1660838907000){target="_blank"}
 * Adding a north arrow to a ggplot map (R)
 * Adding a scale bar to a ggplot map (R)
 * Annotating a ggplot map (R)
 * Applying a ggplot theme (R)
-* Changing symbology based on a variable in ggplot (R)
-* Changing symbology of an entire layer in ggplot (R)
+* [Changing symbology based on a variable (ArcGIS)](https://harvard.zoom.us/rec/play/YqECB4uxFWT9P00fxHZYNvV1ekgt4CiINjE3re55aidcxBbakYoJyJsh2uy-GOhiq4xepkJjcqIq1rb1.vvtSc2XTOJvPRrQx?autoplay=true&startTime=1660836764000){target="_blank"}
+* Changing symbology based on a variable in ggplot (R - ggplot)
+* [Changing symbology of an entire layer (ArcGIS)](https://harvard.zoom.us/rec/play/aK8Cbw2IPOXzIZfhPOlrGOmQ_5BwvXvUErgbqJ2h5i41QBDA-ETqCyL8k4HHxEDcckH6g3RP0o8vfA.-BS6HcP9XkFX8zxb?autoplay=true&startTime=1660832780000){target="_blank"}
+* Changing symbology of an entire layer (R - ggplot)
+* [Choosing a basemap (ArcGIS)](https://harvard.zoom.us/rec/play/1XuBLT-4CY1-Lbgvrs-t6VXYJsciyfiMsH3XzPBaCi1v-3qGZnT9CpNbeBC8BRaBJ6LdvNgVwjj1E3Dw.H05muzT3eZDJloyL?autoplay=true&startTime=1660837402000){target="_blank"}
 * Creating a legend for multiple layers in a ggplot map (R)
 * Creating a legend for one layer in a ggplot map (R)
 * Creating an interactive map with leaflet (R)
 * Customizing a ggplot theme (R)
 * Defining the bounding box for a ggplot map (R)
+* [Downloading ArcGIS extension for Illustrator](https://www.esri.com/en-us/arcgis/products/maps-for-adobecc/overview){target="_blank"}
 * Editing a ggplot map further in Adobe Illustrator (Illustrator)
+* [Editing a map file in Illustrator (ArcGIS)](https://harvard.zoom.us/rec/play/W7I2et1sT0FbmuastV4wlhsS8p-9A5tiD8yPlUkg9B2ZoJDPmzgyLG_4EIo0oQH-bh8Z8dCBs6silUZv.LKz43-ZilnmFeBzs?autoplay=true&startTime=1660840146000){target="_blank"}
 * [Fun with color palettes (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-colors.html){target="_blank"}
+* [Export a map layout (ArcGIS)](https://harvard.zoom.us/rec/play/Rqo-d93n-3c4Y69bjzfVccNEN0OsM91rk4yRrhlUMpI7qTi0Lm9ksX8xRSEPcWNVkbtT5oKdtgMgzLIU.eUdWhqVKWKeTfNMo?autoplay=true&startTime=1660839155000){target="_blank"}
 * Fun with fonts (R)
+* [Opening an AIX file in Illustrator (ArcGIS)](https://harvard.zoom.us/rec/play/6pVTkEkqeU9H60mD5zkCRLaxfcirCeBAAmh8DDUprxNVDR6zy4M18IgLkOrgsT6iEJRBBGSbOyJ94VQB._wEDohMqh1WEykl-?autoplay=true&startTime=1660839734000){target="_blank"}
 * Saving a ggplot map as a PDF (R)
-* [Selecting a projection for a ggplot map (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-ggplot-proj.html){target="_blank"}
+* [Selecting a map projection (ArcGIS)](https://harvard.zoom.us/rec/play/evJJKuzp7TDTvzRyBdMfbYfcrJl4bk7zz77gGGEy7caGnVxUuRnSIgUjlubM18-XHfqNH_saovRKLJtn.aJkRu-YWDglMS_Xj?autoplay=true&startTime=1660837959000){target="_blank"}
+* [Selecting a map projection (R - ggplot)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-ggplot-proj.html){target="_blank"}
 
 # Other resources
 
