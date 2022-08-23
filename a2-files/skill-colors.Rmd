@@ -1,0 +1,355 @@
+---
+title: "Fun with colors"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+There are a lot of great tools for defining and applying color palettes for 
+use with ggplot in R.
+
+# Required packages
+
+These example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(sf)
+library(MetBrewer)
+library(RColorBrewer)
+library(ggthemes)
+```
+
+
+# Loading some sample data
+
+I'll start with data on counties in the contiguous United States. I've joined it 
+with a spreadsheet of Urban-Rural classifications from the
+[United States Department of Agriculture](https://www.ers.usda.gov/data-products/rural-urban-continuum-codes/){target="_blank"}
+so that I can demonstrate with a categorical variable as well. Here are the first few rows:
+
+```{r, message=FALSE, echo=FALSE, results='hide'}
+vars <- c(pop = "P002001",
+              ua_pop = "P002003")
+
+county_data <- tidycensus::get_decennial(geography = "county", 
+                          variables = "P002003",
+                          summary_var = "P002001") %>%
+  mutate(pct_ua = value / summary_value)
+
+county_classes <- here::here("a2-files",
+                       "Examples",
+                       "ruralurbancodes2013.xls") %>%
+  readxl::read_xls() %>%
+  rename(GEOID = FIPS)
+  
+
+counties <- tigris::counties(year = 2010) %>%
+  filter(STATEFP10 != "60" &
+           STATEFP10 != "66" &
+           STATEFP10 != "69" &
+           STATEFP10 != "72" &
+           STATEFP10 != "78" &
+           STATEFP10 != "02" &
+           STATEFP10 != "15") %>%
+  rename(GEOID = GEOID10) %>%
+  left_join(county_classes, by = "GEOID") %>%
+  left_join(county_data, by = "GEOID") %>%
+  select(NAMELSAD10,
+         Description,
+         pct_ua)
+```
+
+```{r, echo=FALSE}
+knitr::kable(head(counties, 25),
+             digits = 2)
+```
+
+
+# Default map of continuous variables
+
+Here is a cholorpleth map showing the variation in the percentage of each 
+county's population that lives in a census tract that is classified as
+being in an urbanized area. By default, continuous variables are represented
+by shades of blue.
+
+```{r}
+continuous_map <- ggplot(counties) +
+  geom_sf(aes(fill = pct_ua)) +
+  coord_sf(crs = 5070) +
+  theme_map()
+
+continuous_map
+```
+
+Here is a cholorpleth map showing the urban-rural classification categories. The 
+default for categorical variables is to select colors that are evenly spaced
+around a color ramp. 
+
+```{r, fig.height=7}
+categorical_map <- ggplot(counties) +
+  geom_sf(aes(fill = Description)) +
+  coord_sf(crs = 5070) +
+  theme_void() +
+  theme(legend.position = "bottom",
+        legend.direction = "vertical")
+
+categorical_map
+```
+
+# Referencing colors
+
+Before you can get too far into customizing colors on R plots, it can be useful
+to know how to refer to specific colors in your code. There are hundreds of different colors you can refer to by name in R, as shown below. In addition to 
+these, you can refer to a shade of gray with the with the word `gray` (or 
+`grey`) followed by a number ranging from 0 to 100 (e.g. `gray30` or `gray80`). 
+If you leave off the number (just `gray`), you'll get the same thing as `gray75`.
+
+```{r, fig.height=20, echo=FALSE, out.width="100%"}
+# No margin around chart
+par(mar=c(0,0,0,0))
+
+no_gray_colors <- c(colors()[0:151], colors()[254:259], colors()[357:657])
+
+
+# Empty chart
+plot(0, 0, 
+     type = "n", 
+     xlim = c(0, 1), 
+     ylim = c(0, 1), 
+     axes = FALSE, 
+     xlab = "", 
+     ylab = "")
+
+# Settings
+line <- 92
+col <- 5
+
+# Add color background
+rect(  
+  rep((0:(col - 1)/col),line) ,  
+  sort(rep((0:(line - 1)/line),col),decreasing=T),   
+  rep((1:col/col),line) , 
+  sort(rep((1:line/line),col),decreasing=T),  
+  border = "white" , 
+  col=no_gray_colors[seq(1,line*col)])
+
+# Color names
+text(  
+  rep((0:(col - 1)/col),line)+(1/(2*col)) ,  
+  sort(rep((0:(line - 1)/line),col),decreasing=T)+1/(2*line), 
+  no_gray_colors[seq(1,line*col)]  , 
+  cex=1)
+```
+
+You can also refer to colors by their RGB (red-green-blue) hex codes. These will
+be six-digit strings preceded by a `#`. There are a number of web-based tools for 
+finding a color's hex code, like [this one](https://www.w3schools.com/colors/colors_picker.asp){target="_blank"}.
+
+For a categorical variable, I can define a color scale using the 
+`scale_fill_manual()` function (or `scale_color_manual()` for points and lines).
+Again, I can reference colors by their names:
+
+```{r, fig.height=7}
+categorical_map +
+  scale_fill_manual(values = c("white",
+                               "gray",
+                               "black",
+                               "red",
+                               "orange",
+                               "yellow",
+                               "green",
+                               "blue",
+                               "purple"))
+```
+
+Or by hex codes: 
+
+```{r, fig.height=7}
+categorical_map +
+  scale_fill_manual(values = c("#ffffff",
+                               "#999999",
+                               "#000000",
+                               "#ff0000",
+                               "#ff9900",
+                               "#ffff33",
+                               "#00ff00",
+                               "#0000ff",
+                               "#9933ff"))
+```
+
+For a continuous variable, I can set up a gradient. `scale_fill_gradient()`
+will let you set up a gradient from one color to another.
+
+```{r}
+continuous_map +
+  scale_fill_gradient(low = "blue", high = "red")
+```
+
+`scale_fill_gradient2` will let you set up a gradient from one color, through
+a midpoint, to another color. Helpfully, you can specify the value of your
+midpoint if you don't want it to be the middle of the range. Here are three plots
+of the same variable with different values for the midpoint on the color ramp.
+
+This one places the midpoint in the middle of the range.
+
+```{r}
+continuous_map +
+  scale_fill_gradient2(low = "green", mid = "yellow", high = "red",
+                       midpoint = 0.5)
+```
+
+This one has a midpoint in the higher part of the range.
+
+```{r}
+continuous_map +
+  scale_fill_gradient2(low = "green", mid = "yellow", high = "red",
+                       midpoint = 0.75)
+```
+
+This one has a midpoint in the lower part of the range.
+
+```{r}
+continuous_map +
+  scale_fill_gradient2(low = "green", mid = "yellow", high = "red",
+                       midpoint = 0.25)
+```
+
+`scale_fill_gradientn` will let you create a color ramp that includes more 
+than three colors.
+
+```{r}
+continuous_map +
+  scale_fill_gradientn(colors = c("white",
+                               "gray",
+                               "black",
+                               "red",
+                               "orange",
+                               "yellow",
+                               "green",
+                               "blue",
+                               "purple"))
+```
+
+# Predefined color palettes
+
+Manually defining the colors in a palette can be tedious, and you'll often 
+end up with ugly color palettes. Luckily, there are several predefined color palettes you can use.
+
+## Viridis
+
+The [viridis](https://bids.github.io/colormap/){target="_blank"} color ramps are meant to be colorblind friendly and to reproduce reasonbly well in grayscale (for example, if someone prints your graphic then photocopies it with a black-and-white printer). There are 4 options.
+
+Option A:
+
+```{r}
+continuous_map +
+  scale_fill_viridis_c(option = "A")
+```
+
+Option B:
+
+```{r}
+continuous_map +
+  scale_fill_viridis_c(option = "B")
+```
+
+Option C:
+
+```{r}
+continuous_map +
+  scale_fill_viridis_c(option = "C")
+```
+
+Option D (this is the default if you don't specify an option):
+
+```{r}
+continuous_map +
+  scale_fill_viridis_c(option = "D")
+```
+
+You can reverse the color ramp values by setting `begin = 1, end = 0`.
+
+```{r}
+continuous_map +
+  scale_fill_viridis_c(option = "D", 
+                       begin = 1, end = 0)
+```
+
+You can also use the viridis color palette for discrete variables:
+
+```{r, fig.height=7}
+categorical_map +
+  scale_fill_viridis_d(option = "A")
+```
+
+## Color brewer
+
+The `RColorBrewer` package offers a bunch of pre-defined palettes that can be useful for continuous and categorical data. You can view the options with the function `display.brewer.all()
+
+```{r, fig.height=8}
+display.brewer.all()
+```
+
+The top group of palettes you see above are sequential palettes, which range from dark to light colors.
+
+To use a Color Brewer palette, you first set up the palette with the 
+`brewer.pal()` function, indicating the number of colors you want and the
+palette to draw them from.
+
+```{r}
+cat_palette <- brewer.pal(9, "Pastel1")
+cont_palette <- brewer.pal(5, "Spectral")
+```
+
+Then you can apply that palette using `scale_fill_manual()` for categorical 
+variables.
+
+```{r, fig.height=7}
+categorical_map +
+  scale_fill_manual(values = cat_palette)
+```
+
+Or `scale_fill_gradientn()` for categorical variables.
+
+```{r}
+continuous_map +
+  scale_fill_gradientn(colors = cont_palette)
+```
+
+As with the viridis functions, you can reverse the directions of a color ramp. 
+You can do this by calling the `rev()` fuction on the color ramp you've 
+defined.
+
+```{r}
+continuous_map +
+  scale_fill_gradientn(colors = rev(cont_palette))
+```
+
+# Themed palettes
+
+There are some other fun package that define color palettes, including 
+[wesanderson](https://github.com/karthik/wesanderson){target="_blank"} (colors inspired by Wes Anderson 
+films), [PNWColors](https://jakelawlor.github.io/portfolio/pnwcolors/){target="_blank"} (colors inspired by 
+the package author's photos of the Pacific Northwest), 
+[MetBrewer](https://github.com/BlakeRMills/MetBrewer/tree/main){target="_blank"} (inspired by works at the 
+Metropolitan Museum of Art), and [MexBrewer](https://paezha.github.io/MexBrewer/){target="_blank"} (inspired 
+by works of Mexican muralists). These four packages are structured similarly. Some of the available palettes 
+don't work well for continuous variables (the order of the colors isn't intuitive), but some do. Spend
+some time experimenting.
+
+```{r}
+degas_contin <- met.brewer(name = "Degas", n = 5, type = "continuous")
+
+continuous_map +
+  scale_fill_gradientn(colors = degas_contin)
+```
+
+```{r, fig.height=7}
+Redon_cat <- met.brewer(name = "Redon", n = 9, type = "discrete")
+
+categorical_map +
+  scale_fill_manual(values = Redon_cat)
+```

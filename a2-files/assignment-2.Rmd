@@ -39,20 +39,22 @@ listed alphabetically.
 * Applying a ggplot theme (R)
 * Changing symbology based on a variable in ggplot (R)
 * Changing symbology of an entire layer in ggplot (R)
-* Changing the projection of a ggplot map (R)
 * Creating a legend for multiple layers in a ggplot map (R)
 * Creating a legend for one layer in a ggplot map (R)
 * Creating an interactive map with leaflet (R)
 * Customizing a ggplot theme (R)
 * Defining the bounding box for a ggplot map (R)
 * Editing a ggplot map further in Adobe Illustrator (Illustrator)
-* Fun with color palettes (R)
+* [Fun with color palettes (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-colors.html){target="_blank"}
 * Fun with fonts (R)
 * Saving a ggplot map as a PDF (R)
+* [Selecting a projection for a ggplot map (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-ggplot-proj.html){target="_blank"}
 
 # Other resources
 
 * [r-spatial tutorial on ggplot maps](https://r-spatial.org/r/2018/10/25/ggplot2-sf.html){target="_blank"}
+* [Spatial Reference (for finding map projections)](https://spatialreference.org/){target="_blank"}
+* [PROJ projections list](https://proj.org/operations/projections/index.html){target="_blank"}
 
 # Examples
 

@@ -1,0 +1,146 @@
+---
+title: "Setting the map projection in ggplot"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+When you're mapping a large area (like a continent or a large country) where the
+geometry is stored as geographic coordinates, you'll essentially end up with a 
+Mercator projection that distorts areas on the map.
+
+This is less of a big deal for smaller areas like cities, and I guess it's not a 
+big deal if you and your audience don't hate the Mercator projection (and I do hate 
+it).
+
+# Required packages
+
+These example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(sf)
+library(ggspatial)
+```
+
+# Loading some sample data
+
+```{r, message=FALSE, echo=FALSE, results='hide'}
+provinces <- rnaturalearth::ne_states(country = "Canada", 
+                                      returnclass = "sf")
+
+world <- rnaturalearth::ne_countries(returnclass = "sf")
+```
+
+I'll demonstrate with map of the world and provincial boundaries in Canada.
+Both have geometry stored in WGS 84 coordinates. 
+
+Here is the world:
+
+```{r}
+wgs84_world <- ggplot(world) +
+  geom_sf() +
+  theme_minimal()
+
+wgs84_world
+```
+
+And here are the Canadian provinces:
+
+```{r}
+wgs84_provinces <- ggplot(provinces) +
+  geom_sf() +
+  theme_minimal()
+
+wgs84_provinces
+```
+
+The fidelity of these maps to actual areas and distances gets worse the further 
+from the equator (north or south) you go. This may or may not be a problem
+for you, but if you're using a Mercator projection, it should be because
+you've decided that it's the best choice, not because you don't know how
+to change it.
+
+# Projections for world maps
+
+The PROJ website has [a list of 
+projections](https://proj.org/operations/projections/index.html){target="_blank"} 
+you can browse through, many of which could be suitable for a map of the world.
+
+On the page for a projection, find the proj-string and use it to set the CRS
+for your map with the `coord_sf` function. 
+
+Examples include [azimuthal equidistant](https://proj.org/operations/projections/aeqd.html){target="_blank"}:
+
+```{r}
+wgs84_world +
+  coord_sf(crs = "+proj=aeqd") 
+```
+
+Or [equal earth](https://proj.org/operations/projections/eqearth.html){target="_blank"}:
+
+```{r}
+wgs84_world +
+  coord_sf(crs = "+proj=eqearth") 
+```
+
+# Projections for national maps
+
+A projection that works well for a map of the world might be terrible for a 
+particular country or continent. For example, here is the azimuthal equidistant
+projection applied to Canada.
+
+```{r}
+wgs84_provinces +
+  coord_sf(crs = "+proj=aeqd") 
+```
+
+Actually, this could still be a good projection for Canada, but it's centered 
+on a point in Africa (zero degrees longitude, zero degrees latitude). If you go 
+back to the page for that projection (https://proj.org/operations/projections/aeqd.html),
+scroll down to "Options" and you'll see that you can set parameters for `lat_0` and 
+`lon_0`. You can use these to recenter the projection at 60 degrees north,
+106 degrees west (about the middle of the northern border of Saskatchewan).
+
+```{r}
+wgs84_provinces +
+  coord_sf(crs = "+proj=aeqd +lat_0=60 +lon_0=-106") 
+```
+
+Some projections that were created specifically for world maps have parameters
+to center the map by longitude, but not by latitude. The Equal Earth projection
+is one of these. 
+
+Here is Canada in the Equal Earth projection centered on the prime meridian:
+
+```{r}
+wgs84_provinces +
+  coord_sf(crs = "+proj=eqearth") 
+```
+
+And here it is centered at 106 degrees west:
+
+```{r}
+wgs84_provinces +
+  coord_sf(crs = "+proj=eqearth +lon_0=-106") 
+```
+
+# Common projections
+
+Feel free to experiment with different map projections for the area you are
+mapping! 
+
+Here are some reasonable ones to consider:
+
+* **United States:** USA Contiguous Albers Equal Area Conic
+`+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs`
+* **Canada:** Statistics Canada Lambert: `+proj=lcc +lat_1=49 +lat_2=77 +lat_0=63.390675 +lon_0=-91.86666666666666 +x_0=6200000 +y_0=3000000 +ellps=GRS80 +units=m +no_defs `
+* Africa: Africa Lambert Conformal Conic: `+proj=lcc +lat_1=20 +lat_2=-23 +lat_0=0 +lon_0=25 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs `
+* **South America:** South America Equidistant Conic: `+proj=eqdc +lat_0=0 +lon_0=0 +lat_1=-5 +lat_2=-42 +x_0=0 +y_0=0 +ellps=aust_SA +units=m +no_defs `
+* **Russia:** Albers Equal Area Russia: `+proj=aea +lat_1=50 +lat_2=70 +lat_0=56 +lon_0=100 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs`
+* **China:*** China Albers Equal Area Conic: `+proj=aea +lat_1=27 +lat_2=45 +lat_0=35 +lon_0=105 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=mm +no_defs`
+* **Western Europe:** Lambert Azimuthal Equal Area: `+proj=laea +lat_0=52 +lon_0=20`
+
+

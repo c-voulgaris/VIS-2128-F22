@@ -8,9 +8,6 @@ library(ggspatial)
 degas_cat <- met.brewer(name = "Degas", n = 7, type = "discrete")
 proj_crs <- "+proj=eqdc +lat_0=0 +lon_0=0 +lat_1=20 +lat_2=-23 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"
 
-hh_size_map +
-  scale_fill_gradientn(colors = degas_contin)
-
 countries <- ne_countries(continent = "Africa",
                           returnclass = "sf") %>%
   st_transform(proj_crs)
