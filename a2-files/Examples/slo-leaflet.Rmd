@@ -9,10 +9,10 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This map allows readers to explore the county trails of San Luis Obispo
-County in relation to the the locations of transit stops and census-tract-level
-median incomes. It shows that, for the most part, county trails are not
-accessible by public transit.
+This map allows readers to explore the trails managed by San Luis Obispo City 
+and San Luis Obispo County in relation to the the locations of transit stops 
+and census-tract-level median incomes. It shows that, for the most part, transit 
+and trails serve distinct areas that do not tend to overlap.
 
 The intended audience for this map is a resident of San Luis Obispo County
 who might appreciate the ability to interactively explore the trails and transit
@@ -28,9 +28,21 @@ library(htmltools)
 ```
 
 ```{r load-data, include=FALSE}
-trails <- here("a1-files",
+co_trails <- here("a1-files",
                "County_Trails.geojson") %>%
   st_read() %>%
+  select(TrailName, Length, LengthUnits)
+
+city_trails <- here("a2-files",
+                    "Examples",
+               "Trail.geojson") %>%
+  st_read() %>%
+  rename(TrailName = Trail_Name,
+         Length = SLength) %>%
+  mutate(LengthUnits = "MILES") %>%
+  select(TrailName, Length, LengthUnits)
+
+trails <- rbind(city_trails, co_trails) %>%
   mutate(label_text = paste(TrailName, 
                              "<br/>", 
                              formatC(Length, digits = 2),

@@ -1,0 +1,137 @@
+---
+title: "Adding a north arrow to a map"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+There are those who might insist that every map needs a north arrow and 
+a scale bar. I would argue that a north arrow is necessary if it's 
+useful to the audience. If you are creating a map of South America, and
+your audience is familiar enough with South American to recognize its shape,
+you may not need a north arrow. 
+
+For other maps, a north arrow is helpful.
+
+# Required packages
+
+These example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(sf)
+library(ggspatial)
+```
+
+# Loading some sample data
+
+```{r, include=FALSE}
+edmonton <- here::here("a2-files",
+                 "Examples",
+                 "edmonton.geojson") %>%
+  st_read() %>%
+  filter(grepl("Arterial", class_de))
+```
+
+I'll demonstrate with a map of arterial streets in Edmonton, Alberta 
+(data are from Open Street Map via the `osmextract` package).
+
+```{r}
+edmonton_map <- ggplot(edmonton) +
+  geom_sf() +
+  theme_void()
+
+edmonton_map
+```
+
+# Add a north arrow
+
+The `ggspatial` package has a useful function called `annotation_north_arrow()`
+that will add a north arrow to your map.
+
+```{r}
+edmonton_map +
+  annotation_north_arrow() 
+```
+
+# Place the north arrow
+
+By default, the north arrow is in the bottom left corner, but you can
+specify which corner of the map to place it using the `location` argument.
+
+* `tr` means "top right".
+* `tl` means "top left".
+* `br` means "bottom right".
+* `bl` means "bottom left"
+
+```{r}
+edmonton_map +
+  annotation_north_arrow(location = "tl")
+```
+
+# Select a north arrow style
+
+You have four different option for north arrow styles:
+
+`north_arrow_orienteering` (this is the default)
+
+```{r}
+edmonton_map +
+  annotation_north_arrow(location = "tl",
+                         style = north_arrow_orienteering())
+```
+
+`north_arrow_fancy_orienteering`
+
+```{r}
+edmonton_map +
+  annotation_north_arrow(location = "tl",
+                         style = north_arrow_fancy_orienteering())
+```
+
+`north_arrow_minimal`
+
+```{r}
+edmonton_map +
+  annotation_north_arrow(location = "tl",
+                         style = north_arrow_minimal())
+```
+
+`north_arrow_nautical`
+
+```{r}
+edmonton_map +
+  annotation_north_arrow(location = "tl",
+                         style = north_arrow_nautical())
+```
+
+# Customizing a north arrow
+
+You can customize each of the above styles a little bit using the 
+following parameters:
+
+* line_width
+* line_col
+* fill (must be two colors, or one color for north_arrow_minimal)
+* text_size
+* text_face (e.g. `"bold"`, or `italic"`)
+* text_family (see [this page for more on fonts](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-fonts.html){target="_blank"})
+* text_col (must be two colors, except for north_arrow_minimal)
+* text_angle (not available for north_arrow_minimal)
+
+`north_arrow_minimal`
+
+```{r}
+edmonton_map +
+  annotation_north_arrow(location = "tl",
+                         style = north_arrow_nautical(line_width = 2,
+                                                     line_col = "gray",
+                                                     fill = c("lightblue", "pink"),
+                                                     text_size = 18,
+                                                     text_face = "italic",
+                                                     text_family = "serif",
+                                                     text_col = "pink",
+                                                     text_angle = 90))
+```

@@ -1,0 +1,143 @@
+---
+title: "Annotate a map"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Let's say I've created a nice map in ggplot, and now I want to add some 
+text to it for context. I could easily just save my map as an image 
+and add it to a layout in InDesign (or PowerPoint, or Word, for that 
+matter), but you can add annotation within your code as well.
+
+# Required packages
+
+This example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(sf)
+```
+
+# Sample data
+
+```{r, include=FALSE}
+city_trails <- here::here("a2-files",
+                    "Examples",
+               "Trail.geojson") %>%
+  st_read() %>%
+  rename(TrailName = Trail_Name,
+         Length = SLength) %>%
+  mutate(LengthUnits = "MILES") %>%
+  select(TrailName, Length, LengthUnits)
+
+slo_stops <- here::here("a2-files",
+                  "Examples",
+                  "slo-stops.csv") %>%
+  st_read(options=c("X_POSSIBLE_NAMES=stop_lon",
+                               "Y_POSSIBLE_NAMES=stop_lat")) %>%
+  st_set_crs("WGS84")
+
+boundary <- tigris::places(state = "CA") %>%
+  filter(NAME == "San Luis Obispo")
+```
+
+Let's start with this nice map I created that shows bus stop and trails in San 
+Luis Opispo.
+
+```{r, include=FALSE}
+slo_map <- ggplot(city_trails) +
+  ggspatial::annotation_map_tile(type = "hotstyle",
+                                 zoomin = 0) +
+  geom_sf(data = city_trails,
+          aes(color = "Trail")) +
+  geom_sf(data = slo_stops,
+          aes(color = "Bus stop")) +
+  geom_sf(data = boundary,
+          fill = NA,
+          aes(color = "City boundary"),
+          key_glyph = "path") +
+  scale_color_manual(name = "",
+                     values = c("cornflowerblue", "black", "darkgreen"),
+                     guide = guide_legend(override.aes = list(linetype = 
+                                                         c("blank", "solid", "solid"),
+                                                       shape = c(16, NA, NA)))) +
+  ggthemes::theme_map() +
+  ggspatial::annotation_north_arrow(location = "tr",
+                         style = ggspatial::north_arrow_minimal()) +
+  ggspatial::annotation_scale(location = "br") +
+  theme(legend.background = element_rect(fill = NA),
+        legend.key = element_rect(color = "white"))
+```
+
+```{r, fig.height=7, message=FALSE}
+slo_map
+```
+
+# Adding a title
+
+I can add a title and subtitle to the top of my map using the `ggtitle()`
+function
+
+```{r, fig.height=7, message=FALSE}
+slo_map +
+  ggtitle(label = "Trails and Transit",
+          subtitle = "Locations of city managed trails and bus stops in San Luis Obispo")
+```
+
+# Placing annotation on the map
+
+To place annotation text on the map itself, I'll need to specify coordinates
+for where to place it.
+
+## Adding x/y scales.
+
+My map looks nice without any scales on the x and y axes. I'm using `theme_map()`, 
+which leaves them off, but I'm going to temporarily put some back on just to have
+a sense of the coordinate system so I can see where to place items on the map.
+
+Looking at the map below, if I want to add some text to the top left corner 
+of the map, I'd want the top left corner of the text block to be at 
+about 35.36 degrees north and 120.73 degrees west.
+
+```{r, fig.height=7, message=FALSE}
+slo_map +
+  ggtitle(label = "Trails and Transit",
+          subtitle = "Locations of city managed trails and bus stops in San Luis Obispo") +
+  theme(axis.text = element_text())
+```
+
+## Adding text
+
+The `annotate()` function will add text to the map. I need to specify x and y 
+coordinates to place the text. The `hjust`(horizonal justification)  and `vjust`
+(vertical justification) arguments indicate what part of the block of text these
+coordinate refer to:
+
+* `hjust = 0` means the point you've indicated is the left side of the text
+block (and the text will be left-justified).
+* `hjust = 0.5` means the point you've indicated is the middle (horizontally) 
+of the text block (and the text will be centered).
+* `hjust = 1` means the point you've indicated is the the right side of the 
+text block (and the text will be right-justified).
+* `vjust = 0` means the point you've indicated is the bottom of the text block.
+* `vjust = 0.5` means the point you've indicated is the midde (vertically) of 
+the text block.
+* `vjust = 1` means the point you've indicated is the top of the text block.
+
+If you want your text to wrap across multiple lines, use `\n` within your
+text string. This will insert a line break.
+
+```{r, fig.height=7, message=FALSE}
+slo_map +
+  ggtitle(label = "Trails and Transit",
+          subtitle = "Locations of city managed trails and bus stops in San Luis Obispo") +
+  annotate(geom = "text",
+           x = -120.73,
+           y = 35.36,
+           hjust = 0,
+           vjust = 1,
+           label = "This map shows that the areas\nof San Luis Obispo served by\ntrails are distinct from (and \nminimally overlapping with) the\nareas served by transit. Few trails\nare easily accessible by transit.")
+```

@@ -1,0 +1,129 @@
+---
+title: "Adding a scale bar to a map"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+There are those who might insist that every map needs a north arrow and 
+a scale bar. I would argue that a scale bar is necessary if it's 
+useful to the audience. 
+
+# Required packages
+
+These example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(sf)
+library(ggspatial)
+```
+
+# Loading some sample data
+
+```{r, include=FALSE}
+edmonton <- here::here("a2-files",
+                 "Examples",
+                 "edmonton.geojson") %>%
+  st_read() %>%
+  filter(grepl("Arterial", class_de))
+```
+
+I'll demonstrate with a map of arterial streets in Edmonton, Alberta 
+(data are from Open Street Map via the `osmextract` package).
+
+```{r}
+edmonton_map <- ggplot(edmonton) +
+  geom_sf() +
+  theme_void()
+
+edmonton_map
+```
+
+# Add a scale bar
+
+The `ggspatial` package has a useful function called `annotation_scale()`
+that will add a scale bar to your map.
+
+```{r}
+edmonton_map +
+  annotation_scale() 
+```
+
+# Place the scale bar
+
+By default, the scale bar is in the bottom left corner, but you can
+specify which corner of the map to place it using the `location` argument.
+
+* `tr` means "top right".
+* `tl` means "top left".
+* `br` means "bottom right".
+* `bl` means "bottom left"
+
+```{r}
+edmonton_map +
+  annotation_scale(location = "br")
+```
+
+# Customize a scale bar
+
+You have several parameters you can specify:
+
+* `bar_cols`: Two colors for the alternating bands on the bar (for `style = "bar"`)
+* `line_width`: The line weight
+* `height`: The width of the scale bar
+* `pad_x`: The distance between the scale bar and the side of the map
+* `pad_y`: The distance between the scale bar and the bottom (or top) of 
+the map
+* `text_pad`: The margin around the scale bar text
+* `text_cex`: The text size
+* `text_face` (e.g. `"bold"`, or `italic"`)
+* `text_family` (see [this page for more on fonts](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-fonts.html){target="_blank"})
+* `tick_height`: Height of tick marks, as a proportion of the scale bare
+height (for `style = "ticks"`)
+* `line_col`: The line color
+* `text_col`: The text color
+* `width_hint`: The (suggested) proportion of the map's width the scale
+bar should take up
+* `unit_category`: Either "metric" or "imperial"
+* `style`: Either "ticks" or "bar"
+
+```{r}
+edmonton_map +
+  annotation_scale(location = "br",
+                   bar_cols = c("darkolivegreen", "cornsilk"),
+                   line_width = 2,
+                   height = unit(12, "points"),
+                   pad_x = unit(3, "points"),
+                   pad_y = unit(3, "points"),
+                   text_pad = unit(12, "points"),
+                   text_cex = 1,
+                   text_face = "bold",
+                   text_family = "serif",
+                   line_col = "burlywood",
+                   text_col = "burlywood4",
+                   width_hint = 0.5,
+                   unit_category = "imperial",
+                   style = "bar")
+```
+
+```{r}
+edmonton_map +
+  annotation_scale(location = "br",
+                   line_width = 0.5,
+                   height = unit(6, "points"),
+                   pad_x = unit(12, "points"),
+                   pad_y = unit(0, "points"),
+                   text_pad = unit(6, "points"),
+                   text_cex = 0.7,
+                   text_face = "italic",
+                   text_family = "mono",
+                   tick_height = 0.5,
+                   line_col = "blue",
+                   text_col = "red",
+                   width_hint = 0.33,
+                   unit_category = "metric",
+                   style = "ticks")
+```

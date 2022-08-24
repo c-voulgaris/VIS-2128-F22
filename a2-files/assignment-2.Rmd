@@ -35,9 +35,9 @@ listed alphabetically.
 
 * [Adding a map layout (ArcGIS)](https://harvard.zoom.us/rec/play/NXs6WI6aTbaq1VwV6jJL9wWGBLpweSkK9t9ktZQ1ambeUJD0Kk6stBrrVUxngXFBsdXQJjSrDVHTqtU5.UzDytkbnGdiTaZzO?autoplay=true&startTime=1660838502000){target="_blank"}
 * [Add a north arrow, scale bar, and legend (ArcGIS)](https://harvard.zoom.us/rec/play/yA2FG1jRi-shr6JTJGxvFRxiwzhVahGMSR0w6zGUeecEf2BdWbzSJENjDMPwcnfHS7_o7BZdwtLeLQmz.7Nn3qaXIs_65VHpM?autoplay=true&startTime=1660838907000){target="_blank"}
-* Adding a north arrow to a ggplot map (R)
-* Adding a scale bar to a ggplot map (R)
-* Annotating a ggplot map (R)
+* [Adding a north arrow to a map (R - ggplot)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-north-arrow.html){target="_blank"}
+* [Adding a scale bar to a map (R - ggplot)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-scale-bar.html){target="_blank"}
+* [Annotating a ggplot map (R)](https://c-voulgaris.github.io/VIS-2128-F22/a1-files/skill-annotate.html){target="_blank"}
 * Applying a ggplot theme (R)
 * [Changing symbology based on a variable (ArcGIS)](https://harvard.zoom.us/rec/play/YqECB4uxFWT9P00fxHZYNvV1ekgt4CiINjE3re55aidcxBbakYoJyJsh2uy-GOhiq4xepkJjcqIq1rb1.vvtSc2XTOJvPRrQx?autoplay=true&startTime=1660836764000){target="_blank"}
 * Changing symbology based on a variable in ggplot (R - ggplot)

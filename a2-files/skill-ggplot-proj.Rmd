@@ -22,7 +22,6 @@ These example uses the following packages:
 ```{r, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(sf)
-library(ggspatial)
 ```
 
 # Loading some sample data
@@ -149,7 +148,7 @@ Here are some reasonable ones to consider:
     * `+datum=NAD83` indicates the projection is based on the NAD83 datum.
     * `units=m` indicates any distance measurements will be in meters.
     * `+no_defs` is just something to add at the end to keep defaults from doing something surprising.
-* **Canada:** Statistics Canada Lambert: `+proj=lcc +lat_1=49 +lat_2=77 +lat_0=63.390675 +lon_0=-91.866667 +x_0=6200000 +y_0=3000000 +ellps=GRS80 +units=m +no_defs `
+* **Canada:** Statistics Canada Lambert: `+proj=lcc +lat_1=49 +lat_2=77 +lat_0=63.390675 +lon_0=-91.866667 +x_0=6200000 +y_0=3000000 +ellps=GRS80 +units=m +no_defs`
     * `+proj=lcc` indicates an Lambert Conformal Conic projection (prioritizing preserving angles and shapes).
     * `+lat_1=49` indicates the projection plane intersects the ellipsoid at 49 degrees north.
     * `+lat_2=77` indicates the projection plane intersects the ellipsoid at 77 degrees north.
