@@ -1,0 +1,103 @@
+---
+title: "Annotate a map"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The package `ggthemes` has several predefined themes you can
+customize a ggplot graph, chart, or map. 
+
+# Required packages
+
+This example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(ggthemes)
+```
+
+# Sample data
+
+```{r, include=FALSE}
+countries <- rnaturalearth::ne_countries(continent = "Africa",
+                          returnclass = "sf")
+```
+
+I have a dataframe called `countries` with national boundaries in
+Africa. I can use `ggplot()` and `geom_sf()` to make a quick 
+chloropleth map with variations in color to represent the estimated
+GDP.
+
+```{r}
+gdp_map <- ggplot(countries) +
+  geom_sf(aes(fill = gdp_md_est))
+
+gdp_map
+```
+
+# Apply a theme
+
+The map above uses the default theme for ggplot maps. It has a gray
+background with white gridlines, and a legend on the righthand side 
+of the plot. The `ggplot2` package comes with other options for themes,
+such as `theme_bw()`:
+
+```{r}
+gdp_map +
+  theme_bw()
+```
+
+`theme_dark()`:
+
+```{r}
+gdp_map +
+  theme_dark()
+```
+
+Or `theme_minimal()`:
+
+```{r}
+gdp_map +
+  theme_minimal()
+```
+
+For the most part, these themes were designed with scatterplots
+in mind. More often than not, for a map, you just want a blank
+background with no gridlines or axis labels. You can get that
+with `theme_void()`:
+
+```{r}
+gdp_map +
+  theme_void()
+```
+
+The `ggthemes` package has even more themes to choose from, like 
+`theme_economist()`, which is meant to make a graph in the style of
+*The Economist* magazine.
+
+```{r}
+gdp_map +
+  theme_economist()
+```
+
+Or `theme_fivethirtyeight`, which is meant to make a graph look like the
+ones published by Nate Silver's FiveThirtyEight website.
+
+```{r}
+gdp_map +
+  theme_fivethirtyeight()
+```
+
+Again, most of these were designed for scatter plots and similar graphs. They 
+might be less useful for maps. But one `ggthemes` theme that is useful for 
+maps is `theme_map`. It looks a lot like `theme_void()`, but it places the
+legend on top of the map, in the bottom left corner, and makes the legend text a 
+little smaller.
+
+```{r}
+gdp_map +
+  theme_map()
+```
