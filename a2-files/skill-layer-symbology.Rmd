@@ -1,0 +1,192 @@
+---
+title: "Applying symbology uniformly for a layer"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+You can control the way layers are displayed in a ggplot map.
+
+# Required packages
+
+This example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+# Sample data
+
+```{r, include=FALSE}
+library(sf)
+
+countries <- rnaturalearth::ne_countries(continent = "Africa",
+                          returnclass = "sf")
+
+airport_flows <- here::here("a2-files",
+                            "wb_airport_flows") %>%
+  sf::st_read() 
+
+airport_arrivals <- airport_flows %>%
+  sf::st_drop_geometry() %>%
+  rename(iata_code = Dest) %>%
+  group_by(iata_code) %>%
+  summarise(arr_seats = sum(TotalSeats))
+
+airports <- here::here("a1-files",
+                 "sample-files",
+                 "airports") %>%
+  sf::st_read() %>%
+  sf::st_filter(countries) %>%
+  left_join(airport_arrivals) %>%
+  filter(!is.na(arr_seats))
+
+within_africa_flows <- airport_flows %>%
+  filter(Orig %in% airports$iata_code &
+           Dest %in% airports$iata_code) %>%
+  mutate(flow_category = case_when(TotalSeats > 100000 ~ "> 100,000",
+                                    TotalSeats < 25000 ~ "< 25000",
+                                    TRUE ~ "25,000 to 100,000"))
+```
+
+Here is a map of African countries and airports, with lines representing the
+flights between pairs of airports.
+
+```{r}
+ggplot() +
+  geom_sf(data = countries) +
+  geom_sf(data = within_africa_flows) +
+  geom_sf(data = airports) +
+  theme_bw()
+```
+
+# Line symbology
+
+I can set line weight (`size = `), color (`color = ` or `colour =`), 
+type (`lty =`), and transparency (`alpha =`).
+
+Options for line types are:
+
+* `blank`
+* `solid`
+* `dashed`
+* `dotted`
+* `dotdash`
+* `longdash`
+* `twodash`
+
+```{r}
+ggplot() +
+  geom_sf(data = countries) +
+  geom_sf(data = within_africa_flows,
+          color = "cornflowerblue",
+          size = 0.5,
+          lty = "dotted",
+          alpha = 0.3) +
+  geom_sf(data = airports) +
+  theme_bw()
+```
+
+# Point symbology
+
+You can specify point shapes with any of the following numbers:
+
+```{r, echo=FALSE}
+shapes <- tibble(key = c(paste0("0", seq(0,9,by=1)), seq(10,25, by=1)),
+                 label = as.character(seq(0, 25, by=1)),
+                 x =c(rep(seq(1,6, by=1),4),1, 2),
+                 y = c(rep(6, 6), rep(5, 6),
+                       rep(4, 6), rep(3, 6),
+                       rep(2,2)))
+
+ggplot(shapes) +
+  geom_point(aes(x = x, 
+                 y = y,
+                 shape = key),
+             size = 5,
+             fill = "pink") +
+  geom_text(aes(x = x, 
+                 y = y,
+                 label = label),
+             nudge_y = -0.25) +
+  scale_shape_manual(values = seq(0, 25, by=1)) +
+  theme_void() +
+  theme(legend.position = "none")
+```
+
+```{r}
+ggplot() +
+  geom_sf(data = countries) +
+  geom_sf(data = within_africa_flows,
+          color = "cornflowerblue",
+          size = 0.5,
+          lty = "dotted",
+          alpha = 0.3) +
+  geom_sf(data = airports,
+          shape = 3) +
+  theme_bw()
+```
+
+You can also specify color, size, and transparency.
+
+```{r}
+ggplot() +
+  geom_sf(data = countries) +
+  geom_sf(data = within_africa_flows,
+          color = "cornflowerblue",
+          size = 0.5,
+          lty = "dotted",
+          alpha = 0.3) +
+  geom_sf(data = airports,
+          shape = 16,
+          size = 4,
+          alpha = 0.3,
+          color = "red") +
+  theme_bw()
+```
+
+For shapes 21 through 25, you can specify a color and a fill color:
+
+```{r}
+ggplot() +
+  geom_sf(data = countries) +
+  geom_sf(data = within_africa_flows,
+          color = "cornflowerblue",
+          size = 0.5,
+          lty = "dotted",
+          alpha = 0.3) +
+  geom_sf(data = airports,
+          shape = 21,
+          size = 4,
+          alpha = 0.3,
+          color = "red",
+          fill = "blue") +
+  theme_bw()
+```
+
+# Polygon symbology
+
+For polygons, you can specify the fill color, the fill transparency,
+the outline color, the outline weight, and the outline line type.
+
+```{r}
+ggplot(countries) +
+  geom_sf(size = 1.5,
+          lty = "dotted",
+          color = "pink",
+          fill = "yellow",
+          alpha = 0.2) +
+  theme_bw()
+```
+
+If you set `color = NA` you can leave off the outlines.
+
+```{r}
+ggplot(countries) +
+  geom_sf(color = NA,
+          fill = "yellow",
+          alpha = 0.2) +
+  theme_bw()
+```

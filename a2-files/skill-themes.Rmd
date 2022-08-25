@@ -1,5 +1,5 @@
 ---
-title: "Annotate a map"
+title: "Themes in ggplot"
 output: html_document
 ---
 

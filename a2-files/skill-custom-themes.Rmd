@@ -1,0 +1,251 @@
+---
+title: "Customizing a ggplot theme"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The display of everything on your map that isn't data can 
+is controlled by the theme. You have a lot of flexibility here.
+I'm just going to demonstrate a few things to get you started.
+
+# Required packages
+
+This example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+# Sample data
+
+```{r, include=FALSE}
+countries <- rnaturalearth::ne_countries(continent = "Africa",
+                          returnclass = "sf")
+```
+
+I have a dataframe called `countries` with national boundaries in
+Africa. I can use `ggplot()` and `geom_sf()` to make a quick 
+chloropleth map with variations in color to represent the estimated
+GDP. Here is a map using `theme_void()` as a starting point.
+
+```{r}
+gdp_map <- ggplot(countries) +
+  geom_sf(aes(fill = gdp_md_est)) +
+  ggtitle(label = "Sample map of Africa",
+          subtitle = "Variation in GDP") +
+  theme_void()
+
+gdp_map
+```
+
+This doesn't look too bad, and all of the edits I make below will
+make it much, much worse. But there may be a situation in which
+knowing how to make one or more of these edits will allow you to improve
+a map.
+
+# Plot background
+
+I can set the color and outline for the plot background.
+
+```{r}
+gdp_map +
+  theme(plot.background = element_rect(fill = "cornsilk",
+                                       color = "gray",
+                                       linetype = "dashed"))
+```
+
+# Panel background
+
+The panel background is the rectangle around your data (not including 
+titles and legends), and you can 
+customize it the same way.
+
+```{r}
+gdp_map +
+  theme(plot.background = element_rect(fill = "cornsilk",
+                                       color = NA),
+        panel.background = element_rect(fill = "cadetblue",
+                                        color = "gray",
+                                        linetype = "dotted"))
+```
+
+# Plot margins
+
+You can also set the margins around the outside of the plot with
+`plot.margin`. `t` is for top, `r` is for right, `b` is for bottom,
+and `l` is for left.
+
+```{r}
+gdp_map +
+  theme(plot.background = element_rect(fill = "cornsilk",
+                                       color = NA),
+        panel.background = element_rect(fill = "cadetblue",
+                                        color = "gray",
+                                        linetype = "dotted"),
+        plot.margin = margin(t = 10, r = 10, b = 10, l = 10, unit = "pt"))
+```
+
+# Legend
+
+You can place the legend to the right, left, top, or bottom of the
+map.
+
+```{r}
+gdp_map +
+  theme(plot.background = element_rect(fill = "cornsilk",
+                                       color = NA),
+        panel.background = element_rect(fill = "cadetblue",
+                                        color = "gray",
+                                        linetype = "dotted"),
+        plot.margin = margin(t = 10, 
+                             r = 10, 
+                             b = 10, 
+                             l = 10, unit = "pt"),
+        legend.position = "bottom")
+```
+
+You can leave the legend off by setting `legend.position = "none"`.
+
+```{r}
+gdp_map +
+  theme(plot.background = element_rect(fill = "cornsilk",
+                                       color = NA),
+        panel.background = element_rect(fill = "cadetblue",
+                                        color = "gray",
+                                        linetype = "dotted"),
+        plot.margin = margin(t = 10, 
+                             r = 10, 
+                             b = 10, 
+                             l = 10, unit = "pt"),
+        legend.position = "none")
+```
+
+Or you can place it over the map by specifying coordinates (relative to 
+the map panel). Placing it at `c(0.5, 0.5)` will place it right in the 
+middle of your map (which you probably don't want).
+
+```{r}
+gdp_map +
+  theme(plot.background = element_rect(fill = "cornsilk",
+                                       color = NA),
+        panel.background = element_rect(fill = "cadetblue",
+                                        color = "gray",
+                                        linetype = "dotted"),
+        plot.margin = margin(t = 10, 
+                             r = 10, 
+                             b = 10, 
+                             l = 10, unit = "pt"),
+        legend.position = c(0.5, 0.5))
+```
+
+Here's a better placement.
+
+```{r}
+gdp_map +
+  theme(plot.background = element_rect(fill = "cornsilk",
+                                       color = NA),
+        panel.background = element_rect(fill = "cadetblue",
+                                        color = "gray",
+                                        linetype = "dotted"),
+        plot.margin = margin(t = 10, 
+                             r = 10, 
+                             b = 10, 
+                             l = 10, unit = "pt"),
+        legend.position = c(0.2, 0.25))
+```
+
+You can also specify the legend background:
+
+```{r}
+gdp_map +
+  theme(plot.background = element_rect(fill = "cornsilk",
+                                       color = NA),
+        panel.background = element_rect(fill = "cadetblue",
+                                        color = "gray",
+                                        linetype = "dotted"),
+        plot.margin = margin(t = 10, 
+                             r = 10, 
+                             b = 10, 
+                             l = 10, unit = "pt"),
+        legend.position = c(0.2, 0.25),
+        legend.background = element_rect(fill = "yellow",
+                                         color = NA))
+```
+
+The `legend.margin` parameter works the same way as `plot.margin`.
+
+```{r}
+gdp_map +
+  theme(plot.background = element_rect(fill = "cornsilk",
+                                       color = NA),
+        panel.background = element_rect(fill = "cadetblue",
+                                        color = "gray",
+                                        linetype = "dotted"),
+        plot.margin = margin(t = 10, 
+                             r = 10, 
+                             b = 10, 
+                             l = 10, unit = "pt"),
+        legend.position = c(0.2, 0.25),
+        legend.background = element_rect(fill = "yellow",
+                                         color = NA),
+        legend.margin = margin(t = 6, 
+                             r = 6, 
+                             b = 6, 
+                             l = 6, unit = "pt"))
+```
+
+# Axes
+
+The `theme_void()` theme we used as a starting point has no axis
+text, but you can add it back in.
+
+```{r}
+gdp_map +
+  theme(plot.background = element_rect(fill = "cornsilk",
+                                       color = NA),
+        panel.background = element_rect(fill = "cadetblue",
+                                        color = "gray",
+                                        linetype = "dotted"),
+        plot.margin = margin(t = 10, 
+                             r = 10, 
+                             b = 10, 
+                             l = 10, unit = "pt"),
+        legend.position = c(0.2, 0.25),
+        legend.background = element_rect(fill = "yellow",
+                                         color = NA),
+        legend.margin = margin(t = 6, 
+                             r = 6, 
+                             b = 6, 
+                             l = 6, unit = "pt"),
+        axis.text = element_text())
+```
+
+# Gridlines
+
+And you can also customize grid lines
+
+```{r}
+gdp_map +
+  theme(plot.background = element_rect(fill = "cornsilk",
+                                       color = NA),
+        panel.background = element_rect(fill = "cadetblue",
+                                        color = "gray",
+                                        linetype = "dotted"),
+        plot.margin = margin(t = 10, 
+                             r = 10, 
+                             b = 10, 
+                             l = 10, unit = "pt"),
+        legend.position = c(0.2, 0.25),
+        legend.background = element_rect(fill = "yellow",
+                                         color = NA),
+        legend.margin = margin(t = 6, 
+                             r = 6, 
+                             b = 6, 
+                             l = 6, unit = "pt"),
+        axis.text = element_text(),
+        panel.grid = element_line(color = "pink",
+                                  linetype = "dotted"))
+```

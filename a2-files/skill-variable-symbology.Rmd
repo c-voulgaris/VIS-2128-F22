@@ -1,0 +1,245 @@
+---
+title: "Applying symbology based on a variable"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+You may want to vary the appearance of one or more map 
+features based on the values of an associate variable.
+
+# Required packages
+
+This example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+# Sample data
+
+```{r, include=FALSE}
+library(sf)
+
+countries <- rnaturalearth::ne_countries(continent = "Africa",
+                          returnclass = "sf")
+
+airport_flows <- here::here("a2-files",
+                            "wb_airport_flows") %>%
+  sf::st_read() 
+
+airport_arrivals <- airport_flows %>%
+  sf::st_drop_geometry() %>%
+  rename(iata_code = Dest) %>%
+  group_by(iata_code) %>%
+  summarise(arr_seats = sum(TotalSeats))
+
+airports <- here::here("a1-files",
+                 "sample-files",
+                 "airports") %>%
+  sf::st_read() %>%
+  sf::st_filter(countries) %>%
+  left_join(airport_arrivals) %>%
+  filter(!is.na(arr_seats))
+
+within_africa_flows <- airport_flows %>%
+  filter(Orig %in% airports$iata_code &
+           Dest %in% airports$iata_code) %>%
+  mutate(flow_category = case_when(TotalSeats > 100000 ~ "> 100,000",
+                                    TotalSeats < 25000 ~ "< 25000",
+                                    TRUE ~ "25,000 to 100,000"))
+```
+
+Here is a map of African countries and airports, with lines representing the
+flights between pairs of airports.
+
+```{r}
+ggplot() +
+  geom_sf(data = countries) +
+  geom_sf(data = within_africa_flows) +
+  geom_sf(data = airports) +
+  theme_void()
+```
+
+# The aes function
+
+Any settings to vary symbology with a variable will use the `aes()` function.
+Here are a whole bunch of examples.
+
+# Line symbology
+
+I can vary line width, color, or transparency based on the value of continuous
+variable. I can vary the line type (e.g. solid or dashed) or the line color
+based on the value of a categorical variable.
+
+```{r}
+ggplot() +
+  geom_sf(data = countries) +
+  geom_sf(data = within_africa_flows,
+          aes(color = TotalSeats)) +
+  geom_sf(data = airports) +
+  theme_void()
+```
+
+```{r}
+ggplot() +
+  geom_sf(data = countries) +
+  geom_sf(data = within_africa_flows,
+          aes(size = TotalSeats)) +
+  geom_sf(data = airports) +
+ # scale_size_continuous(range = c(0.5, 3)) +
+  theme_void()
+```
+
+I can also vary the transparency of the lines.
+
+```{r}
+ggplot() +
+  geom_sf(data = countries) +
+  geom_sf(data = within_africa_flows,
+          aes(alpha = TotalSeats)) +
+  geom_sf(data = airports) +
+  theme_void()
+```
+
+And to make things extra clear, I can vary color, thickness, and transparency.
+
+```{r}
+ggplot() +
+  geom_sf(data = countries) +
+  geom_sf(data = within_africa_flows,
+          aes(color = TotalSeats, 
+              size = TotalSeats,
+              alpha = TotalSeats)) +
+  geom_sf(data = airports) +
+  theme_void()
+```
+
+For categorical variables, I can vary the line type:
+
+```{r}
+ggplot() +
+  geom_sf(data = countries) +
+  geom_sf(data = within_africa_flows,
+          aes(lty = flow_category)) +
+  geom_sf(data = airports) +
+  theme_void()
+```
+
+Or the line color:
+
+```{r}
+ggplot() +
+  geom_sf(data = countries) +
+  geom_sf(data = within_africa_flows,
+          aes(color = flow_category)) +
+  geom_sf(data = airports) +
+  theme_void()
+```
+
+Or both:
+
+```{r}
+ggplot() +
+  geom_sf(data = countries) +
+  geom_sf(data = within_africa_flows,
+          aes(color = flow_category, 
+              lty = flow_category)) +
+  geom_sf(data = airports) +
+  theme_void()
+```
+
+# Point symbology
+
+For points, you can vary the color, size, and transparency for continuous
+variables, or the color or shape for categorical variables.
+
+Varying color, size, and transparency work the same way for points as for lines.
+
+Varying color by number seats arriving annually:
+
+```{r}
+ggplot() +
+  geom_sf(data = countries) +
+  geom_sf(data = airports,
+          aes(color = arr_seats)) +
+  theme_void()
+```
+
+Varying size:
+
+```{r}
+ggplot() +
+  geom_sf(data = countries) +
+  geom_sf(data = airports,
+          aes(size = arr_seats)) +
+  theme_void()
+```
+
+Varying transparency:
+
+```{r}
+ggplot() +
+  geom_sf(data = countries) +
+  geom_sf(data = airports,
+          aes(alpha = arr_seats)) +
+  theme_void()
+```
+
+And varying all three:
+
+```{r}
+ggplot() +
+  geom_sf(data = countries) +
+  geom_sf(data = airports,
+          aes(color = arr_seats,
+              size = arr_seats,
+              alpha = arr_seats)) +
+  theme_void()
+```
+
+For categorical variables, you can also vary the shape of the points.
+
+```{r}
+ggplot() +
+  geom_sf(data = countries) +
+  geom_sf(data = airports,
+          aes(color = arr_seats,
+              size = arr_seats,
+              alpha = arr_seats,
+              shape = type)) +
+  theme_void()
+```
+
+# Polygon symbology
+
+For polygons, you can vary the fill color for continuous or categorical 
+variables, and the fill transparency for continuous variables. You can also
+vary all the borders of the polygons the same way you would vary line 
+symbology.
+
+Here's how I would vary the fill color:
+
+```{r}
+ggplot(countries) +
+  geom_sf(aes(fill = gdp_md_est)) +
+  theme_void()
+```
+
+Or the fill transparency:
+
+```{r}
+ggplot(countries) +
+  geom_sf(aes(alpha = pop_est)) +
+  theme_void()
+```
+
+Note that `fill` refers to the fill color and `color` refers to the border color
+
+```{r}
+ggplot(countries) +
+  geom_sf(aes(color = gdp_md_est)) +
+  theme_void()
+```
