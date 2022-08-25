@@ -44,6 +44,7 @@ listed alphabetically.
 * [Changing symbology of an entire layer (ArcGIS)](https://harvard.zoom.us/rec/play/aK8Cbw2IPOXzIZfhPOlrGOmQ_5BwvXvUErgbqJ2h5i41QBDA-ETqCyL8k4HHxEDcckH6g3RP0o8vfA.-BS6HcP9XkFX8zxb?autoplay=true&startTime=1660832780000){target="_blank"}
 * [Changing symbology of an entire layer (R - ggplot)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-layer-symbology.html){target="_blank"}
 * [Choosing a basemap (ArcGIS)](https://harvard.zoom.us/rec/play/1XuBLT-4CY1-Lbgvrs-t6VXYJsciyfiMsH3XzPBaCi1v-3qGZnT9CpNbeBC8BRaBJ6LdvNgVwjj1E3Dw.H05muzT3eZDJloyL?autoplay=true&startTime=1660837402000){target="_blank"}
+* [Choosing a basemap (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-basemap.html){target="_blank"}
 * Creating a legend for multiple layers in a ggplot map (R)
 * Creating a legend for one layer in a ggplot map (R)
 * Creating an interactive map with leaflet (R)

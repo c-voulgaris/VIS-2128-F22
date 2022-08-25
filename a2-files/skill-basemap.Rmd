@@ -1,0 +1,144 @@
+---
+title: "Basemaps in ggplot"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The `ggspatial` package has a few different basemaps you can choose from.
+
+# Required packages
+
+This example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(ggspatial)
+```
+
+# Sample data
+
+Here's a map of bus stop in San Luis Obispo, California.
+
+```{r, include=FALSE}
+slo_stops <- here::here("a2-files",
+                  "Examples",
+                  "slo-stops.csv") %>%
+  sf::st_read(options=c("X_POSSIBLE_NAMES=stop_lon",
+                               "Y_POSSIBLE_NAMES=stop_lat")) %>%
+  sf::st_set_crs("WGS84")
+
+slo_streets <- here::here("a2-files",
+                  "Examples",
+                  "Streets.geojson") %>%
+  sf::st_read()
+```
+
+```{r}
+ggplot(slo_stops) +
+  geom_sf() +
+  theme_void() 
+```
+
+This is totally meaningless. A basemap would help my audience orient themselves.
+
+# A vector layer as a basemap
+
+I want to note that you can often get away without a basemap. For example, I could add a 
+layer of roads, and that might be enough to orient my reader, especially if they are 
+familiar with the area. Less is more, and all the detail that comes with a basemap
+image might only serve to clutter up your map.
+
+```{r}
+ggplot(slo_stops) +
+  geom_sf(data = slo_streets,
+          color = "gray") +
+  geom_sf() +
+  theme_void() 
+```
+
+# An image basemap
+
+The `ggspatial` package can also add basemaps to your map using the
+`annotation_map_tile()` function. Here is is with the default basemap
+from OpenStreetMaps.
+
+```{r, message=FALSE}
+ggplot(slo_stops) +
+  annotation_map_tile() +
+  geom_sf() +
+  theme_void() 
+```
+
+The image looks a little blurry because the default is to give you a lower-resolution
+image to that the map will load faster. You can fix this by setting `zoomin = 0`.
+
+```{r, message=FALSE}
+ggplot(slo_stops) +
+  annotation_map_tile(zoomin = 0) +
+  geom_sf() +
+  theme_void() 
+```
+
+# Alternative basemaps
+
+You can select a different basemap using `type = `
+
+Here are some options.
+
+`hotstyle`
+
+```{r, message=FALSE}
+ggplot(slo_stops) +
+  annotation_map_tile(type = "hotstyle",
+                      zoomin = 0) +
+  geom_sf() +
+  theme_void() 
+```
+
+`stamenbw`
+
+```{r, message=FALSE}
+ggplot(slo_stops) +
+  annotation_map_tile(type = "stamenbw",
+                      zoomin = 0) +
+  geom_sf() +
+  theme_void() 
+```
+
+`stamenwatercolor`
+
+```{r, message=FALSE}
+ggplot(slo_stops) +
+  annotation_map_tile(type = "stamenwatercolor",
+                      zoomin = 0) +
+  geom_sf() +
+  theme_void() 
+```
+
+
+`cartodark`
+
+```{r, message=FALSE}
+ggplot(slo_stops) +
+  annotation_map_tile(type = "cartodark",
+                      zoomin = 0) +
+  geom_sf(color = "yellow") +
+  theme_void() 
+```
+
+`cartolight`
+
+```{r, message=FALSE}
+ggplot(slo_stops) +
+  annotation_map_tile(type = "cartolight",
+                      zoomin = 0) +
+  geom_sf() +
+  theme_void() 
+```
+
+There are some other cool ones that requre a (free!) API key, but I have not
+figured out how to pass an API key to the `annotation_map_tile()` function.
+Let me know if you figure out an easy approach!
