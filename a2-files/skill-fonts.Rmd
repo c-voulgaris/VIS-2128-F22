@@ -24,7 +24,7 @@ library(ggspatial)
 # Loading some sample data
 
 Let's start with this nice map I created that shows bus stop and trails in San 
-Luis Opispo. It includes some text annotation as well.
+Luis Obispo. 
 
 ```{r, include=FALSE}
 city_trails <- here::here("a2-files",

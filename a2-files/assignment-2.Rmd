@@ -57,7 +57,7 @@ listed alphabetically.
 * [Fun with color palettes (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-colors.html){target="_blank"}
 * [Fun with fonts (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-fonts.html){target="_blank"}
 * [Opening an AIX file in Illustrator (ArcGIS)](https://harvard.zoom.us/rec/play/6pVTkEkqeU9H60mD5zkCRLaxfcirCeBAAmh8DDUprxNVDR6zy4M18IgLkOrgsT6iEJRBBGSbOyJ94VQB._wEDohMqh1WEykl-?autoplay=true&startTime=1660839734000){target="_blank"}
-* Saving a ggplot map as a PDF or image (R)
+* [Saving a ggplot map as a PDF or image (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-save-ggplot.html){target="_blank"}
 * [Selecting a map projection (ArcGIS)](https://harvard.zoom.us/rec/play/evJJKuzp7TDTvzRyBdMfbYfcrJl4bk7zz77gGGEy7caGnVxUuRnSIgUjlubM18-XHfqNH_saovRKLJtn.aJkRu-YWDglMS_Xj?autoplay=true&startTime=1660837959000){target="_blank"}
 * [Selecting a map projection (R - ggplot)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-ggplot-proj.html){target="_blank"}
 

@@ -1,0 +1,121 @@
+---
+title: "Saving images and PDFs of ggplots"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Once you've put all that work into creating a beautiful map in R, you may 
+want to save it for use outside of RStudio. 
+
+# Required packages
+
+These example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(here)
+```
+
+# Loading some sample data
+
+Let's start with this nice map I created that shows bus stop and trails in San 
+Luis Opispo. It includes some text annotation as well.
+
+```{r, include=FALSE}
+city_trails <- here::here("a2-files",
+                    "Examples",
+               "Trail.geojson") %>%
+  sf::st_read() %>%
+  rename(TrailName = Trail_Name,
+         Length = SLength) %>%
+  mutate(LengthUnits = "MILES") %>%
+  select(TrailName, Length, LengthUnits)
+
+slo_stops <- here::here("a2-files",
+                  "Examples",
+                  "slo-stops.csv") %>%
+  sf::st_read(options=c("X_POSSIBLE_NAMES=stop_lon",
+                               "Y_POSSIBLE_NAMES=stop_lat")) %>%
+  sf::st_set_crs("WGS84")
+
+boundary <- tigris::places(state = "CA") %>%
+  filter(NAME == "San Luis Obispo")
+
+slo_map <- ggplot(city_trails) +
+  ggspatial::annotation_map_tile(type = "hotstyle",
+                                 zoomin = 0) +
+  geom_sf(data = city_trails,
+          aes(color = "Trail")) +
+  geom_sf(data = slo_stops,
+          aes(color = "Bus stop")) +
+  geom_sf(data = boundary,
+          fill = NA,
+          aes(color = "City boundary"),
+          key_glyph = "path") +
+  scale_color_manual(name = "Legend",
+                     values = c("cornflowerblue", "black", "darkgreen"),
+                     guide = guide_legend(override.aes = list(linetype = 
+                                                         c("blank", "solid", "solid"),
+                                                       shape = c(16, NA, NA)))) +
+  theme(legend.background = element_rect(fill = NA),
+        legend.key = element_rect(fill = NA),
+        axis.title = element_blank()) +
+  ggtitle(label = "Trails and Transit",
+          subtitle = "Locations of city managed trails and bus stops\nin San Luis Obispo")
+```
+
+```{r, fig.height=7, message=FALSE}
+slo_map
+```
+
+# Save as a pdf
+
+The `ggsave()` function makes it really easy to save figures created with `ggplot()`.
+
+This will save the most recent thing you plotted to your current working
+directory, with the filename you specify (and it will guess the file format from
+the file extension you give it)
+
+```{r}
+ggsave("slo_map.pdf")
+```
+
+This is a little risky. It is safer to specify in your code what exactly
+it is you want to save and where you want to save it.
+
+```{r}
+ggsave(filename = here("a2-files",
+                       "slo_map.pdf"),
+       plot = slo_map)
+```
+
+You can also specify the size of the image you want to save.
+If you want to save the file as a full page (8.5 inches by 11 inches), 
+you would specify that like this ([here is the result](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/slo_map.pdf){target="_blank"}.
+
+```{r}
+ggsave(filename = here("a2-files",
+                       "slo_map.pdf"),
+       plot = slo_map,
+       height = 11,
+       width = 8.5,
+       units = "in")
+```
+
+# Save as an image
+
+If you want to save your file as an image, you can also specify the image 
+resolution ([here is the result](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/slo_map.jpg){target="_blank"}.
+
+```{r}
+ggsave(filename = here("a2-files",
+                       "slo_map.jpg"),
+       plot = slo_map,
+       height = 11,
+       width = 8.5,
+       units = "in",
+       dpi = 300)
+```
