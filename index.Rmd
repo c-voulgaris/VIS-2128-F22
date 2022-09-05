@@ -16,8 +16,8 @@ Graduate School of Design.
 * Week 1: Finding and describing (spatial) data
 * Week 2: Visualizing (spatial) data
 * Week 3: Raster image data 
-* Week 4: Calculations within a data set
-* Week 5: Distances, centroids, buffers, and samples
+* Week 4: Distances, centroids, buffers, and samples
+* Week 5: Calculations within a data set
 * Week 6: Relationships between data sets
 * Week 7: Research questions
     

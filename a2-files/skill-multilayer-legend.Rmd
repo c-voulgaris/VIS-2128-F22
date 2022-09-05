@@ -1,0 +1,200 @@
+---
+title: "Create a legend with multiple layers"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Creating a single legend that includes the symbology for
+multiple layers is trickier than in should be in ggplot,
+but it's doable with a couple little hacks.
+
+# Required packages
+
+This example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(ggspatial)
+```
+
+# Sample data
+
+```{r, include=FALSE}
+city_trails <- here::here("a2-files",
+                    "Examples",
+               "Trail.geojson") %>%
+  sf::st_read() %>%
+  rename(TrailName = Trail_Name,
+         Length = SLength) %>%
+  mutate(LengthUnits = "MILES") %>%
+  select(TrailName, Length, LengthUnits)
+
+slo_stops <- here::here("a2-files",
+                  "Examples",
+                  "slo-stops.csv") %>%
+  sf::st_read(options=c("X_POSSIBLE_NAMES=stop_lon",
+                               "Y_POSSIBLE_NAMES=stop_lat")) %>%
+  sf::st_set_crs("WGS84")
+
+boundary <- tigris::places(state = "CA") %>%
+  filter(NAME == "San Luis Obispo")
+```
+
+Let's make a nice map that shows bus stop, trails, and the 
+city boundary for San Luis Opispo, California.
+
+```{r, message=FALSE}
+slo_map <- ggplot(city_trails) +
+  annotation_map_tile(type = "hotstyle",
+                                 zoomin = 0) +
+  geom_sf(data = city_trails,
+          color = "darkgreen") +
+  geom_sf(data = slo_stops,
+          color = "cornflowerblue") +
+  geom_sf(data = boundary,
+          fill = NA,
+          color = "black") +
+  theme_void() 
+
+slo_map
+```
+
+It would be helpful to have a legend showing what all those little 
+dots and lines mean. `ggplot` will automatically generate a legend
+when you set symbology within the `aes()` function (which you'd 
+generally only do if you wanted to vary the symbology based on the
+value of a variable), but not if you specify the color outside the
+`aes()` function (which you'd generally do if you wanted to set the
+symbology for the entire layer).
+
+# Creating a legend
+
+You can get a legend by setting the symbology by setting the name that 
+should appear in the legend within the `aes()` function.
+
+```{r, message=FALSE}
+slo_map <- ggplot(city_trails) +
+  annotation_map_tile(type = "hotstyle",
+                                 zoomin = 0) +
+  geom_sf(data = city_trails,
+          aes(color = "Trails")) +
+  geom_sf(data = slo_stops,
+          aes(color = "Bus stops")) +
+  geom_sf(data = boundary,
+          fill = NA,
+          aes(color = "City boundary")) +
+  theme_void() 
+
+slo_map
+```
+
+This will just assign default colors, but you can customize those
+(and change the legend title) using `scale_color_manual()`.
+
+```{r, message=FALSE}
+slo_map <- ggplot(city_trails) +
+  annotation_map_tile(type = "hotstyle",
+                                 zoomin = 0) +
+  geom_sf(data = city_trails,
+          aes(color = "Trails")) +
+  geom_sf(data = slo_stops,
+          aes(color = "Bus stops")) +
+  geom_sf(data = boundary,
+          fill = NA,
+          aes(color = "City boundary")) +
+  scale_color_manual(name = "Legend",
+                     values = c("cornflowerblue", "black", "darkgreen")) +
+  theme_void() 
+
+slo_map
+```
+
+Now the legend has all the right colors, but it's representing all three layers
+as a combination of points, lines, and polygons. We can use the `override.aes`
+parameter within the `guide_legend()` function to make it so the legend only
+shows a point for bus stops. We give a list of shapes to display for points
+in each legend item (in the same order they appear in the legend). Bus stops
+are first, and we'll use shape 16 (see the [tutorial on symbology here](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-layer-symbology.html)
+for alternative point shapes) for that first one, then we'll use NA values to indicate that 
+the legend shouldn't display any point for the other two.
+
+```{r, message=FALSE}
+slo_map <- ggplot(city_trails) +
+  annotation_map_tile(type = "hotstyle",
+                                 zoomin = 0) +
+  geom_sf(data = city_trails,
+          aes(color = "Trails")) +
+  geom_sf(data = slo_stops,
+          aes(color = "Bus stops")) +
+  geom_sf(data = boundary,
+          fill = NA,
+          aes(color = "City boundary")) +
+  scale_color_manual(name = "Legend",
+                     values = c("cornflowerblue", "black", "darkgreen"),
+                     guide = guide_legend(override.aes = 
+                                            list(shape = c(16, NA, NA)))) +
+  theme_void() 
+
+slo_map
+```
+
+We can also use override.aes to stop the box and lines from showing
+for the bus stops by setting the linetype to "blank" for that first
+item.
+
+```{r, message=FALSE}
+slo_map <- ggplot(city_trails) +
+  annotation_map_tile(type = "hotstyle",
+                                 zoomin = 0) +
+  geom_sf(data = city_trails,
+          aes(color = "Trails")) +
+  geom_sf(data = slo_stops,
+          aes(color = "Bus stops")) +
+  geom_sf(data = boundary,
+          fill = NA,
+          aes(color = "City boundary")) +
+  scale_color_manual(name = "Legend",
+                     values = c("cornflowerblue", "black", "darkgreen"),
+                     guide = guide_legend(override.aes = 
+                                            list(shape = c(16, NA, NA),
+                                                 linetype = c("blank", 
+                                                              "solid", 
+                                                              "solid")))) +
+  theme_void() 
+
+slo_map
+```
+
+The only remaining problem is that the legend wants to represent a polygon's
+border color as a box, but it wants to represent the color of a line layer
+as a single line. We can force the legend to represent them the same way
+by setting the `key_glyph` value in the `geom_sf()` function that draws the
+polygon.
+
+```{r, message=FALSE}
+slo_map <- ggplot(city_trails) +
+  annotation_map_tile(type = "hotstyle",
+                                 zoomin = 0) +
+  geom_sf(data = city_trails,
+          aes(color = "Trails")) +
+  geom_sf(data = slo_stops,
+          aes(color = "Bus stops")) +
+  geom_sf(data = boundary,
+          fill = NA,
+          aes(color = "City boundary"),
+          key_glyph = draw_key_path) +
+  scale_color_manual(name = "Legend",
+                     values = c("cornflowerblue", "black", "darkgreen"),
+                     guide = guide_legend(override.aes = 
+                                            list(linetype = c("blank", 
+                                                              "solid",
+                                                              "solid"),
+                                                 shape = c(16, NA, NA)))) +
+  theme_void() 
+
+slo_map
+```
+
