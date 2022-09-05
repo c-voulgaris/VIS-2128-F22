@@ -1,0 +1,183 @@
+---
+title: "Applying symbology based on a variable"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+If you've [varied the symbology of a layer based on the value
+of a variable](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-variable-symbology.html){target="_blank"}, 
+a legend will be created automatically. You can customize this legend. 
+
+# Required packages
+
+This example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+# Sample data
+
+```{r, include=FALSE}
+library(sf)
+
+countries <- rnaturalearth::ne_countries(continent = "Africa",
+                          returnclass = "sf")
+
+airport_flows <- here::here("a2-files",
+                            "wb_airport_flows") %>%
+  sf::st_read() 
+
+airport_arrivals <- airport_flows %>%
+  sf::st_drop_geometry() %>%
+  rename(iata_code = Dest) %>%
+  group_by(iata_code) %>%
+  summarise(arr_seats = sum(TotalSeats))
+
+airports <- here::here("a1-files",
+                 "sample-files",
+                 "airports") %>%
+  sf::st_read() %>%
+  sf::st_filter(countries) %>%
+  left_join(airport_arrivals) %>%
+  filter(!is.na(arr_seats))
+
+```
+
+Here is a map of African countries and airports. The point shape indicates the airport
+type and the countries' fill colors indicate the estimated GDP.
+
+```{r}
+ggplot() +
+  geom_sf(data = countries,
+          aes(fill = gdp_md_est)) +
+  geom_sf(data = airports, 
+          aes(shape = type)) +
+  theme_void()
+```
+
+# The scale_*_* function
+
+When you set the symbology with the `aes()` function, you can customize 
+the legend (and the details of the display), using a corresponding
+`scale_*_*` function (I'm using stars there to represent a fill-in-the-blank).
+
+For example, since I used the `aes()` function to set the point shape to vary by 
+airport type, I can use `scale_shape()` to customize that legend. I can set
+the legend title using `name = ` and I can set the labels for the individual 
+legend elements using `labels = `.
+
+```{r}
+ggplot() +
+  geom_sf(data = countries,
+          aes(fill = gdp_md_est)) +
+  geom_sf(data = airports, 
+          aes(shape = type)) +
+  scale_shape(name = "Airport type",
+              labels = c("Major airport",
+                         "Mid-sized airport")) +
+  theme_void()
+```
+
+Alternatively, I can use `scale_shape_manual` if I also want to change the specific shapes that
+are on the legend _and_ on the map. `16` refers to a solid dot and `1` refers to an open dot 
+([for more on point symbology options, see this page](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-layer-symbology.html){target="_blank"}).
+
+```{r}
+ggplot() +
+  geom_sf(data = countries,
+          aes(fill = gdp_md_est)) +
+  geom_sf(data = airports, 
+          aes(shape = type)) +
+  scale_shape_manual(name = "Airport type",
+              labels = c("Major airport",
+                         "Mid-sized airport"),
+              values = c(16, 1)) +
+  theme_void()
+```
+
+Likewise, I can use `scale_fill_continuous()` to set the title and labels for the color legend.
+Since this is a continuous variable, I'll need to specify which values on the color ramp
+will be labeled using `breaks = ` in addition to how they will be labeled.
+
+```{r}
+ggplot() +
+  geom_sf(data = countries,
+          aes(fill = gdp_md_est)) +
+  geom_sf(data = airports, 
+          aes(shape = type)) +
+  scale_shape_manual(name = "Airport type",
+              labels = c("Major airport",
+                         "Mid-sized airport"),
+              values = c(16, 1)) +
+  scale_fill_continuous(name = "Estimated GDP",
+                        breaks = c(100000,
+                                   200000,
+                                   300000,
+                                   400000),
+              labels = c("$100 Billion",
+                         "$200 Billion",
+                         "$300 Billion",
+                         "$400 Billion")) +
+  theme_void()
+```
+
+
+There are some shortcuts to defining breaks and labels. The `seq()` function
+will create a set of sequential numbers for you, so save you having to 
+type them all out. Here is how I would specify that I want breaks from 100,000 to 
+400,000, increasing in units of 100,000.
+
+```{r}
+ggplot() +
+  geom_sf(data = countries,
+          aes(fill = gdp_md_est)) +
+  geom_sf(data = airports, 
+          aes(shape = type)) +
+  scale_shape_manual(name = "Airport type",
+              labels = c("Major airport",
+                         "Mid-sized airport"),
+              values = c(16, 1)) +
+  scale_fill_continuous(name = "Estimated GDP",
+                        breaks = seq(100000, 400000,
+                                     by=100000),
+              labels = c("$100 Billion",
+                         "$200 Billion",
+                         "$300 Billion",
+                         "$400 Billion")) +
+  theme_void()
+```
+
+If I set the break values as breaks = my_breaks <- seq(...), that will 
+temporarily store those break values and I can use them to set up my labels.
+
+The `paste0()` function is handy for setting up labels. In the example below,
+I'm specifying that the labels should start with a "$", followed by the break 
+value divided by 1000 (since the variable reports the value in millions), 
+followed by a space and the word "Billion."
+
+```{r}
+ggplot() +
+  geom_sf(data = countries,
+          aes(fill = gdp_md_est)) +
+  geom_sf(data = airports, 
+          aes(shape = type)) +
+  scale_shape_manual(name = "Airport type",
+              labels = c("Major airport",
+                         "Mid-sized airport"),
+              values = c(16, 1)) +
+  scale_fill_continuous(name = "Estimated GDP",
+                        breaks = my_breaks <- seq(100000, 400000,
+                                                  by=100000),
+              labels = paste0("$", my_breaks / 1000, " Billion")) +
+  theme_void()
+```
+
+You can also customize the color ramp using variations on `scale_fill_gradient()`
+or `scale_fill_viridis_c()`. 
+More on that in the [fun with color palettes skill](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-colors.html){target="_blank"}.
+
+To further customize the appearance of the legend, refer to [customizing ggplot themes](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-custom-themes.html){target="_blank"}.
