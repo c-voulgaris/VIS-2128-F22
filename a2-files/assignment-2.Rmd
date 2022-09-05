@@ -49,7 +49,7 @@ listed alphabetically.
 * Creating an interactive map (R - leaflet)
 * [Customizing a ggplot theme (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-custom-themes.html){target="_blank"}
 * [Customizing a legend (R - ggplot)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-custom-legend.html){target="_blank"}
-* Defining the bounding box for a ggplot map (R)
+* [Defining the bounding box for a ggplot map (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-bounding-box.html){target="_blank"}
 * [Downloading ArcGIS extension for Illustrator](https://www.esri.com/en-us/arcgis/products/maps-for-adobecc/overview){target="_blank"}
 * Editing a ggplot map/chart further in Adobe Illustrator (Illustrator)
 * [Editing a map file in Illustrator (ArcGIS)](https://harvard.zoom.us/rec/play/W7I2et1sT0FbmuastV4wlhsS8p-9A5tiD8yPlUkg9B2ZoJDPmzgyLG_4EIo0oQH-bh8Z8dCBs6silUZv.LKz43-ZilnmFeBzs?autoplay=true&startTime=1660840146000){target="_blank"}

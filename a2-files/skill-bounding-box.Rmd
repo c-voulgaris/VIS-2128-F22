@@ -1,0 +1,90 @@
+---
+title: "Setting a bounding box"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+By default, ggplot will plot the an area that includes all the data in 
+all the layers you add to your map. However, in some cases, you might
+want to "zoom in" on part of the map without having to clip or filter
+the underlying data.
+
+# Required packages
+
+This example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(rnaturalearth)
+library(sf)
+```
+
+# Sample data
+
+Here is a map of countries in Africa
+
+```{r}
+countries <- ne_countries(continent = "Africa",
+                          returnclass = "sf")
+
+ggplot(countries) +
+  geom_sf(fill = "palegreen2") +
+  theme_void()
+
+```
+
+I might also want to show the adjacent landmasses (parts of Europe and Asia), in gray.
+I can load the shapes of all the world countries and plot them under my map of 
+Africa, but now it's a map of the world, and Africa is really small (especially
+given the map projection, but that's [another topic](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-ggplot-proj.html){target="_blank"}).
+
+```{r}
+world <- ne_countries(returnclass = "sf")
+
+ggplot(countries) +
+  geom_sf(data= world,
+          color = NA, fill = "gray") +
+  geom_sf(fill = "palegreen2") +
+  theme_void()
+```
+
+Here's how I get the map's bounding box back to where it was. 
+
+# Get the bounding box for a layer
+
+The function `st_bbox()` will return the bounding box for a 
+geospatial data layer.
+
+```{r}
+st_bbox(countries)
+```
+
+And I can store these values in separate variables.
+
+```{r}
+africa_xmin <- st_bbox(countries)$xmin
+africa_xmax <- st_bbox(countries)$xmax
+
+africa_ymin <- st_bbox(countries)$ymin
+africa_ymax <- st_bbox(countries)$ymax
+```
+
+# Set the bounding box for your map
+
+Now I can use the `coord_sf()` function to set the extent of my map.
+
+```{r}
+ggplot(countries) +
+  geom_sf(data= world,
+          color = NA, fill = "gray") +
+  geom_sf(fill = "palegreen2") +
+  theme_void() +
+  coord_sf(xlim = c(africa_xmin, africa_xmax),
+           ylim = c(africa_ymin, africa_ymax))
+```
+
+Note that `coord_sf()` is also the function you'd use to 
+[change the map projection](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-ggplot-proj.html){target="_blank"}
