@@ -1,0 +1,151 @@
+---
+title: "Adding data to a leaflet map"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The `leaflet` package in R helps you to create interactive, web-based maps.
+This page (https://rstudio.github.io/leaflet/) gives a nice overview. I'll give
+some brief examples here.
+
+# Required packages
+
+These example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(here)
+library(leaflet)
+library(sf)
+library(tigris)
+```
+
+# Loading some sample data
+
+Let's start by loading some data with the trails and bus stops, and  in San Luis Obispo, 
+California
+
+```{r, message=FALSE, results='hide'}
+city_trails <- here("a2-files",
+                    "Examples",
+                    "Trail.geojson") %>%
+  st_read()
+
+slo_stops <- here::here("a2-files",
+                  "Examples",
+                  "slo-stops.csv") %>%
+  st_read(options=c("X_POSSIBLE_NAMES=stop_lon",
+                               "Y_POSSIBLE_NAMES=stop_lat")) %>%
+  st_set_crs("WGS84")
+
+boundary <- places(state = "CA") %>%
+  filter(NAME == "San Luis Obispo") %>%
+  st_transform("WGS84")
+```
+
+# Point data
+
+I set up a leaflet map using the `leaflet()` function. Then, after a pipe (`%>%`), 
+I can add point data using the `addMarkers()`. For 
+
+```{r}
+leaflet() %>%
+  addMarkers(data = slo_stops)
+```
+
+As an alternative, I can also display point data as little dots by using `addCircleMarkers()` instead
+of `addMarkers()`.
+
+```{r}
+leaflet() %>%
+  addCircleMarkers(data = slo_stops)
+```
+
+With circle markers, you can specify the radius, outline color/opacity/weight, and fill color/opacity. 
+
+```{r}
+leaflet() %>%
+  addCircleMarkers(data = slo_stops,
+                   radius = 4,
+                   fillColor = "lightgreen",
+                   fillOpacity = 0.6,
+                   color = "darkgreen",
+                   weight = 1,
+                   opacity = 1)
+```
+
+And you can also leave off the outline by setting `stroke = FALSE`,
+
+```{r}
+leaflet() %>%
+  addCircleMarkers(data = slo_stops,
+                   radius = 4,
+                   fillColor = "darkgreen",
+                   stroke = FALSE)
+```
+
+# Polygon data
+
+You can add polygon data to your leaflet map using `addPolygons()`.
+
+```{r}
+leaflet() %>%
+  addPolygons(data = boundary) %>%
+  addCircleMarkers(data = slo_stops,
+                   radius = 4,
+                   fillColor = "darkgreen",
+                   stroke = FALSE) 
+```
+
+And I can customize the appearance of the polygon in the same way I would customize the circle
+markers.
+
+```{r}
+leaflet() %>%
+  addPolygons(data = boundary,
+              fillOpacity = 0,
+              weight = 1.5,
+              color = "black") %>%
+  addCircleMarkers(data = slo_stops,
+                   radius = 4,
+                   fillColor = "darkgreen",
+                   stroke = FALSE) 
+```
+
+# Line data
+
+You can also add a line layer.
+
+```{r}
+leaflet() %>%
+  addPolygons(data = boundary,
+              fillOpacity = 0,
+              weight = 1.5,
+              color = "black") %>%
+  addCircleMarkers(data = slo_stops,
+                   radius = 4,
+                   fillColor = "darkgreen",
+                   stroke = FALSE) %>%
+  addPolylines(data = city_trails)
+```
+
+Again, you can mess around with line weight, opacity, and color.
+
+```{r}
+leaflet() %>%
+  addPolygons(data = boundary,
+              fillOpacity = 0,
+              weight = 1.5,
+              color = "black") %>%
+  addCircleMarkers(data = slo_stops,
+                   radius = 4,
+                   fillColor = "darkgreen",
+                   stroke = FALSE) %>%
+  addPolylines(data = city_trails,
+               weight = 2,
+               color = "brown",
+               opacity = 1)
+```
