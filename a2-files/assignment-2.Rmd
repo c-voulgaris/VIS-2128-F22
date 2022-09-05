@@ -51,13 +51,13 @@ listed alphabetically.
 * [Customizing a legend (R - ggplot)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-custom-legend.html){target="_blank"}
 * [Defining the bounding box for a ggplot map (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-bounding-box.html){target="_blank"}
 * [Downloading ArcGIS extension for Illustrator](https://www.esri.com/en-us/arcgis/products/maps-for-adobecc/overview){target="_blank"}
-* Editing a ggplot map/chart further in Adobe Illustrator (Illustrator)
+* [Editing a ggplot map/chart further in Adobe Illustrator (Illustrator)](https://asngrads.com/2019/11/24/enhancing-figures-ggplot2-to-adobe-illustrator/){target="_blank"}
 * [Editing a map file in Illustrator (ArcGIS)](https://harvard.zoom.us/rec/play/W7I2et1sT0FbmuastV4wlhsS8p-9A5tiD8yPlUkg9B2ZoJDPmzgyLG_4EIo0oQH-bh8Z8dCBs6silUZv.LKz43-ZilnmFeBzs?autoplay=true&startTime=1660840146000){target="_blank"}
-* [Fun with color palettes (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-colors.html){target="_blank"}
 * [Export a map layout (ArcGIS)](https://harvard.zoom.us/rec/play/Rqo-d93n-3c4Y69bjzfVccNEN0OsM91rk4yRrhlUMpI7qTi0Lm9ksX8xRSEPcWNVkbtT5oKdtgMgzLIU.eUdWhqVKWKeTfNMo?autoplay=true&startTime=1660839155000){target="_blank"}
-* Fun with fonts (R)
+* [Fun with color palettes (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-colors.html){target="_blank"}
+* [Fun with fonts (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-fonts.html){target="_blank"}
 * [Opening an AIX file in Illustrator (ArcGIS)](https://harvard.zoom.us/rec/play/6pVTkEkqeU9H60mD5zkCRLaxfcirCeBAAmh8DDUprxNVDR6zy4M18IgLkOrgsT6iEJRBBGSbOyJ94VQB._wEDohMqh1WEykl-?autoplay=true&startTime=1660839734000){target="_blank"}
-* Saving a ggplot map as a PDF (R)
+* Saving a ggplot map as a PDF or image (R)
 * [Selecting a map projection (ArcGIS)](https://harvard.zoom.us/rec/play/evJJKuzp7TDTvzRyBdMfbYfcrJl4bk7zz77gGGEy7caGnVxUuRnSIgUjlubM18-XHfqNH_saovRKLJtn.aJkRu-YWDglMS_Xj?autoplay=true&startTime=1660837959000){target="_blank"}
 * [Selecting a map projection (R - ggplot)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-ggplot-proj.html){target="_blank"}
 

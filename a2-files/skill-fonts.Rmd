@@ -1,0 +1,154 @@
+---
+title: "Fun with fonts"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The default fonts in R might not be that interesting to you. Here is how 
+you can get a little more flexibility.
+
+# Required packages
+
+These example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(extrafont)
+library(extrafontdb)
+library(ggspatial)
+```
+
+# Loading some sample data
+
+Let's start with this nice map I created that shows bus stop and trails in San 
+Luis Opispo. It includes some text annotation as well.
+
+```{r, include=FALSE}
+city_trails <- here::here("a2-files",
+                    "Examples",
+               "Trail.geojson") %>%
+  sf::st_read() %>%
+  rename(TrailName = Trail_Name,
+         Length = SLength) %>%
+  mutate(LengthUnits = "MILES") %>%
+  select(TrailName, Length, LengthUnits)
+
+slo_stops <- here::here("a2-files",
+                  "Examples",
+                  "slo-stops.csv") %>%
+  sf::st_read(options=c("X_POSSIBLE_NAMES=stop_lon",
+                               "Y_POSSIBLE_NAMES=stop_lat")) %>%
+  sf::st_set_crs("WGS84")
+
+boundary <- tigris::places(state = "CA") %>%
+  filter(NAME == "San Luis Obispo")
+
+slo_map <- ggplot(city_trails) +
+  ggspatial::annotation_map_tile(type = "hotstyle",
+                                 zoomin = 0) +
+  geom_sf(data = city_trails,
+          aes(color = "Trail")) +
+  geom_sf(data = slo_stops,
+          aes(color = "Bus stop")) +
+  geom_sf(data = boundary,
+          fill = NA,
+          aes(color = "City boundary"),
+          key_glyph = "path") +
+  scale_color_manual(name = "Legend",
+                     values = c("cornflowerblue", "black", "darkgreen"),
+                     guide = guide_legend(override.aes = list(linetype = 
+                                                         c("blank", "solid", "solid"),
+                                                       shape = c(16, NA, NA)))) +
+  theme(legend.background = element_rect(fill = NA),
+        legend.key = element_rect(fill = NA),
+        axis.title = element_blank()) +
+  ggtitle(label = "Trails and Transit",
+          subtitle = "Locations of city managed trails and bus stops\nin San Luis Obispo")
+```
+
+```{r, fig.height=7, message=FALSE}
+slo_map
+```
+
+There are a few different text elements on this map. There are the axis labels, the text in 
+the legend, the plot title, and the map annotation. The default font is Arial, and it's fine. 
+But maybe you want more options.
+
+To make all the fonts on your computer available to R, type `font_import()` into your console and
+press Enter. You should only need to ever do this once. It takes some time to import all the fonts, 
+so you'll get a prompt to type y or n (yes or no) to confirm that you really want to do that. Type `y` and press Enter.
+
+If you are seeing a lot of messages that say "No FontName. Skipping.", try typing 
+`remotes::install_version("Rttf2pt1", version = "1.3.8")` into your console, then try
+again (a newer version of one of the packages `extrafonts` depends on seems to be 
+a little broken, so this takes it back to an old one).
+
+Now you can use the `fonts()` function to  see a list of all the fonts that are available to you. Here's what I have on my computer (it's a PC).
+
+```{r}
+fonts()
+```
+
+Now I need to load these fonts using the function `loadfonts()`. If you are working on a Mac, you can leave leave the parentheses empty (i.e. delete `device = "win"`)
+
+```{r, message=FALSE}
+loadfonts(device = "win")
+```
+
+# Setting the font for an entire plot
+
+I can set the font for all the text in the font by setting `text =` in the
+`theme()` function.
+
+```{r, height=7, message=FALSE}
+slo_map +
+  theme(text = element_text(family = "Garamond"))
+```
+
+# Setting the font for individual elements
+
+Maybe you want to use different fonts for different text elements. No problem.
+
+```{r, height = 7, message=FALSE}
+slo_map +
+  theme(plot.title = element_text(family = "Copperplate Gothic Bold",
+                             size = 20),
+        plot.subtitle = element_text(family = "Copperplate Gothic Light"),
+        axis.text = element_text(family = "Calibri" ),
+        legend.title = element_text(family = "Calibri", face = "bold"),
+        legend.text = element_text(family = "Calibri" ))
+```
+
+# Setting the font for annotation
+
+There are some map annotation elements like 
+[north arrows](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-north-arrow.html){target="_blank"}, 
+[scale bars](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-scale-bar.html){target="_blank"}, 
+and [text annotation](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-annotate.html){target="_blank"} 
+where you would set the font separately from the theme.
+
+```{r, height = 7, message=FALSE}
+slo_map +
+  theme(plot.title = element_text(family = "Copperplate Gothic Bold",
+                             size = 20),
+        plot.subtitle = element_text(family = "Copperplate Gothic Light"),
+        axis.text = element_text(family = "Calibri" ),
+        legend.title = element_text(family = "Calibri", face = "bold"),
+        legend.text = element_text(family = "Calibri" )) +
+  annotate(geom = "text",
+           x = -120.73,
+           y = 35.36,
+           hjust = 0,
+           vjust = 1,
+           family = "Comic Sans MS",
+           size = 3,
+           label = "This map shows that the areas\nof San Luis Obispo served by\ntrails are distinct from (and \nminimally overlapping with) the\nareas served by transit. Few trails\nare easily accessible by transit.") +
+  annotation_north_arrow(location = "tr",
+                         style = north_arrow_nautical(text_family = "Copperplate Gothic Bold")) +
+  annotation_scale(location = "br",
+                   text_family = "Comic Sans MS")
+  
+```
