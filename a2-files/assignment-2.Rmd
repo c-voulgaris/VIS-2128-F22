@@ -84,6 +84,7 @@ listed alphabetically within each category.
 * [r-spatial tutorial on ggplot maps](https://r-spatial.org/r/2018/10/25/ggplot2-sf.html){target="_blank"}
 * [Spatial Reference (for finding map projections)](https://spatialreference.org/){target="_blank"}
 * [PROJ projections list](https://proj.org/operations/projections/index.html){target="_blank"}
+* [Lecture slides on map projections](https://c-voulgaris.github.io/VIS-2128-F22/map-projection-slides.pdf){target="_blank"}
 
 # Examples
 
