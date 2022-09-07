@@ -11,7 +11,7 @@
 
 
 
-<title>Assignment 2</title>
+<title>Saving a leaflet map</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -361,191 +361,48 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Assignment 2</h1>
+<h1 class="title toc-ignore">Saving a leaflet map</h1>
 
 </div>
 
 
-<div id="deliverable" class="section level1">
-<h1>Deliverable</h1>
-<p>Submit a map with showing the data you described in Assignment 1,
-with each dataset as a separate layer.</p>
-<p>Your map should be attractive and informative (inset maps, north
-arrows, and scale bars are very helpful in making a map informative, but
-I’m not dogmatic about including them if your audience doesn’t need
-them). It should clearly indicate the source of each layer in your map.
-It should also include a couple of sentences describing the audience for
-your map and the argument you are making or the message you are
-conveying to them with your map.</p>
-<p>On your submission, list the name(s) of at least one student who was
-especially helpful you you in completing this assignment, and describe
-how they helped.</p>
+<p>You should save your leaflet map as an html file that’s viewable in a
+web browser.</p>
+<div id="save-your-map-as-knitted-markdown-file" class="section level1">
+<h1>Save your map as knitted markdown file</h1>
+<p>If you’re working in RMarkdown, you can just knit the file to
+generate an html file that includes your map. You can use markdown text
+to add explanatory text before or after your map. In the heading to any
+code chunks, replace <code>{r}</code> with
+<code>{r, include=FALSE}</code> so that the code doesn’t show up in the
+knitted file.</p>
+<p>You can also apply a theme to your knitted file by editing the YAML
+header (the first few lines of your RMarkdown file between the
+<code>---</code> lines). <a href="https://www.datadreaming.org/post/r-markdown-theme-gallery/" target="_blank">Here is a gallery of some available themes</a>. For
+example, if I wanted to apply the <code>cosmo</code> theme, I would
+replace the default YAML header with</p>
+<p><code>---</code></p>
+<pre><code>title: &quot;My cool map&quot;
+output: 
+  html_document:
+        theme: cosmo
+        </code></pre>
+<p><code>---</code></p>
 </div>
-<div id="relevant-skills" class="section level1">
-<h1>Relevant Skills</h1>
-<p>You are unlikely to use all of these skills in this assignment, but
-all of them are relevant and you will probably use several of them. They
-are listed alphabetically within each category.</p>
-<div id="arcgis" class="section level3">
-<h3>ArcGIS</h3>
-<ul>
-<li><a href="https://harvard.zoom.us/rec/play/NXs6WI6aTbaq1VwV6jJL9wWGBLpweSkK9t9ktZQ1ambeUJD0Kk6stBrrVUxngXFBsdXQJjSrDVHTqtU5.UzDytkbnGdiTaZzO?autoplay=true&amp;startTime=1660838502000" target="_blank">Adding a map layout</a></li>
-<li><a href="https://harvard.zoom.us/rec/play/yA2FG1jRi-shr6JTJGxvFRxiwzhVahGMSR0w6zGUeecEf2BdWbzSJENjDMPwcnfHS7_o7BZdwtLeLQmz.7Nn3qaXIs_65VHpM?autoplay=true&amp;startTime=1660838907000" target="_blank">Add a north arrow, scale bar, and legend</a></li>
-<li><a href="https://harvard.zoom.us/rec/play/YqECB4uxFWT9P00fxHZYNvV1ekgt4CiINjE3re55aidcxBbakYoJyJsh2uy-GOhiq4xepkJjcqIq1rb1.vvtSc2XTOJvPRrQx?autoplay=true&amp;startTime=1660836764000" target="_blank">Changing symbology based on a variable</a></li>
-<li><a href="https://harvard.zoom.us/rec/play/aK8Cbw2IPOXzIZfhPOlrGOmQ_5BwvXvUErgbqJ2h5i41QBDA-ETqCyL8k4HHxEDcckH6g3RP0o8vfA.-BS6HcP9XkFX8zxb?autoplay=true&amp;startTime=1660832780000" target="_blank">Changing symbology of an entire layer</a></li>
-<li><a href="https://harvard.zoom.us/rec/play/1XuBLT-4CY1-Lbgvrs-t6VXYJsciyfiMsH3XzPBaCi1v-3qGZnT9CpNbeBC8BRaBJ6LdvNgVwjj1E3Dw.H05muzT3eZDJloyL?autoplay=true&amp;startTime=1660837402000" target="_blank">Choosing a basemap</a></li>
-<li><a href="https://harvard.zoom.us/rec/play/Rqo-d93n-3c4Y69bjzfVccNEN0OsM91rk4yRrhlUMpI7qTi0Lm9ksX8xRSEPcWNVkbtT5oKdtgMgzLIU.eUdWhqVKWKeTfNMo?autoplay=true&amp;startTime=1660839155000" target="_blank">Export a map layout</a></li>
-<li><a href="https://harvard.zoom.us/rec/play/evJJKuzp7TDTvzRyBdMfbYfcrJl4bk7zz77gGGEy7caGnVxUuRnSIgUjlubM18-XHfqNH_saovRKLJtn.aJkRu-YWDglMS_Xj?autoplay=true&amp;startTime=1660837959000" target="_blank">Selecting a map projection</a></li>
-</ul>
-</div>
-<div id="r-ggplot" class="section level3">
-<h3>R (ggplot)</h3>
-<ul>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-north-arrow.html" target="_blank">Adding a north arrow to a map</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-scale-bar.html" target="_blank">Adding a scale bar to a map</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-annotate.html" target="_blank">Annotating a ggplot map</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-themes.html" target="_blank">Applying a ggplot theme</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-variable-symbology.html" target="_blank">Changing symbology based on a variable</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-layer-symbology.html" target="_blank">Changing symbology of an entire layer</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-basemap.html" target="_blank">Choosing a basemap</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-multilayer-legend.html" target="_blank">Creating a legend for multiple layers in a ggplot
-map</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-custom-themes.html" target="_blank">Customizing a ggplot theme</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-custom-legend.html" target="_blank">Customizing a legend</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-bounding-box.html" target="_blank">Defining the bounding box for a ggplot map</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-colors.html" target="_blank">Fun with color palettes</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-fonts.html" target="_blank">Fun with fonts</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-save-ggplot.html" target="_blank">Saving a ggplot map as a PDF or image</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-ggplot-proj.html" target="_blank">Selecting a map projection</a></li>
-</ul>
-</div>
-<div id="r-leaflet" class="section level3">
-<h3>R (leaflet)</h3>
-<ul>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-legend.html" target="_blank">Adding a legend</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-setup.html" target="_blank">Adding data to an interactive leaflet map</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-highlight.html" target="_blank">Adding highlight options for interactivity</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-labels.html" target="_blank">Adding labels and popups</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-colors.html" target="_blank">Changing colors based on a variable</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-basemap.html" target="_blank">Choosing a basemap for leaflet map</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-save.html" target="_blank">Saving a leaflet map</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-view.html" target="_blank">Setting the view and zoom</a></li>
-</ul>
-</div>
-<div id="illustrator-workflows" class="section level3">
-<h3>Illustrator workflows</h3>
-<ul>
-<li><a href="https://www.esri.com/en-us/arcgis/products/maps-for-adobecc/overview" target="_blank">Downloading ArcGIS extension for Illustrator</a></li>
-<li><a href="https://asngrads.com/2019/11/24/enhancing-figures-ggplot2-to-adobe-illustrator/" target="_blank">Editing a ggplot map/chart further in Adobe
-Illustrator</a></li>
-<li><a href="https://harvard.zoom.us/rec/play/W7I2et1sT0FbmuastV4wlhsS8p-9A5tiD8yPlUkg9B2ZoJDPmzgyLG_4EIo0oQH-bh8Z8dCBs6silUZv.LKz43-ZilnmFeBzs?autoplay=true&amp;startTime=1660840146000" target="_blank">Editing a map file in Illustrator</a></li>
-<li><a href="https://harvard.zoom.us/rec/play/6pVTkEkqeU9H60mD5zkCRLaxfcirCeBAAmh8DDUprxNVDR6zy4M18IgLkOrgsT6iEJRBBGSbOyJ94VQB._wEDohMqh1WEykl-?autoplay=true&amp;startTime=1660839734000" target="_blank">Opening an AIX file in Illustrator</a></li>
-</ul>
-</div>
-</div>
-<div id="other-resources" class="section level1">
-<h1>Other resources</h1>
-<ul>
-<li><a href="https://r-spatial.org/r/2018/10/25/ggplot2-sf.html" target="_blank">r-spatial tutorial on ggplot maps</a></li>
-<li><a href="https://spatialreference.org/" target="_blank">Spatial
-Reference (for finding map projections)</a></li>
-<li><a href="https://proj.org/operations/projections/index.html" target="_blank">PROJ projections list</a></li>
-</ul>
-</div>
-<div id="examples" class="section level1">
-<h1>Examples</h1>
-<p>Each of the examples below fully meets the requirements for this
-assignment.</p>
-<ul>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/Examples/slo-leaflet.html" target="_blank">Example 1</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/Examples/Africa-a2.pdf" target="_blank">Example 2</a></li>
-</ul>
-</div>
-<div id="grading-rubric" class="section level1">
-<h1>Grading rubric</h1>
-<table>
-<colgroup>
-<col width="29%" />
-<col width="9%" />
-<col width="23%" />
-<col width="23%" />
-<col width="14%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Item</th>
-<th align="left">No credit</th>
-<th align="left">Half credit</th>
-<th align="left">Full credit</th>
-<th align="right">Possible points</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Name of a helpful classmate</td>
-<td align="left">Missing</td>
-<td align="left">Not adequately described</td>
-<td align="left">Not adequately described</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="left">How your classmate helped</td>
-<td align="left">Missing</td>
-<td align="left">Not adequately described</td>
-<td align="left">Not adequately described</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="left">Inclusion of multiple layers</td>
-<td align="left">Missing</td>
-<td align="left"></td>
-<td align="left">Included</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="left">The map is informative</td>
-<td align="left">Missing</td>
-<td align="left">Minimal apparent effort</td>
-<td align="left">Evident effort</td>
-<td align="right">4</td>
-</tr>
-<tr class="odd">
-<td align="left">The map is attractive</td>
-<td align="left">Missing</td>
-<td align="left">Minimal apparent effort</td>
-<td align="left">Evident effort</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="left">Source attribution</td>
-<td align="left">Missing</td>
-<td align="left">Not adequately described</td>
-<td align="left">Adequately described</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Description of audience</td>
-<td align="left">Missing</td>
-<td align="left">Not adequately described</td>
-<td align="left">Adequately described</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="left">Description of argument/message</td>
-<td align="left">Missing</td>
-<td align="left">Not adequately described</td>
-<td align="left">Adequately described</td>
-<td align="right">4</td>
-</tr>
-<tr class="odd">
-<td align="left">Total</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">25</td>
-</tr>
-</tbody>
-</table>
+<div id="save-your-map-as-a-full-page-html-file" class="section level1">
+<h1>Save your map as a full-page html file</h1>
+<p>You can also save your map separately from your Rmd file using the
+<code>saveWidget()</code> function in the <code>htmlwidgets</code>
+package.</p>
+<pre class="r"><code>library(leaflet)
+library(htmlwidgets)
+library(here)
+
+my_map &lt;- leaflet() %&gt;%
+  addTiles() %&gt;%
+  setView(lng = -120.6592, lat = 35.28190, zoom = 11)
+
+saveWidget(my_map, file = here(&quot;a2-files&quot;, &quot;leaflet-map.html&quot;))</code></pre>
 </div>
 
 

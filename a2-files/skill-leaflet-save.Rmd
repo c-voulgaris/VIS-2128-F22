@@ -1,0 +1,49 @@
+---
+title: "Saving a leaflet map"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+You should save your leaflet map as an html file that's viewable in a web browser.
+
+# Save your map as knitted markdown file
+
+If you're working in RMarkdown, you can just knit the file to generate an html file that includes
+your map. You can use markdown text to add explanatory text before or after your map. In the
+heading to any code chunks, replace `{r}` with `{r, include=FALSE}` so that the code doesn't
+show up in the knitted file.
+
+You can also apply a theme to your knitted file by editing the YAML header (the first few lines
+of your RMarkdown file between the `---` lines). 
+[Here is a gallery of some available themes](https://www.datadreaming.org/post/r-markdown-theme-gallery/){target="_blank"}. For example, if
+I wanted to apply the `cosmo` theme, I would replace the default YAML header with
+
+`---`
+
+    title: "My cool map"
+    output: 
+      html_document:
+            theme: cosmo
+            
+`---`
+
+# Save your map as a full-page html file
+
+You can also save your map separately from your Rmd file using the 
+`saveWidget()` function in the `htmlwidgets` package.
+
+```{r, results='hide', message=FALSE}
+library(leaflet)
+library(htmlwidgets)
+library(here)
+
+my_map <- leaflet() %>%
+  addTiles() %>%
+  setView(lng = -120.6592, lat = 35.28190, zoom = 11)
+
+saveWidget(my_map, file = here("a2-files", "leaflet-map.html"))
+```
+

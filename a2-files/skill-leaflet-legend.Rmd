@@ -1,0 +1,124 @@
+---
+title: "Adding a legend to a leaflet map"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+A legend or other annotation can make your leaflet map
+more informative.
+
+# Required packages
+
+These examples uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(here)
+library(leaflet)
+library(sf)
+library(tidycensus)
+library(htmltools)
+```
+
+# Loading some sample data
+
+I'll load some data with census tracts in San Luis Obispo County, California:
+
+```{r, message=FALSE, results='hide'}
+tracts <- get_acs(geography = "tract", 
+                  variables = c(median_income = "B06011_001"), 
+                  output = "wide", 
+                  state = "CA",
+                  county = "San Luis Obispo",
+                  geometry = TRUE) %>%
+  st_transform("WGS84") %>%
+  filter(!is.na(median_incomeE))
+```
+
+And display them on a Leaflet map, where the fill color of the map varies by median income. 
+
+```{r}
+income_palette = colorNumeric(palette = "RdYlBu", 
+                              domain = tracts$median_incomeE)
+
+leaflet() %>%
+  addProviderTiles("Stamen.TonerLite") %>%
+  addPolygons(data = tracts,
+              color = "black",
+              fillOpacity = 0.7,
+              weight = 0.3,
+              fillColor = ~income_palette(median_incomeE))
+```
+
+Unlike ggplot, leaflet won't automatically add a legend to interpret the colors.
+You'll need to [add that in yourself](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-legend.html){target="_blank"}.
+
+# Add a legend
+
+I can add a legend to my map using the `addLegend()` function. I need to specify
+which dataset the legend refers to (`data = tracts`), which color palette to use
+(`pal = income_palette` - the one you defined previoulsy - 
+[see how to define a color ramp here](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-colors.html){target="_blank"}),
+and which variable the color ramp is mapped to (`values = ~median_incomeE`).
+
+```{r}
+leaflet() %>%
+  addProviderTiles("Stamen.TonerLite") %>%
+  addPolygons(data = tracts,
+              color = "black",
+              fillOpacity = 0.7,
+              weight = 0.3,
+              fillColor = ~income_palette(median_incomeE)) %>%
+    addLegend(data = tracts,
+              pal = income_palette, 
+              values = ~median_incomeE)
+```
+
+# Format the legend
+
+I can also specify the legend title and format the value labels a little by adding a dollar sign as a 
+prefix.
+
+```{r}
+leaflet() %>%
+  addProviderTiles("Stamen.TonerLite") %>%
+  addPolygons(data = tracts,
+              color = "black",
+              fillOpacity = 0.7,
+              weight = 0.3,
+              fillColor = ~income_palette(median_incomeE)) %>%
+    addLegend(data = tracts,
+              pal = income_palette, 
+              values = ~median_incomeE,
+              title = "Estimated Median Income",
+              labFormat = labelFormat(prefix = "$"))
+```
+
+# Position the legend
+
+I can specify the position of the legend as one of the following:
+
+* `"topright"`
+* `"bottomright"`
+* `"bottomleft"`
+* `"topleft"`
+
+```{r}
+leaflet() %>%
+  addProviderTiles("Stamen.TonerLite") %>%
+  addPolygons(data = tracts,
+              color = "black",
+              fillOpacity = 0.7,
+              weight = 0.3,
+              fillColor = ~income_palette(median_incomeE)) %>%
+    addLegend(data = tracts,
+              pal = income_palette, 
+              values = ~median_incomeE,
+              title = "Estimated Median Income",
+              labFormat = labelFormat(prefix = "$"),
+              position = "bottomleft")
+```
+

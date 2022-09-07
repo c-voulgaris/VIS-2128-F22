@@ -1,0 +1,100 @@
+---
+title: "Adding data to a leaflet map"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Leaflet maps are generally going to be most useful if you include 
+a basemap to orient your audience.
+
+# Required packages
+
+These example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(here)
+library(leaflet)
+library(sf)
+```
+
+# Loading some sample data
+
+I'll load some data with bus stop locations in San Luis Obispo, California:
+
+```{r, message=FALSE, results='hide'}
+slo_stops <- here("a2-files",
+                  "Examples",
+                  "slo-stops.csv") %>%
+  st_read(options=c("X_POSSIBLE_NAMES=stop_lon",
+                               "Y_POSSIBLE_NAMES=stop_lat")) %>%
+  st_set_crs("WGS84")
+```
+
+And display them on a Leaflet map.
+
+```{r}
+leaflet() %>%
+  addCircleMarkers(data = slo_stops,
+                   radius = 4,
+                   fillColor = "darkgreen",
+                   fillOpacity = 0.6,
+                   stroke = FALSE)
+```
+
+Not very useful, is it? Normally, you'll want some kind of basemap
+behind your data so your viewer knows what they're looking at.
+
+# Adding the default OpenStreetMap basemap
+
+The `addTiles()` function will put a default basemap behind your data.
+
+```{r}
+leaflet() %>%
+  addTiles() %>%
+  addCircleMarkers(data = slo_stops,
+                   radius = 4,
+                   fillColor = "darkgreen",
+                   fillOpacity = 0.6,
+                   stroke = FALSE)
+```
+
+# Adding other provider tiles
+
+The `addProviderTiles()` function gives you a few more options. You can preview them
+[here](https://leaflet-extras.github.io/leaflet-providers/preview/){target="_blank"}.
+
+Here are few examples:
+
+```{r}
+leaflet() %>%
+  addProviderTiles("Stamen.TonerLite") %>%
+  addCircleMarkers(data = slo_stops,
+                   radius = 4,
+                   fillColor = "darkgreen",
+                   fillOpacity = 0.6,
+                   stroke = FALSE)
+```
+
+```{r}
+leaflet() %>%
+  addProviderTiles("CartoDB.Voyager") %>%
+  addCircleMarkers(data = slo_stops,
+                   radius = 4,
+                   fillColor = "darkgreen",
+                   fillOpacity = 0.6,
+                   stroke = FALSE)
+```
+
+```{r}
+leaflet() %>%
+  addProviderTiles("Esri.NatGeoWorldMap") %>%
+  addCircleMarkers(data = slo_stops,
+                   radius = 4,
+                   fillColor = "darkgreen",
+                   fillOpacity = 0.6,
+                   stroke = FALSE)
+```

@@ -1,0 +1,143 @@
+---
+title: "Adding labels or popups to a leaflet map"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Labels and popups can make a leaflet map more informative.
+
+# Required packages
+
+These example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(here)
+library(leaflet)
+library(sf)
+library(tidycensus)
+library(htmltools)
+```
+
+# Loading some sample data
+
+I'll load some data with census tracts in San Luis Obispo County, California:
+
+```{r, message=FALSE, results='hide'}
+tracts <- get_acs(geography = "tract", 
+                  variables = "B06011_001", 
+                  output = "wide", 
+                  state = "CA",
+                  county = "San Luis Obispo",
+                  geometry = TRUE) %>%
+  st_transform("WGS84")
+```
+
+And display them on a Leaflet map. I've set highlight options so that a tract turns
+yellow when you hover over it, but nothing else happens.
+
+```{r}
+leaflet() %>%
+  addProviderTiles("Stamen.TonerLite") %>%
+  addPolygons(data = tracts,
+              fillColor = "springgreen",
+              fillOpacity = 0.3,
+              color = "darkgreen",
+              weight = 1,
+              highlightOptions = highlightOptions(weight = 2,
+                                                  fillOpacity = 0.6,
+                                                  color = "yellow",
+                                                  fillColor = "cornsilk"))
+```
+
+# Add labels
+
+I can add a label so some text will appear when I highlight a census tract. Here is how
+I would display the value of the "NAME" variable.
+
+```{r}
+leaflet() %>%
+  addProviderTiles("Stamen.TonerLite") %>%
+  addPolygons(data = tracts,
+              fillColor = "springgreen",
+              fillOpacity = 0.3,
+              color = "darkgreen",
+              weight = 1,
+              highlightOptions = highlightOptions(weight = 2,
+                                                  fillOpacity = 0.6,
+                                                  color = "yellow",
+                                                  fillColor = "cornsilk"),
+              label = ~NAME)
+```
+
+# Add popups
+
+In Leaflet, labels appear when you hover over a feature, and popups only appear
+when you click on a feature. 
+
+```{r}
+leaflet() %>%
+  addProviderTiles("Stamen.TonerLite") %>%
+  addPolygons(data = tracts,
+              fillColor = "springgreen",
+              fillOpacity = 0.3,
+              color = "darkgreen",
+              weight = 1,
+              highlightOptions = highlightOptions(weight = 2,
+                                                  fillOpacity = 0.6,
+                                                  color = "yellow",
+                                                  fillColor = "cornsilk"),
+              popup = ~NAME)
+```
+
+I can also customize and format my popup text by creating a new variable in the data.
+
+```{r}
+tracts <- tracts %>%
+  mutate(popup_text = paste0("Median income: $", 
+                             prettyNum(B06011_001E, big.mark = ",")))
+
+leaflet() %>%
+  addProviderTiles("Stamen.TonerLite") %>%
+  addPolygons(data = tracts,
+              fillColor = "springgreen",
+              fillOpacity = 0.3,
+              color = "darkgreen",
+              weight = 1,
+              highlightOptions = highlightOptions(weight = 2,
+                                                  fillOpacity = 0.6,
+                                                  color = "yellow",
+                                                  fillColor = "cornsilk"),
+              popup = ~popup_text)
+```
+
+You can add some html tags to the popup text as well.
+
+* `<br/>` will insert a line break.
+* Text between `<b>` and `</b>` will be in bold.
+
+I don't know why, but html tags don't seem to work for labels, only
+for popups.
+
+```{r}
+tracts <- tracts %>%
+  mutate(popup_text = paste0(NAME, 
+                             "<br/><b>Estimated median income:</b> $", 
+                             prettyNum(B06011_001E, big.mark = ",")))
+
+leaflet() %>%
+  addProviderTiles("Stamen.TonerLite") %>%
+  addPolygons(data = tracts,
+              fillColor = "springgreen",
+              fillOpacity = 0.3,
+              color = "darkgreen",
+              weight = 1,
+              highlightOptions = highlightOptions(weight = 2,
+                                                  fillOpacity = 0.6,
+                                                  color = "yellow",
+                                                  fillColor = "cornsilk"),
+              popup = ~popup_text)
+```

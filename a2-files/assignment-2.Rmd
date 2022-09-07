@@ -31,35 +31,53 @@ how they helped.
 
 You are unlikely to use all of these skills in this assignment, but all 
 of them are relevant and you will probably use several of them. They are
-listed alphabetically.
+listed alphabetically within each category.
 
-* [Adding a map layout (ArcGIS)](https://harvard.zoom.us/rec/play/NXs6WI6aTbaq1VwV6jJL9wWGBLpweSkK9t9ktZQ1ambeUJD0Kk6stBrrVUxngXFBsdXQJjSrDVHTqtU5.UzDytkbnGdiTaZzO?autoplay=true&startTime=1660838502000){target="_blank"}
-* [Add a north arrow, scale bar, and legend (ArcGIS)](https://harvard.zoom.us/rec/play/yA2FG1jRi-shr6JTJGxvFRxiwzhVahGMSR0w6zGUeecEf2BdWbzSJENjDMPwcnfHS7_o7BZdwtLeLQmz.7Nn3qaXIs_65VHpM?autoplay=true&startTime=1660838907000){target="_blank"}
-* [Adding a north arrow to a map (R - ggplot)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-north-arrow.html){target="_blank"}
-* [Adding a scale bar to a map (R - ggplot)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-scale-bar.html){target="_blank"}
-* [Annotating a ggplot map (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-annotate.html){target="_blank"}
-* [Applying a ggplot theme (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-themes.html){target="_blank"}
-* [Adding data to an interactive leaflet map (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-setup.html){target="_blank"}
-* [Changing symbology based on a variable (ArcGIS)](https://harvard.zoom.us/rec/play/YqECB4uxFWT9P00fxHZYNvV1ekgt4CiINjE3re55aidcxBbakYoJyJsh2uy-GOhiq4xepkJjcqIq1rb1.vvtSc2XTOJvPRrQx?autoplay=true&startTime=1660836764000){target="_blank"}
-* [Changing symbology based on a variable (R - ggplot)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-variable-symbology.html){target="_blank"}
-* [Changing symbology of an entire layer (ArcGIS)](https://harvard.zoom.us/rec/play/aK8Cbw2IPOXzIZfhPOlrGOmQ_5BwvXvUErgbqJ2h5i41QBDA-ETqCyL8k4HHxEDcckH6g3RP0o8vfA.-BS6HcP9XkFX8zxb?autoplay=true&startTime=1660832780000){target="_blank"}
-* [Changing symbology of an entire layer (R - ggplot)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-layer-symbology.html){target="_blank"}
-* [Choosing a basemap (ArcGIS)](https://harvard.zoom.us/rec/play/1XuBLT-4CY1-Lbgvrs-t6VXYJsciyfiMsH3XzPBaCi1v-3qGZnT9CpNbeBC8BRaBJ6LdvNgVwjj1E3Dw.H05muzT3eZDJloyL?autoplay=true&startTime=1660837402000){target="_blank"}
-* [Choosing a basemap (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-basemap.html){target="_blank"}
-* [Creating a legend for multiple layers in a ggplot map (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-multilayer-legend.html){target="_blank"}
-* [Customizing a ggplot theme (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-custom-themes.html){target="_blank"}
-* [Customizing a legend (R - ggplot)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-custom-legend.html){target="_blank"}
-* [Defining the bounding box for a ggplot map (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-bounding-box.html){target="_blank"}
+### ArcGIS
+
+* [Adding a map layout](https://harvard.zoom.us/rec/play/NXs6WI6aTbaq1VwV6jJL9wWGBLpweSkK9t9ktZQ1ambeUJD0Kk6stBrrVUxngXFBsdXQJjSrDVHTqtU5.UzDytkbnGdiTaZzO?autoplay=true&startTime=1660838502000){target="_blank"}
+* [Add a north arrow, scale bar, and legend](https://harvard.zoom.us/rec/play/yA2FG1jRi-shr6JTJGxvFRxiwzhVahGMSR0w6zGUeecEf2BdWbzSJENjDMPwcnfHS7_o7BZdwtLeLQmz.7Nn3qaXIs_65VHpM?autoplay=true&startTime=1660838907000){target="_blank"}
+* [Changing symbology based on a variable](https://harvard.zoom.us/rec/play/YqECB4uxFWT9P00fxHZYNvV1ekgt4CiINjE3re55aidcxBbakYoJyJsh2uy-GOhiq4xepkJjcqIq1rb1.vvtSc2XTOJvPRrQx?autoplay=true&startTime=1660836764000){target="_blank"}
+* [Changing symbology of an entire layer](https://harvard.zoom.us/rec/play/aK8Cbw2IPOXzIZfhPOlrGOmQ_5BwvXvUErgbqJ2h5i41QBDA-ETqCyL8k4HHxEDcckH6g3RP0o8vfA.-BS6HcP9XkFX8zxb?autoplay=true&startTime=1660832780000){target="_blank"}
+* [Choosing a basemap](https://harvard.zoom.us/rec/play/1XuBLT-4CY1-Lbgvrs-t6VXYJsciyfiMsH3XzPBaCi1v-3qGZnT9CpNbeBC8BRaBJ6LdvNgVwjj1E3Dw.H05muzT3eZDJloyL?autoplay=true&startTime=1660837402000){target="_blank"}
+* [Export a map layout](https://harvard.zoom.us/rec/play/Rqo-d93n-3c4Y69bjzfVccNEN0OsM91rk4yRrhlUMpI7qTi0Lm9ksX8xRSEPcWNVkbtT5oKdtgMgzLIU.eUdWhqVKWKeTfNMo?autoplay=true&startTime=1660839155000){target="_blank"}
+* [Selecting a map projection](https://harvard.zoom.us/rec/play/evJJKuzp7TDTvzRyBdMfbYfcrJl4bk7zz77gGGEy7caGnVxUuRnSIgUjlubM18-XHfqNH_saovRKLJtn.aJkRu-YWDglMS_Xj?autoplay=true&startTime=1660837959000){target="_blank"}
+
+### R (ggplot)
+
+* [Adding a north arrow to a map](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-north-arrow.html){target="_blank"}
+* [Adding a scale bar to a map](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-scale-bar.html){target="_blank"}
+* [Annotating a ggplot map](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-annotate.html){target="_blank"}
+* [Applying a ggplot theme](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-themes.html){target="_blank"}
+* [Changing symbology based on a variable](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-variable-symbology.html){target="_blank"}
+* [Changing symbology of an entire layer](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-layer-symbology.html){target="_blank"}
+* [Choosing a basemap](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-basemap.html){target="_blank"}
+* [Creating a legend for multiple layers in a ggplot map](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-multilayer-legend.html){target="_blank"}
+* [Customizing a ggplot theme](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-custom-themes.html){target="_blank"}
+* [Customizing a legend](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-custom-legend.html){target="_blank"}
+* [Defining the bounding box for a ggplot map](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-bounding-box.html){target="_blank"}
+* [Fun with color palettes](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-colors.html){target="_blank"}
+* [Fun with fonts](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-fonts.html){target="_blank"}
+* [Saving a ggplot map as a PDF or image](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-save-ggplot.html){target="_blank"}
+* [Selecting a map projection](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-ggplot-proj.html){target="_blank"}
+
+### R (leaflet)
+
+* [Adding a legend](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-legend.html){target="_blank"}
+* [Adding data to an interactive leaflet map](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-setup.html){target="_blank"}
+* [Adding highlight options for interactivity](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-highlight.html){target="_blank"}
+* [Adding labels and popups](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-labels.html){target="_blank"}
+* [Changing colors based on a variable](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-colors.html){target="_blank"}
+* [Choosing a basemap for leaflet map](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-basemap.html){target="_blank"}
+* [Saving a leaflet map](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-save.html){target="_blank"}
+* [Setting the view and zoom](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-view.html){target="_blank"}
+
+### Illustrator workflows
+
 * [Downloading ArcGIS extension for Illustrator](https://www.esri.com/en-us/arcgis/products/maps-for-adobecc/overview){target="_blank"}
-* [Editing a ggplot map/chart further in Adobe Illustrator (Illustrator)](https://asngrads.com/2019/11/24/enhancing-figures-ggplot2-to-adobe-illustrator/){target="_blank"}
-* [Editing a map file in Illustrator (ArcGIS)](https://harvard.zoom.us/rec/play/W7I2et1sT0FbmuastV4wlhsS8p-9A5tiD8yPlUkg9B2ZoJDPmzgyLG_4EIo0oQH-bh8Z8dCBs6silUZv.LKz43-ZilnmFeBzs?autoplay=true&startTime=1660840146000){target="_blank"}
-* [Export a map layout (ArcGIS)](https://harvard.zoom.us/rec/play/Rqo-d93n-3c4Y69bjzfVccNEN0OsM91rk4yRrhlUMpI7qTi0Lm9ksX8xRSEPcWNVkbtT5oKdtgMgzLIU.eUdWhqVKWKeTfNMo?autoplay=true&startTime=1660839155000){target="_blank"}
-* [Fun with color palettes (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-colors.html){target="_blank"}
-* [Fun with fonts (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-fonts.html){target="_blank"}
-* [Opening an AIX file in Illustrator (ArcGIS)](https://harvard.zoom.us/rec/play/6pVTkEkqeU9H60mD5zkCRLaxfcirCeBAAmh8DDUprxNVDR6zy4M18IgLkOrgsT6iEJRBBGSbOyJ94VQB._wEDohMqh1WEykl-?autoplay=true&startTime=1660839734000){target="_blank"}
-* [Saving a ggplot map as a PDF or image (R)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-save-ggplot.html){target="_blank"}
-* [Selecting a map projection (ArcGIS)](https://harvard.zoom.us/rec/play/evJJKuzp7TDTvzRyBdMfbYfcrJl4bk7zz77gGGEy7caGnVxUuRnSIgUjlubM18-XHfqNH_saovRKLJtn.aJkRu-YWDglMS_Xj?autoplay=true&startTime=1660837959000){target="_blank"}
-* [Selecting a map projection (R - ggplot)](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-ggplot-proj.html){target="_blank"}
+* [Editing a ggplot map/chart further in Adobe Illustrator](https://asngrads.com/2019/11/24/enhancing-figures-ggplot2-to-adobe-illustrator/){target="_blank"}
+* [Editing a map file in Illustrator](https://harvard.zoom.us/rec/play/W7I2et1sT0FbmuastV4wlhsS8p-9A5tiD8yPlUkg9B2ZoJDPmzgyLG_4EIo0oQH-bh8Z8dCBs6silUZv.LKz43-ZilnmFeBzs?autoplay=true&startTime=1660840146000){target="_blank"}
+* [Opening an AIX file in Illustrator](https://harvard.zoom.us/rec/play/6pVTkEkqeU9H60mD5zkCRLaxfcirCeBAAmh8DDUprxNVDR6zy4M18IgLkOrgsT6iEJRBBGSbOyJ94VQB._wEDohMqh1WEykl-?autoplay=true&startTime=1660839734000){target="_blank"}
 
 # Other resources
 

@@ -1,0 +1,74 @@
+---
+title: "Setting highlight options"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The nice thing about Leaflet maps is their interactivity.
+Highlight options will change how a line or polygon layer 
+is displayed when you hover over it.
+
+# Required packages
+
+These example uses the following packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(here)
+library(leaflet)
+library(sf)
+library(tidycensus)
+```
+
+# Loading some sample data
+
+I'll load some data with census tracts in San Luis Obispo County, California:
+
+```{r, message=FALSE, results='hide'}
+tracts <- get_acs(geography = "tract", 
+                  variables = "B06011_001", 
+                  output = "wide", 
+                  state = "CA",
+                  county = "San Luis Obispo",
+                  geometry = TRUE) %>%
+  st_transform("WGS84")
+```
+
+And display them on a Leaflet map.
+
+```{r}
+leaflet() %>%
+  addProviderTiles("Stamen.TonerLite") %>%
+  addPolygons(data = tracts,
+              fillColor = "springgreen",
+              fillOpacity = 0.3,
+              color = "darkgreen",
+              weight = 1)
+```
+
+# Setting highlight options
+
+The `highlightOptions` parameter with the `highlightOptions()` function let
+you set a new line weight, line color, fill color, and fill opacity for when 
+the user hovers over a feature.
+
+```{r}
+leaflet() %>%
+  addProviderTiles("Stamen.TonerLite") %>%
+  addPolygons(data = tracts,
+              fillColor = "springgreen",
+              fillOpacity = 0.3,
+              color = "darkgreen",
+              weight = 1,
+              highlightOptions = highlightOptions(weight = 2,
+                                                  fillOpacity = 0.6,
+                                                  color = "yellow",
+                                                  fillColor = "cornsilk"))
+```
+
+This will probably make the user expect something to happen when they click on the feature, so you 
+might want to also set up a [label or pop-up](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/skill-leaflet-labels.html){target="_blank"}
+if you are using the highlight options.
