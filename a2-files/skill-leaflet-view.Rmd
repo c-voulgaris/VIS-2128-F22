@@ -1,0 +1,55 @@
+---
+title: "Saving a leaflet map"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+By default, your leaflet map initially be set to show all the data
+in all the vector layers it includes. You may want to set the initial
+view to something else.
+
+# Required packages
+
+This example uses the `leaflet` package and the `tidyverse` package. 
+
+```{r, results='hide', message=FALSE}
+library(leaflet)
+library(tidyverse)
+```
+
+# Setting the initial view and zoom level
+
+You can use the `setView()` function to center your map on a particular
+point by specifying latitude/longitude coordinates. You can also set the initial 
+zoom level.
+
+Here's an example where I have no data in my map (just a basemap), so I need
+to set the view manually. Here's a map that's centered on my old high school
+(Go Bulldogs!).
+
+```{r}
+leaflet() %>%
+  addTiles() %>%
+  setView(lng = -111.659566, lat = 40.248393, zoom = 18)
+```
+
+Higher values for the zoom level are more "zoomed in". Lower values are more "zoomed out."
+
+```{r}
+leaflet() %>%
+  addTiles() %>%
+  setView(lng = -111.659566, lat = 40.248393, zoom = 10)
+```
+
+
+A zoom value of `zoom = 1` will show the whole world (still centered on my high school 
+in this example).
+
+```{r}
+leaflet() %>%
+  addTiles() %>%
+  setView(lng = -111.659566, lat = 40.248393, zoom = 1)
+```
