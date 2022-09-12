@@ -30,6 +30,9 @@ Here's an example where I have no data in my map (just a basemap), so I need
 to set the view manually. Here's a map that's centered on my old high school
 (Go Bulldogs!).
 
+Note: This is a good resource for finding latitude/longitude coordinates by clicking
+a location on a map: https://www.latlong.net/
+
 ```{r}
 leaflet() %>%
   addTiles() %>%

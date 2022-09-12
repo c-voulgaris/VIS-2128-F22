@@ -1,0 +1,60 @@
+---
+title: "Load georeferenced image as a leaflet basemap"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+If you georeference your image using [AllMaps](https://harvardmapcollection.github.io/tutorials/allmaps/georeference/){target="_blank"},
+you can use it as a background image for a leaflet map. 
+
+# Required packages
+
+This example uses the following packages
+
+```{r, results='hide', message=FALSE}
+library(tidyverse)
+library(sf)
+library(leaflet)
+library(here)
+```
+
+# Add maps tiles from AllMaps
+
+If you follow the process in the AllMaps tutorial, you'll end up with a link to 
+a url template. You can use this as an argument in the the `addTiles()` function
+for a leaflet map.
+
+```{r}
+leaflet() %>%
+  addTiles(urlTemplate = "https://allmaps.xyz/maps/ad0210f48b2636b9/{z}/{x}/{y}.png") %>%
+  setView(lng = -71.052164, lat = 42.360081, zoom = 15) 
+```
+
+# Add a vector layer
+
+Now I'll load a layer of polygons that shows the areas of Boston that would be underwater at high tide
+in the event of a 36-inch rise in sea level (which could happen in the 2070s).
+
+```{r, message=FALSE, results='hide'}
+hi_tide_36_inch <- here("a3-files",
+                        "Examples",
+                        "Climate_Ready_Boston_Sea_Level_Rise_Inundation.geojson") %>%
+  st_read()
+```
+
+And I can display that layer on the top of the map tiles from my historic map.
+
+```{r}
+leaflet() %>%
+  addTiles(urlTemplate = "https://allmaps.xyz/maps/ad0210f48b2636b9/{z}/{x}/{y}.png") %>%
+  addPolygons(data = hi_tide_36_inch,
+              weight = 1) %>%
+  setView(lng = -71.052164, lat = 42.360081, zoom = 15) 
+```
+
+
+
+

@@ -12,7 +12,8 @@ library(knitr)
 
 # Deliverable
 
-Submit a map with at least two layers. One should be an image of a map
+Submit a map with at least two layers: a raster layer and a vector
+layer. The raster layer should be an image of a map
 from the Harvard Map Collection (go to the Map 
 Collection at the Pusey library in Harvard Yard and a librarian will help you find
 and digitize a map) or an image of a historic map from an online source. 
@@ -35,17 +36,20 @@ how they helped.
 # Relevant Skills
 
 You are unlikely to use all of these skills in this assignment, but all 
-of them are relevant and you will probably use several of them. They are
-listed alphabetically.
+of them are relevant and you will probably use some of them.
 
+* [Georeferencing a map image (AllMaps)](https://harvardmapcollection.github.io/tutorials/allmaps/georeference/){target="_blank"}
 * [Georeferencing a map image (ArcGIS)](https://harvard.zoom.us/rec/share/TruZkY4n-1zoylfrUpbc8MBSSIrW3j07DTqnCHAtLqCUYrl-0ZcM8HCc3K5lGTm2.seGOOjpp0slak0x3?startTime=1602621784000){target="_blank"}
 * [Georeferencing a map image (QGIS)](https://harvard.zoom.us/rec/play/_pwa91L5_JufyagpsybCG1Cb2yZ-vZeFWpEIss-SOui3dGSqUNjuJrEF_BFC1Ju3WbgUMOe1EKOmAnqW.HkmVHJXQGNTVxyT2?startTime=1602622287000&_x_zm_rtaid=RCRvcGukTr-LeAWdaueuWg.1660310247547.f660848fc828b97cf7ead655d36fbc62&_x_zm_rhtaid=879){target="_blank"}
-* Labeling a vector layer (QGIS)
-* Load an image as a raster (R)
+* [Labeling a vector layer (QGIS)](https://harvard.zoom.us/rec/play/MtL_kTlUXVzf-BiB4Sv9wSPVZlYrsOxoV2tuqXNbF_D4E_K-URdGmdpqDxfFUiNAWDjbL7Qf8fWxShRH.xNeKdoociZORkh8t?autoplay=true&startTime=1663009291000){target="_blank"}
+* [Load an image as a raster layer (R - ggplot)](https://c-voulgaris.github.io/VIS-2128-F22/a3-files/skill-load-image-ggplot.html){target="_blank"}
+* [Load map tiles from AllMaps as a leaflet background (R - leaflet)](https://c-voulgaris.github.io/VIS-2128-F22/a3-files/skill-load-image-ggplot.html){target="_blank"}
 
 # Other resources
 
 * [Library of Congress maps](https://www.loc.gov/collections/?fa=original-format%3Amap%7Cpartof%3Ageography+and+map+division&c=160){target="_blank"}
+* [All Harvard Map Collection tutorials](https://harvardmapcollection.github.io/tutorials/){target="_blank"}
+* [Harvard Library Digital Collection](https://library.harvard.edu/digital-collections){target="_blank"}
 
 # Examples
 

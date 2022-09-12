@@ -7,27 +7,27 @@ library(raster)
 
 ## Load images
 
-sanborn2 <- here("a2-files",
+sanborn2 <- here("a3-files",
                  "large-image-files",
                  "slo-sanborn-2_modified.tif") %>%
   stack()
 
-sanborn3 <- here("a2-files",
+sanborn3 <- here("a3-files",
                  "large-image-files",
                  "sanborn3_modified.tif") %>%
   stack()
 
-sanborn4 <- here("a2-files",
+sanborn4 <- here("a3-files",
                  "large-image-files",
                  "slo-sanborn-4_modified.tif") %>%
   stack()
 
-sanborn5 <- here("a2-files",
+sanborn5 <- here("a3-files",
                  "large-image-files",
                  "slo-sanborn-5_modified.tif") %>%
   stack()
 
-sanborn6 <- here("a2-files",
+sanborn6 <- here("a3-files",
                  "large-image-files",
                  "slo-sanborn-6_modified.tif") %>%
   stack()
@@ -59,7 +59,7 @@ ymax <- max(st_bbox(sanborn2)$ymax,
 
 CA_st_plane <- "+proj=lcc +lat_1=34.03333333333333 +lat_2=35.46666666666667 +lat_0=33.5 +lon_0=-118 +x_0=2000000 +y_0=500000 +ellps=GRS80 +units=m +no_defs"
 
-bldgs <- st_read(here("a2-files",
+bldgs <- st_read(here("a3-files",
                           "large-image-files",
                           "Building_Footprints.geojson")) 
 

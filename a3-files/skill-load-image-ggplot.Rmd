@@ -1,0 +1,65 @@
+---
+title: "Adding georefernced layer to a map"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Once you've georeferenced an image, you can add it to a ggplot map as a
+raster layer.
+
+# Required packages
+
+This example uses the following packages
+
+```{r, results='hide', message=FALSE}
+library(tidyverse)
+library(sf)
+library(here)
+library(raster)
+library(ggspatial)
+library(rnaturalearth)
+```
+
+# Load the image as a raster object
+
+First you will need to use the `stack()` function to read the image file as a 
+RasterStack.
+
+```{r}
+africa <- here("a3-files",
+                 "large-image-files",
+                 "africa_modified.tif") %>%
+  stack()
+```
+
+# Adding the image to a ggplot
+
+Then you can use the `layer_spatial()` function from the `ggspatial` package 
+to add the raster layer to a ggplot.
+
+```{r}
+ggplot() +
+  layer_spatial(africa)
+```
+
+# Adding a vector layer
+
+Now you can add some vector layers over the map image. Here, I'll add modern 
+national borders
+
+```{r}
+countries <- ne_countries(continent = "Africa",
+                          returnclass = "sf") 
+
+
+ggplot() +
+  layer_spatial(africa) +
+  geom_sf(data = countries,
+          fill = NA,
+          color = "black",
+          size = 1)
+```
+
