@@ -1,0 +1,145 @@
+---
+title: "Adding a layer control to a leaflet map"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+You can use a layer control in leaflet to allow your users
+to interactively turn layers on and off. The documentation
+for the `leaflet` package has some 
+[explanation of layer controls here](https://rstudio.github.io/leaflet/showhide.html){target="_blank"}.
+
+# Required packages
+
+This example uses the following packages
+
+```{r, results='hide', message=FALSE}
+library(tidyverse)
+library(sf)
+library(leaflet)
+library(here)
+```
+
+# Sample map
+
+```{r, include=FALSE}
+hi_tide_36_inch <- here("a3-files",
+                        "Examples",
+                        "Climate_Ready_Boston_Sea_Level_Rise_Inundation.geojson") %>%
+  st_read()
+
+hi_tide_21_inch <- here("a3-files",
+                        "Examples",
+                        "Climate_Ready_Boston_Sea_Level_Rise_Inundation-21in.geojson") %>%
+  st_read()
+
+hi_tide_9_inch <- here("a3-files",
+                        "Examples",
+                        "Climate_Ready_Boston_Sea_Level_Rise_Inundation-9in.geojson") %>%
+  st_read()
+
+bikes <- here("a3-files",
+              "Examples",
+              "Blue_Bike_Stations.geojson") %>%
+  st_read()
+```
+
+
+Here is a historic map of Boston with polygon layers showing
+9-inch (dark blue) and 36-inch (light blue) sea-level rise 
+scenarios, along with black circles for the locations of bike 
+share stations.
+
+```{r}
+leaflet() %>%
+  addTiles(urlTemplate = "https://allmaps.xyz/maps/ad0210f48b2636b9/{z}/{x}/{y}.png") %>%
+  addPolygons(data = hi_tide_36_inch,
+              weight = 1,
+              fillColor = "cornflowerblue",
+              fillOpacity = 0.9) %>%
+  addPolygons(data = hi_tide_9_inch,
+              weight = 1,
+              fillColor = "darkblue",
+              fillOpacity = 0.9) %>%
+  addCircleMarkers(data = bikes,
+                   color = "black",
+                   radius = 2,
+                   opacity = 1) %>%
+  setView(lng = -71.052164, lat = 42.360081, zoom = 15)
+```
+
+# Toggle between base groups
+
+I can use a base group to allow the user to toggle between the
+9-inch and 36-inch sea-level rise scenarios.
+
+I need to define a group name for each layer I want to toggle 
+among by setting the `group = ` parameter in the `addPolygons()`
+function. The name of the group should be the name that you
+want to appear on the layer control (which basically functions 
+as a legend).
+
+Then, I need to list those as base groups in the 
+`addLayersControl()` function. I also need to set
+`options = layersControlOptions(collapsed = FALSE)` so that
+the layer controls are initially visible.
+
+```{r}
+leaflet() %>%
+  addTiles(urlTemplate = "https://allmaps.xyz/maps/ad0210f48b2636b9/{z}/{x}/{y}.png") %>%
+  addPolygons(data = hi_tide_36_inch,
+              weight = 1,
+              fillColor = "cornflowerblue",
+              fillOpacity = 0.9,
+              group = "36-inch sea level rise") %>%
+  addPolygons(data = hi_tide_9_inch,
+              weight = 1,
+              fillColor = "darkblue",
+              fillOpacity = 0.9,
+              group = "9-inch sea level rise") %>%
+  addCircleMarkers(data = bikes,
+                   color = "black",
+                   radius = 2,
+                   opacity = 1) %>%
+  setView(lng = -71.052164, lat = 42.360081, zoom = 15) %>%
+  addLayersControl(baseGroups = c("9-inch sea level rise",
+                                  "36-inch sea level rise"),
+    options = layersControlOptions(collapsed = FALSE)) 
+```
+
+# Turn overlay groups on and off
+
+I can use overlay groups to allow the user to turn the layer of
+bike stations on and off.
+
+Again, I need to name the group within the `addCircleMarkers()`
+function. Then I list the name of that group as an overlay 
+group.
+
+```{r}
+leaflet() %>%
+  addTiles(urlTemplate = "https://allmaps.xyz/maps/ad0210f48b2636b9/{z}/{x}/{y}.png") %>%
+  addPolygons(data = hi_tide_36_inch,
+              weight = 1,
+              fillColor = "cornflowerblue",
+              fillOpacity = 0.9,
+              group = "36-inch sea level rise") %>%
+  addPolygons(data = hi_tide_9_inch,
+              weight = 1,
+              fillColor = "darkblue",
+              fillOpacity = 0.9,
+              group = "9-inch sea level rise") %>%
+  addCircleMarkers(data = bikes,
+                   color = "black",
+                   radius = 2,
+                   opacity = 1,
+                   group = "Blue Bike Stations") %>%
+  setView(lng = -71.052164, lat = 42.360081, zoom = 15) %>%
+  addLayersControl(baseGroups = c("9-inch sea level rise",
+                                  "36-inch sea level rise"),
+                   overlayGroups = c("Blue Bike Stations"),
+    options = layersControlOptions(collapsed = FALSE)) 
+```

@@ -1,0 +1,76 @@
+---
+title: "Boston's Changing Shoreline"
+output: 
+  tufte::tufte_html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Much of the Boston's land area was constucted from "filled land". 
+This map, created in 1895 by Boston City
+Surveyor, Charles Carroll Perkins shows the orginal shoreline in gray and 
+the changing wharf lines from 1795, 1850, and 1895 as the city expanded 
+into the bay.
+
+Without mitigation, the rising sea levels that accompany a changing climate may 
+reclaim some of land that was created in the first centuries of Boston's 
+development. 
+
+This map is intended for Boston residents who are curious about the history
+and possible futures of their city.
+
+```{r load-packages, include=FALSE}
+library(tidyverse)
+library(sf)
+library(leaflet)
+library(here)
+```
+
+```{r load-data, include=FALSE}
+hi_tide_36_inch <- here("a3-files",
+                        "Examples",
+                        "Climate_Ready_Boston_Sea_Level_Rise_Inundation.geojson") %>%
+  st_read()
+
+hi_tide_21_inch <- here("a3-files",
+                        "Examples",
+                        "Climate_Ready_Boston_Sea_Level_Rise_Inundation-21in.geojson") %>%
+  st_read()
+
+hi_tide_9_inch <- here("a3-files",
+                        "Examples",
+                        "Climate_Ready_Boston_Sea_Level_Rise_Inundation-9in.geojson") %>%
+  st_read()
+```
+
+```{r, echo=FALSE}
+leaflet() %>%
+  addTiles(urlTemplate = "https://allmaps.xyz/maps/ad0210f48b2636b9/{z}/{x}/{y}.png") %>%
+  addPolygons(data = hi_tide_36_inch,
+              weight = 1,
+              group = "High tide with 36-inch sea level rise (2070s)") %>%
+  addPolygons(data = hi_tide_21_inch,
+              weight = 1,
+              group = "High tide with 21-inch sea level rise (2050s)") %>%
+    addPolygons(data = hi_tide_9_inch,
+              weight = 1,
+              group = "High tide with 9-inch sea level rise (2030s)") %>%
+  setView(lng = -71.052164, lat = 42.360081, zoom = 15) %>%
+  addLayersControl(baseGroups = 
+                     c("High tide with 36-inch sea level rise (2070s)",
+                       "High tide with 21-inch sea level rise (2050s)",
+                       "High tide with 9-inch sea level rise (2030s)"),
+    options = layersControlOptions(collapsed = FALSE)) 
+```
+
+#### *Date Sources:*
+
+* Perkins, & Geo. H. Walker & Co. (1895). Plan of Boston proper: showing changes in street and wharf lines, 1795 to 1895 [Map]. Geo. H. Walker, lith. https://digitalcollections.library.harvard.edu/catalog/990094068540203941
+* Climate Ready Boston Sea Level Inundation. Analyze Boston. https://data.boston.gov/dataset/climate-ready-boston-sea-level-rise-inundation
+
+#### *Acknowldgments:*
+
+My classmate, Belle Lipton, helped me with this assignment by showing me how to use
+Allmaps to generate map tiles for Leaflet.

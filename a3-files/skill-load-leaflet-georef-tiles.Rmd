@@ -23,7 +23,9 @@ library(here)
 
 # Add maps tiles from AllMaps
 
-If you follow the process in the AllMaps tutorial, you'll end up with a link to 
+If you follow the process in the 
+[AllMaps tutorial](https://harvardmapcollection.github.io/tutorials/allmaps/georeference/){target="_blank"}, 
+you'll end up with a link to 
 a url template. You can use this as an argument in the the `addTiles()` function
 for a leaflet map.
 
