@@ -1,0 +1,122 @@
+---
+title: "Assignment 4"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(knitr)
+```
+
+# Deliverable
+
+Generate the following new data layers:
+
+* A polygon layer representing the area within a constant 
+(Euclidean) distance from one or more features in a point 
+or line layer.
+* A polygon layer representing the area within a constant
+travel time (by a non-motorized mode) from one or more 
+features in a point layer
+* A polygon layer representing the area within a constant
+travel time (by a motorized mode) from one or more
+features in a point layer
+* A layer of points randomly distributed within the 
+polygons in a polygon layer
+* A layer of points representing the centroids of the
+polygons in a polygon layer
+* A raster layer representing the distance to the nearest
+point in a point dataset from any location in your
+study area
+
+Submit two layouts (either as separate files or as two
+pages of the same file). 
+
+The first layout should address a specific question 
+with a map that includes one or more of the layers 
+described above The layout should include text that 
+describes the question your map is meant to answer. The
+second layout should illustrate any layers 
+described above that aren't included in your first layout 
+(just to demonstrate that you know how to generate them).
+
+On your submission, list the name(s) of at least one 
+student who was especially helpful you you in completing 
+this assignment, and describe how they helped. You should also clearly indicate the sources of all your data.
+
+# Relevant Skills
+
+You are unlikely to use all of these skills in this 
+assignment, but all of them are relevant and you will 
+probably use some of them.
+
+#### R
+
+* Generating buffers
+* Generating isochrones
+* Generating centroids
+* Spatial sampling
+* Generating a grid
+* Generating a raster from a grid
+* Generating a matrix of Euclidean distances between
+two point layers
+* Generating a matrix of travel times between two 
+point layers
+
+#### ArcGIS
+
+* Generating buffers
+* Generating isochrones
+* Generating centroids
+* Spatial sampling
+* Generating a grid
+* Generating a raster from a grid
+* Generating a matrix of Euclidean distances between
+two point layers
+* Generating a matrix of travel times between two 
+point layers
+
+# Other resources
+
+* [r5r documentation on building travel time matrices](https://ipeagit.github.io/r5r/articles/travel_time_matrix.html){target="_blank"}
+
+# Examples
+
+Each of the examples below fully meets the requirements for this assignment.
+
+* [Example 1]
+* [Example 2]
+
+# Grading rubric
+
+```{r, echo=FALSE}
+rubric <- tibble(Item = c("Name of a helpful classmate",
+                          "How your classmate helped",
+                          "Inclusion of a Euclidean buffer layer",
+                          "Inclusion of an isochrone for a motorized mode",
+                          "Inclusion of an isochrone for a non-motorized mode",
+                          "Inclusion of a layer of random points",
+                          "Inclusion of a layer of centroids",
+                          "Inclusion of a distance raster",
+                          "Source attribution",
+                          "Description of research question",
+                          "Total"),
+                 `No credit` = c(rep("Missing", 10), ""),
+                 `Half credit` = c("Not adequately described",
+                                   "Not adequately described",
+                                   rep("",6),
+                                   "Not adequately described",
+                                   "Not adequately described", 
+                                   ""),
+                 `Full credit` = c("Adequately described",
+                                   "Adequately described",
+                                   rep("Included",6),
+                                   "Adequately described",
+                                   "Adequately described", 
+                                   ""),
+                 `Possible points` = c(3, 3, 2, 2, 2, 2, 2, 2, 3, 4, 25))
+
+kable(rubric)
+```
