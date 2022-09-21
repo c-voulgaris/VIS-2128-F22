@@ -1,0 +1,62 @@
+---
+title: "Generating centroids"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Sometimes I'll be more interested in the distance to the middle
+of a something than I am in the distance to the closest part of it.
+In those cases, it's useful to generate a centroid.
+
+# Required packages
+
+This example uses the following packages
+
+```{r, results='hide', message=FALSE}
+library(tidyverse)
+library(sf)
+```
+
+# Load some sample data
+
+```{r, include=FALSE}
+library(tidycensus)
+
+tracts <- get_acs(geography = "tract", 
+                  variables = "B06011_001", 
+                  output = "wide", 
+                  state = "CA",
+                  county = "San Luis Obispo",
+                  geometry = TRUE) 
+
+```
+
+Here are the census tracts in San Luis Obispo, California
+
+```{r}
+ggplot(tracts) +
+  geom_sf()
+```  
+
+# Generate centroids
+
+I can use `st_centroid()` to generate a layer of points representing the
+centroid of each tract. `st_centroid()` always generates a warning about 
+an assumption of constant attributes. This is fine.
+
+```{r}
+tract_centroids <- st_centroid(tracts) 
+```
+
+# Map
+
+Here is a quick map showing the centroid of each tract.
+
+```{r}
+ggplot() +
+  geom_sf(data = tracts) +
+  geom_sf(data = tract_centroids) 
+```

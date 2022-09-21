@@ -368,34 +368,17 @@ pre code {
 
 <div id="deliverable" class="section level1">
 <h1>Deliverable</h1>
-<p>Generate the following new data layers:</p>
-<ul>
-<li>A polygon layer representing the area within a constant (Euclidean)
-distance from one or more features in a point or line layer.</li>
-<li>A polygon layer representing the area within a constant travel time
-(by a non-motorized mode) from one or more features in a point
-layer</li>
-<li>A polygon layer representing the area within a constant travel time
-(by a motorized mode) from one or more features in a point layer</li>
-<li>A layer of points randomly distributed within the polygons in a
-polygon layer</li>
-<li>A layer of points representing the centroids of the polygons in a
-polygon layer</li>
-<li>A raster layer representing the distance to the nearest point in a
-point dataset from any location in your study area</li>
-</ul>
-<p>Submit two layouts (either as separate files or as two pages of the
-same file).</p>
-<p>The first layout should address a specific question with a map that
-includes one or more of the layers described above The layout should
-include text that describes the question your map is meant to answer.
-The second layout should illustrate any layers described above that
-aren’t included in your first layout (just to demonstrate that you know
-how to generate them).</p>
-<p>On your submission, list the name(s) of at least one student who was
-especially helpful you you in completing this assignment, and describe
-how they helped. You should also clearly indicate the sources of all
-your data.</p>
+<p>Generate a map to communicate the distances between features using
+buffers and/or by symbolizing features based on their distance from
+other features. Your map layout should include a description of the
+analysis question your map is meant to address and a clear description
+of what each layer represents (this might be in the map legend). Do not
+include a story about how you made the map (e.g. “I generated a set of
+buffers”) or the technology you used. Focus on the what the map shows
+and what conclusions you can draw from it.</p>
+<p>Include the sources of all the data shown in your map (including any
+data that isn’t shown but was used to derive the layers you’ve shown),
+the name of a classmate who was helpful to you, and how they helped.</p>
 </div>
 <div id="relevant-skills" class="section level1">
 <h1>Relevant Skills</h1>
@@ -404,38 +387,26 @@ all of them are relevant and you will probably use some of them.</p>
 <div id="r" class="section level4">
 <h4>R</h4>
 <ul>
-<li>Generating buffers</li>
-<li>Generating isochrones</li>
-<li>Generating centroids</li>
-<li>Spatial sampling</li>
-<li>Generating a grid</li>
-<li>Generating a raster from a grid</li>
-<li>Generating a matrix of Euclidean distances between two point
-layers</li>
-<li>Generating a matrix of travel times between two point layers</li>
+<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-distance-two-layers.html" target="_blank">Calculating distances between features across
+layers</a></li>
+<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-distance-one-layer.html" target="_blank">Calculating distances between features within
+layers</a></li>
+<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-buffer.html" target="_blank">Generating buffers</a></li>
+<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-centroids.html" target="_blank">Generating centroids</a></li>
 </ul>
 </div>
 <div id="arcgis" class="section level4">
 <h4>ArcGIS</h4>
 <ul>
 <li>Generating buffers</li>
-<li>Generating isochrones</li>
 <li>Generating centroids</li>
 <li>Spatial sampling</li>
-<li>Generating a grid</li>
-<li>Generating a raster from a grid</li>
-<li>Generating a matrix of Euclidean distances between two point
-layers</li>
-<li>Generating a matrix of travel times between two point layers</li>
+<li>Calculating distances between layers</li>
 </ul>
 </div>
 </div>
 <div id="other-resources" class="section level1">
 <h1>Other resources</h1>
-<ul>
-<li><a href="https://ipeagit.github.io/r5r/articles/travel_time_matrix.html" target="_blank">r5r documentation on building travel time
-matrices</a></li>
-</ul>
 </div>
 <div id="examples" class="section level1">
 <h1>Examples</h1>
@@ -448,13 +419,13 @@ assignment.</p>
 </div>
 <div id="grading-rubric" class="section level1">
 <h1>Grading rubric</h1>
-<table>
+<table style="width:100%;">
 <colgroup>
-<col width="41%" />
-<col width="8%" />
+<col width="31%" />
+<col width="9%" />
+<col width="23%" />
 <col width="20%" />
-<col width="17%" />
-<col width="13%" />
+<col width="15%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -471,70 +442,42 @@ assignment.</p>
 <td align="left">Missing</td>
 <td align="left">Not adequately described</td>
 <td align="left">Adequately described</td>
-<td align="right">3</td>
+<td align="right">2</td>
 </tr>
 <tr class="even">
 <td align="left">How your classmate helped</td>
 <td align="left">Missing</td>
 <td align="left">Not adequately described</td>
 <td align="left">Adequately described</td>
-<td align="right">3</td>
+<td align="right">2</td>
 </tr>
 <tr class="odd">
-<td align="left">Inclusion of a Euclidean buffer layer</td>
+<td align="left">Illustration of distance</td>
 <td align="left">Missing</td>
-<td align="left"></td>
-<td align="left">Included</td>
-<td align="right">2</td>
+<td align="left">Unintelligible</td>
+<td align="left">Distance is legible</td>
+<td align="right">10</td>
 </tr>
 <tr class="even">
-<td align="left">Inclusion of an isochrone for a motorized mode</td>
+<td align="left">Description of analysis question</td>
 <td align="left">Missing</td>
-<td align="left"></td>
-<td align="left">Included</td>
-<td align="right">2</td>
+<td align="left">Not adequately described</td>
+<td align="left">Adequately described</td>
+<td align="right">5</td>
 </tr>
 <tr class="odd">
-<td align="left">Inclusion of an isochrone for a non-motorized mode</td>
+<td align="left">Description of conclusion</td>
 <td align="left">Missing</td>
-<td align="left"></td>
-<td align="left">Included</td>
-<td align="right">2</td>
+<td align="left">Not adequately described</td>
+<td align="left">Adequately described</td>
+<td align="right">5</td>
 </tr>
 <tr class="even">
-<td align="left">Inclusion of a layer of random points</td>
-<td align="left">Missing</td>
-<td align="left"></td>
-<td align="left">Included</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="left">Inclusion of a layer of centroids</td>
-<td align="left">Missing</td>
-<td align="left"></td>
-<td align="left">Included</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="left">Inclusion of a distance raster</td>
-<td align="left">Missing</td>
-<td align="left"></td>
-<td align="left">Included</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
 <td align="left">Source attribution</td>
 <td align="left">Missing</td>
 <td align="left">Not adequately described</td>
 <td align="left">Adequately described</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
-<td align="left">Description of research question</td>
-<td align="left">Missing</td>
-<td align="left">Not adequately described</td>
-<td align="left">Adequately described</td>
-<td align="right">4</td>
+<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">Total</td>

@@ -1,0 +1,166 @@
+---
+title: "Calculating distances across layers"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+You for a set of features, you can calculate a variable
+that indicates the difference to the closest feature
+in another layer
+
+# Required packages
+
+This example uses the following packages
+
+```{r, results='hide', message=FALSE}
+library(tidyverse)
+library(sf)
+library(here)
+library(leaflet)
+library(knitr)
+```
+
+# Load some sample data
+
+```{r, include=FALSE}
+rta_stops <- here("a1-files",
+                  "bus-stops.csv") %>%
+  st_read(options=c("X_POSSIBLE_NAMES=stop_lon",
+                    "Y_POSSIBLE_NAMES=stop_lat")) %>%
+  mutate(`Transit Provider` = "San Luis Obispo RTA") 
+
+slo_stops <- here("a2-files",
+                  "Examples",
+                  "slo-stops.csv") %>%
+  st_read(options=c("X_POSSIBLE_NAMES=stop_lon",
+                    "Y_POSSIBLE_NAMES=stop_lat")) %>%
+  mutate(`Transit Provider` = "SLO Transit") %>%
+  dplyr::select(colnames(rta_stops)) 
+
+stops <- rbind(rta_stops, slo_stops) %>%
+  st_set_crs("WGS84") %>%
+  mutate(id = 
+           as.character(seq(1,
+                            length(rta_stops$stop_id) + 
+                              length(slo_stops$stop_id),
+                            by=1))) %>%
+  select(stop_id, stop_name)
+
+co_trails <- here("a1-files",
+               "County_Trails.geojson") %>%
+  st_read() %>%
+  select(TrailName, Length, LengthUnits)
+
+city_trails <- here("a2-files",
+                    "Examples",
+               "Trail.geojson") %>%
+  st_read() %>%
+  rename(TrailName = Trail_Name,
+         Length = SLength) %>%
+  mutate(LengthUnits = "MILES") %>%
+  select(TrailName, Length, LengthUnits)
+
+trails <- rbind(city_trails, co_trails) 
+
+```
+
+I'll demonstrate this with a layer of transit stop
+locations (`stops`) and trails (`trails`) in San Luis 
+Obispo County, California. 
+
+```{r}
+leaflet() %>%
+  addProviderTiles(provider = providers$Stamen.TerrainBackground) %>%
+  addCircleMarkers(data = stops,
+                   radius = 2,
+                   stroke = FALSE,
+                   fillColor = "darkorange",
+                   fillOpacity = 1) %>%
+  addPolylines(data = trails,
+               weight = 1,
+               color = "black",
+               opacity = 1)
+```  
+
+# Transform the data
+
+If I want to calculate distances, my data need to be stored in a 
+projected coordinate system (with coordinates in units of distance).
+
+I'll use the California State Plane, zone V (https://spatialreference.org/ref/esri/102645/),
+which stores coordinates in units of feet.
+
+```{r}
+# Define CA-state-plane
+CA_st_plane <- "+proj=lcc +lat_1=34.03333333333333 +lat_2=35.46666666666667 +lat_0=33.5 +lon_0=-118 +x_0=2000000 +y_0=500000.0000000002 +ellps=GRS80 +datum=NAD83 +to_meter=0.3048006096012192 +no_defs"
+
+stops_st_plane <- stops %>%
+  st_transform(CA_st_plane)
+
+trails_st_plane <- trails %>%
+  st_transform(CA_st_plane)
+```
+
+# Calculating the distance to the nearest feature within a layer
+
+The `st_nearest_feature()` function will return the index 
+(the row number) of the nearest point in the second layer, for each
+point in the first layer. This example gives the index of the 
+nearest stop to each trail.
+
+```{r}
+nearest_stop <- st_nearest_feature(trails_st_plane,
+                                   stops_st_plane)
+```
+
+Now you can use `st_distance()` to calculate the distance between each trail and 
+the nearest stop. `by_element = TRUE` means I want one distance for each trail
+(rather than the distance from each each trail to each stop).
+
+```{r}
+trails_st_plane <- trails_st_plane %>%
+  mutate(distance_to_transit = 
+           st_distance(trails_st_plane, 
+                       stops_st_plane[nearest_stop,],
+                       by_element = TRUE))
+```
+
+Here are the first few rows of the resulting data frame, which now
+includes a column with the distance to the nearest other stop.
+
+```{r}
+head(trails_st_plane) %>%
+  kable()
+```
+
+You'll see that the distance is very helpfully stored in a data type that
+labels the units. This is cool, but it actually can make subsequent
+steps you might take a little trickier. So let's change these to regular
+numbers.
+
+```{r}
+trails_st_plane <- trails_st_plane %>%
+  mutate(distance_to_transit = as.numeric(distance_to_transit))
+
+head(trails_st_plane) %>%
+  kable()
+```
+
+# Map showing variation in distances
+
+Now I can show the results on a map. You can see that the trails that
+are farther from transit are shown in lighter color.
+
+```{r}
+ggplot() +
+    geom_sf(data = stops_st_plane,
+          size = 1,
+          color = "gray") +
+  geom_sf(data = trails_st_plane,
+          aes(color = distance_to_transit)) +
+  scale_color_viridis_c() +
+  theme_void()
+```
