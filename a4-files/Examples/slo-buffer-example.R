@@ -6,6 +6,8 @@ library(ggspatial)
 library(ggthemes)
 library(gridExtra)
 library(grid)
+library(leaflet)
+library(tigris)
 
 # Define CA-state-plane
 CA_st_plane <- "+proj=lcc +lat_1=34.03333333333333 +lat_2=35.46666666666667 +lat_0=33.5 +lon_0=-118 +x_0=2000000 +y_0=500000.0000000002 +ellps=GRS80 +datum=NAD83 +to_meter=0.3048006096012192 +no_defs"
@@ -121,16 +123,65 @@ ggsave(filename = here("a4-files", "Examples", "slo-trails.png"),
        width = 8.5, height = 8, units = "in", dpi = 300)
 
 wgs_trails <- trails %>%
-  st_transform("WGS84")
+  st_transform("WGS84") %>%
+  mutate(popup_txt = paste0("<b>",
+                            TrailName,
+                            "</b><br>",
+                            formatC(dist_to_transit/5280, digits = 1, format = "f"),
+                            " miles from a transit stop")) %>%
+  mutate(miles = dist_to_transit / 5280)
 
 wgs_buffer <- stop_buffer %>%
   st_transform("WGS84")
 
-leaflet() %>%
-  addPolygons(data = wgs_buffer) %>%
-  addPolylines(data = wgs_trails,
-               label = ~TrailName,
-               highlightOptions = highlightOptions(color = "Red"))
+dist_palette = colorNumeric(palette = "YlOrBr", 
+                              domain = wgs_trails$miles)
 
-trails_outside <- trails %>%
-  st_filter(!stop_buffer)
+
+
+map <- leaflet(options = leafletOptions(zoomControl = FALSE)) %>%
+  addProviderTiles(provider = providers$Stamen.TonerLite) %>%
+  addPolygons(data = wgs_buffer,
+              fillColor = "black",
+              fillOpacity = 0.6,
+              stroke = FALSE) %>%
+  addPolylines(data = wgs_trails,
+               popup = ~popup_txt,
+               color = ~dist_palette(miles),
+               opacity = 1,
+               highlightOptions = highlightOptions(color = "green")) %>%
+  addLegend(colors = "black",
+            opacity = 0.6,
+            labels = "Area within 1/4 mile of transit",
+            position = "bottomright") %>%
+  addLegend(pal = dist_palette, 
+            values = wgs_trails$miles,
+            title = "Miles to nearest transit stop",
+            opacity = 1,
+            position = "bottomright") %>%
+  addLegend(title = "Trails and Transit",
+            colors = rep("white", 6),
+            labels = c("How accessible is San Luis Obispo’s",
+                       "trail system by public transit? This map",
+                       "shows that while much of the city’s urban",
+                       "trails are with a quarter mile of a transit",
+                       "stop, a few remain accessible primarily by",
+                       "private car"),
+            position = "topleft") %>%
+  addLegend(title = "Sources and acknowledgments",
+            colors = rep("white", 8),
+            labels = c("Transit stop locations from SLO Transit's",
+                       "and SLO RTA's GTFS feeds. Trail locations",
+                       "from City of San Luis Obispo GIS Hub and ",
+                       "SLO County Open Data.",
+                       "",
+                       "My classmate, Rachel Meltzer, showed me",
+                       "how to hack a legend control to annotate a",
+                       "Leaflet map."),
+            position = "bottomleft") 
+
+map
+
+htmlwidgets::saveWidget(map, file = here("a4-files",
+                                         "Examples",
+                                         "slo-trails.html"))
