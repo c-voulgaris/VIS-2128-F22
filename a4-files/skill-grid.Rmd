@@ -1,0 +1,163 @@
+---
+title: "Generating random points within a polygon"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+There are some cases where you might be interested in the distance
+from a points that are evenly distributed throughout a polygon. Here's
+how you would generate a grid of points.
+
+# Required packages
+
+This example uses the following packages
+
+```{r, results='hide', message=FALSE}
+library(tidyverse)
+library(sf)
+library(tidycensus)
+```
+
+# Load some sample data
+
+```{r, include = FALSE}
+# Define CA-state-plane
+CA_st_plane <- "+proj=lcc +lat_1=34.03333333333333 +lat_2=35.46666666666667 +lat_0=33.5 +lon_0=-118 +x_0=2000000 +y_0=500000.0000000002 +ellps=GRS80 +datum=NAD83 +to_meter=0.3048006096012192 +no_defs"
+
+
+tracts <- get_decennial(year = 2020,
+                        geography = "tract", 
+                        variables = c(Population = "P2_001N"), 
+                        output = "wide", 
+                        state = "CA",
+                        county = "San Luis Obispo",
+                        geometry = TRUE) %>%
+   st_transform(CA_st_plane)
+
+
+```
+
+I'll start with this map of census tracts in San Luis Obispo County. The data are in the 
+California State Plane coordinate system.
+
+```{r}
+ggplot(tracts) +
+  geom_sf()
+```  
+
+# Generate a grid of points
+
+The `st_make_grid()` function will generate a grid that covers the bounding box of a
+specified layer.
+
+```{r}
+grid_squares <- st_make_grid(tracts)
+
+ggplot() +
+  geom_sf(data = tracts) +
+  geom_sf(data = grid_squares,
+          fill = NA)
+```
+
+By default, the grid sizes are selected so to make a 10x10 grid. I can also specific the
+number of grid cells I want in each direction. Here is a 15x12 grid.
+
+```{r}
+grid_squares <- st_make_grid(tracts, n = c(15, 12))
+
+ggplot() +
+  geom_sf(data = tracts) +
+  geom_sf(data = grid_squares,
+          fill = NA)
+```
+
+It's more likely that you'll care more about the cell size than about how many cells 
+are in the bounding box. You can also specify the cell height and width instead of the 
+number of cells. Here is a grid of cells that are 5 miles by 5 miles (there are 5280 
+feet in a mile).
+
+```{r}
+grid_squares <- st_make_grid(tracts, cellsize = c(5 * 5280, 5 * 5280))
+
+ggplot() +
+  geom_sf(data = tracts) +
+  geom_sf(data = grid_squares,
+          fill = NA)
+```
+
+You can also make a hexagonal grid by setting `square = FALSE`.
+
+```{r}
+grid_hex <- st_make_grid(tracts, cellsize = c(5 * 5280, 5 * 5280), square = FALSE)
+
+ggplot() +
+  geom_sf(data = tracts) +
+  geom_sf(data = grid_hex,
+          fill = NA)
+```
+
+If you want points instead of polygons, you can set `what = corners` or `what = centers`.
+
+Here is a set of points at the centers of a 5-mile by 5-mile hex grid. 
+
+```{r}
+grid_hex_pts <- st_make_grid(tracts, 
+                             cellsize = c(5 * 5280, 5 * 5280), 
+                             square = FALSE,
+                             what = "centers")
+
+ggplot() +
+  geom_sf(data = tracts) +
+  geom_sf(data = grid_hex_pts,
+          fill = NA)
+```
+
+Here's a hex grid with points at the centers of square grid cells.
+
+```{r}
+grid_hex_pts <- st_make_grid(tracts, 
+                             cellsize = c(5 * 5280, 5 * 5280), 
+                             what = "corners")
+
+ggplot() +
+  geom_sf(data = tracts) +
+  geom_sf(data = grid_hex_pts,
+          fill = NA)
+```
+
+Here is a set of points at the corners of a hex grid. 
+
+```{r}
+grid_hex_pts <- st_make_grid(tracts, 
+                             cellsize = c(5 * 5280, 5 * 5280), 
+                             square = FALSE,
+                             what = "corners")
+
+ggplot() +
+  geom_sf(data = tracts) +
+  geom_sf(data = grid_hex_pts,
+          fill = NA)
+```
+
+In this case, the layer of points was automatically clipped to the polygon boundary, where
+all the other grids filled the whole bounding box. I do not have an explanation for that.
+
+You can easily clip any grid to the boundaries of a polygon though.
+
+```{r}
+grid_hex_pts <- st_make_grid(tracts, 
+                             cellsize = c(5 * 5280, 5 * 5280), 
+                             what = "corners") %>%
+  st_as_sf() %>%
+  st_filter(tracts)
+
+ggplot() +
+  geom_sf(data = tracts) +
+  geom_sf(data = grid_hex_pts,
+          fill = NA)
+```
+
+

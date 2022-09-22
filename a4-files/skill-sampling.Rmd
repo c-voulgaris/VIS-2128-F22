@@ -1,0 +1,75 @@
+---
+title: "Generating random points within a polygon"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+There are some cases where you might be interested in the distance
+from a bunch of different points within a polygon. Spatial sampling
+generates a sample of random points.
+
+# Required packages
+
+This example uses the following packages
+
+```{r, results='hide', message=FALSE}
+library(tidyverse)
+library(sf)
+library(tidycensus)
+```
+
+# Load some sample data
+
+I'll start by downloading census tract boundaries in San Luis Obispo County,
+with a variable indicating the population of each tract. There is one tract in
+the county with an empty geometry (no polygon boundary defined), so I'm going 
+to filter that one.
+
+```{r, results='hide', message=FALSE}
+tracts <- get_decennial(year = 2020,
+                        geography = "tract", 
+                        variables = c(Population = "P2_001N"), 
+                        output = "wide", 
+                        state = "CA",
+                        county = "San Luis Obispo",
+                        geometry = TRUE) %>%
+  filter(!st_is_empty(.))
+
+```
+
+Here is a map of the tracts, with the variation in color representing the variation
+in population.
+
+```{r}
+ggplot(tracts) +
+  geom_sf(aes(fill = Population))
+```  
+
+# Generate random points
+
+I can use `st_sample()` to generate a random set of points where each point
+represents 100 people. The `size` argument is the number of points I want in
+each tract. To get one point per hundred people, I'll divide the population
+by 100. I'll use the ceiling function to round up to the nearest whole number.
+
+Keep in mind that the points are randomly generated. If you do this more than 
+once, you won't end up with points in the same location each time.
+
+```{r}
+people_pts <- st_sample(tracts, 
+                        size = ceiling(tracts$Population/100))
+```
+
+# Map
+
+This can be a more intuitive way to display population on a map. And you can also
+use these random points to show variation in distance if you want to.
+
+```{r}
+ggplot() +
+  geom_sf(data = tracts) +
+  geom_sf(data = people_pts) 
+```
