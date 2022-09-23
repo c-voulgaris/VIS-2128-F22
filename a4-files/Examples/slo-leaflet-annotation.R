@@ -122,23 +122,19 @@ map <- leaflet(options = leafletOptions(zoomControl = FALSE)) %>%
                        "shows that while much of the city’s urban",
                        "trails are with a quarter mile of a transit",
                        "stop, a few remain accessible primarily by",
-                       "private car"),
+                       "private car."),
             position = "topleft") %>%
   addLegend(title = "Sources and acknowledgments",
             
             # The number after white should be the number of lines
             # of text you want.
-            colors = rep("white", 8),
+            colors = rep("white", 4),
             
             # List each line of text separately
-            labels = c("Transit stop locations from SLO Transit's",
-                       "and SLO RTA's GTFS feeds. Trail locations",
-                       "from City of San Luis Obispo GIS Hub and ",
-                       "SLO County Open Data.",
+            labels = c("Transit stop locations from SLO Transit's and SLO RTA's GTFS feeds.", 
+                       "Trail locations from City of San Luis Obispo GIS Hub and SLO County Open Data.",
                        "",
-                       "My classmate, Rachel Meltzer, showed me",
-                       "how to hack a legend control to annotate a",
-                       "Leaflet map."),
+                       "My classmate, Rachel Meltzer, showed me how to hack a legend control to annotate a Leaflet map."),
             position = "bottomleft") 
 
 map
