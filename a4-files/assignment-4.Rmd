@@ -31,23 +31,29 @@ classmate who was helpful to you, and how they helped.
 
 You are unlikely to use all of these skills in this 
 assignment, but all of them are relevant and you will 
-probably use some of them.
+probably use some of them. They are listed alphabetically
+within categories.
 
 #### R
 
+* [Calculating a new variable](https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-mutate.html){target="_blank"}
 * [Calculating distances between features across layers](https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-distance-two-layers.html){target="_blank"}
-* [Calculating distances between features within layers](https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-distance-one-layer.html){target="_blank"}
+* [Calculating distances between features within a layer](https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-distance-one-layer.html){target="_blank"}
 * [Generating buffers](https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-buffer.html){target="_blank"}
 * [Generating centroids](https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-centroids.html){target="_blank"}
-* [Generating gridded points](https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-grid.html){target="_blank"}
+* [Generating gridded points and polygons](https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-grid.html){target="_blank"}
 * [Generating random points within polygons](https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-sampling.html){target="_blank"}
 
 #### ArcGIS Pro
 
+* [Calculating a new variable](https://harvard.zoom.us/rec/share/wGScHgVOsztdlD-hBmu05iLR0B3mZRKxNjNuheWWVDmDz0oOB5S6VDWFtJzyNMhY.fX9EVIFdumWMkHCS?startTime=1663881693000){target="_blank"}
 * [Calculating distances between features across layers](https://harvard.zoom.us/rec/play/GwmFyXi-5sEKxo25Yo5wzQ-il93xIOHlWQccrvFFSfbOkWIQQEmsroDJfxJOXsNErvGJmVHWL3kmACbs.RQ_enRL9tcZ_W2qb?startTime=1663794796000&_x_zm_rtaid=BZCASwm8RG6mI7xojF6nuA.1663857126182.e997a72150de73757944b7a3189fee65&_x_zm_rhtaid=126){target="_blank"}
+* [Calculating distances between features within a layer](https://harvard.zoom.us/rec/share/eKZ0BkCHnc6KPL5uH5SmX01oZR6kWBPgxy1bv3j0LM6dIPKm8f2Pr3msXiCTL4TI.2WTxOZ1-Dyh1mpT0?startTime=1663884404000){target="_blank"}
 * [Generating buffers](https://harvard.zoom.us/rec/play/Mbbu93pY57oY0qzFf2jzfx7-C-ECyjPbqDFAJ-8zFIQNy9_Pew2qygR444qucisMFcBuiVn3_dzvrnhw.7X5Li2NMMDsxs0Kx?startTime=1663783371000&_x_zm_rtaid=BZCASwm8RG6mI7xojF6nuA.1663857126182.e997a72150de73757944b7a3189fee65&_x_zm_rhtaid=126){target="_blank"}
 * [Generating centroids](https://harvard.zoom.us/rec/share/EC3Uvs7NJn4bEABNkBl-pc-mVOljx-WYSsLfTsrFlOeXvZFtTAEiMoigYSl3ibA.JKFaSSZK2h4Ag8pp?startTime=1663783660000){target="_blank"}
+* [Generating gridded points and polygons](https://harvard.zoom.us/rec/share/wGScHgVOsztdlD-hBmu05iLR0B3mZRKxNjNuheWWVDmDz0oOB5S6VDWFtJzyNMhY.fX9EVIFdumWMkHCS?startTime=1663882776000){target="_blank"}
 * [Generating random points within polygons](https://harvard.zoom.us/rec/play/O0d_PK2mEnGyiOOBoBgo1271NUNwG7-nD216SQDu84RowrEUyMYNWYrbpGnjo6fUknGVA8gWAgaOSYZO.VNwAcLbLuJRO5ROv?startTime=1663790320000&_x_zm_rtaid=BZCASwm8RG6mI7xojF6nuA.1663857126182.e997a72150de73757944b7a3189fee65&_x_zm_rhtaid=126){target="_blank"}
+* [Showing the distance to the nearest feature](https://harvard.zoom.us/rec/share/eKZ0BkCHnc6KPL5uH5SmX01oZR6kWBPgxy1bv3j0LM6dIPKm8f2Pr3msXiCTL4TI.2WTxOZ1-Dyh1mpT0?startTime=1663885516000){target="_blank"}
 
 # Other resources
 

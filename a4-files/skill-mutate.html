@@ -11,7 +11,7 @@
 
 
 
-<title>Assignment 4</title>
+<title>Calculating new variables</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -361,146 +361,167 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Assignment 4</h1>
+<h1 class="title toc-ignore">Calculating new variables</h1>
 
 </div>
 
 
-<div id="deliverable" class="section level1">
-<h1>Deliverable</h1>
-<p>Generate a map to communicate the distances between features using
-buffers and/or by symbolizing features based on their distance from
-other features. Your map layout should include a description of the
-analysis question your map is meant to address and a clear description
-of what each layer represents (this might be in the map legend). Do not
-include a story about how you made the map (e.g. “I generated a set of
-buffers”) or the technology you used. Focus on the what the map shows
-and what conclusions you can draw from it.</p>
-<p>Include the sources of all the data shown in your map (including any
-data that isn’t shown but was used to derive the layers you’ve shown),
-the name of a classmate who was helpful to you, and how they helped.</p>
+<p>Any data analysis will likely require you to calculate new
+variables.</p>
+<div id="required-packages" class="section level1">
+<h1>Required packages</h1>
+<p>This example uses the following packages</p>
+<pre class="r"><code>library(tidyverse)
+library(knitr)</code></pre>
 </div>
-<div id="relevant-skills" class="section level1">
-<h1>Relevant Skills</h1>
-<p>You are unlikely to use all of these skills in this assignment, but
-all of them are relevant and you will probably use some of them. They
-are listed alphabetically within categories.</p>
-<div id="r" class="section level4">
-<h4>R</h4>
+<div id="load-some-sample-data" class="section level1">
+<h1>Load some sample data</h1>
+<p>R has several datasets built in for practice and testing. I’ll start
+by loading on of those with statistics on violent crime rates by state
+in 1973. It includes four variables:</p>
 <ul>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-mutate.html" target="_blank">Calculating a new variable</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-distance-two-layers.html" target="_blank">Calculating distances between features across
-layers</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-distance-one-layer.html" target="_blank">Calculating distances between features within a
-layer</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-buffer.html" target="_blank">Generating buffers</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-centroids.html" target="_blank">Generating centroids</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-grid.html" target="_blank">Generating gridded points and polygons</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a4-files/skill-sampling.html" target="_blank">Generating random points within polygons</a></li>
+<li><em>Murder</em>: The number of murder arrests per 100,000
+residents</li>
+<li><em>Assault</em>: The number of assault arrests per 100,000
+residents</li>
+<li><em>UrbanPop</em>: The percent of the state’s population in urban
+areas</li>
+<li><em>Rape</em>: The number of rape arrests per 100,000 residents</li>
 </ul>
-</div>
-<div id="arcgis-pro" class="section level4">
-<h4>ArcGIS Pro</h4>
-<ul>
-<li><a href="https://harvard.zoom.us/rec/share/wGScHgVOsztdlD-hBmu05iLR0B3mZRKxNjNuheWWVDmDz0oOB5S6VDWFtJzyNMhY.fX9EVIFdumWMkHCS?startTime=1663881693000" target="_blank">Calculating a new variable</a></li>
-<li><a href="https://harvard.zoom.us/rec/play/GwmFyXi-5sEKxo25Yo5wzQ-il93xIOHlWQccrvFFSfbOkWIQQEmsroDJfxJOXsNErvGJmVHWL3kmACbs.RQ_enRL9tcZ_W2qb?startTime=1663794796000&amp;_x_zm_rtaid=BZCASwm8RG6mI7xojF6nuA.1663857126182.e997a72150de73757944b7a3189fee65&amp;_x_zm_rhtaid=126" target="_blank">Calculating distances between features across
-layers</a></li>
-<li><a href="https://harvard.zoom.us/rec/share/eKZ0BkCHnc6KPL5uH5SmX01oZR6kWBPgxy1bv3j0LM6dIPKm8f2Pr3msXiCTL4TI.2WTxOZ1-Dyh1mpT0?startTime=1663884404000" target="_blank">Calculating distances between features within a
-layer</a></li>
-<li><a href="https://harvard.zoom.us/rec/play/Mbbu93pY57oY0qzFf2jzfx7-C-ECyjPbqDFAJ-8zFIQNy9_Pew2qygR444qucisMFcBuiVn3_dzvrnhw.7X5Li2NMMDsxs0Kx?startTime=1663783371000&amp;_x_zm_rtaid=BZCASwm8RG6mI7xojF6nuA.1663857126182.e997a72150de73757944b7a3189fee65&amp;_x_zm_rhtaid=126" target="_blank">Generating buffers</a></li>
-<li><a href="https://harvard.zoom.us/rec/share/EC3Uvs7NJn4bEABNkBl-pc-mVOljx-WYSsLfTsrFlOeXvZFtTAEiMoigYSl3ibA.JKFaSSZK2h4Ag8pp?startTime=1663783660000" target="_blank">Generating centroids</a></li>
-<li><a href="https://harvard.zoom.us/rec/share/wGScHgVOsztdlD-hBmu05iLR0B3mZRKxNjNuheWWVDmDz0oOB5S6VDWFtJzyNMhY.fX9EVIFdumWMkHCS?startTime=1663882776000" target="_blank">Generating gridded points and polygons</a></li>
-<li><a href="https://harvard.zoom.us/rec/play/O0d_PK2mEnGyiOOBoBgo1271NUNwG7-nD216SQDu84RowrEUyMYNWYrbpGnjo6fUknGVA8gWAgaOSYZO.VNwAcLbLuJRO5ROv?startTime=1663790320000&amp;_x_zm_rtaid=BZCASwm8RG6mI7xojF6nuA.1663857126182.e997a72150de73757944b7a3189fee65&amp;_x_zm_rhtaid=126" target="_blank">Generating random points within polygons</a></li>
-<li><a href="https://harvard.zoom.us/rec/share/eKZ0BkCHnc6KPL5uH5SmX01oZR6kWBPgxy1bv3j0LM6dIPKm8f2Pr3msXiCTL4TI.2WTxOZ1-Dyh1mpT0?startTime=1663885516000" target="_blank">Showing the distance to the nearest feature</a></li>
-</ul>
-</div>
-</div>
-<div id="other-resources" class="section level1">
-<h1>Other resources</h1>
-<ul>
-<li><a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/analysis/buffer.htm" target="_blank">Buffers in ArcGIS Pro</a></li>
-<li><a href="https://pro.arcgis.com/en/pro-app/2.9/tool-reference/data-management/feature-to-point.htm" target="_blank">Centroids in ArcGIS Pro</a></li>
-<li><a href="https://doc.arcgis.com/en/arcgis-online/analyze/find-centroids.htm" target="_blank">Centroids in ArcGIS Online</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a4-files/distance-lecture.pdf" target="_blank">Lecture slides</a></li>
-</ul>
-</div>
-<div id="examples" class="section level1">
-<h1>Examples</h1>
-<p>The examples below fully meet the requirements for this
-assignment.</p>
-<ul>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a4-files/Examples/slo-trails.html" target="_blank">Example 1</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a4-files/Examples/tornado-example.pdf" target="_blank">Example 2</a></li>
-</ul>
-</div>
-<div id="grading-rubric" class="section level1">
-<h1>Grading rubric</h1>
-<table style="width:100%;">
-<colgroup>
-<col width="31%" />
-<col width="9%" />
-<col width="23%" />
-<col width="20%" />
-<col width="15%" />
-</colgroup>
+<pre class="r"><code># Load the dataset
+data(&quot;USArrests&quot;)
+
+# Display the first few rows in a table
+head(USArrests) %&gt;%
+  kable()</code></pre>
+<table>
 <thead>
 <tr class="header">
-<th align="left">Item</th>
-<th align="left">No credit</th>
-<th align="left">Half credit</th>
-<th align="left">Full credit</th>
-<th align="right">Possible points</th>
+<th align="left"></th>
+<th align="right">Murder</th>
+<th align="right">Assault</th>
+<th align="right">UrbanPop</th>
+<th align="right">Rape</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Name of a helpful classmate</td>
-<td align="left">Missing</td>
-<td align="left">Not adequately described</td>
-<td align="left">Adequately described</td>
-<td align="right">2</td>
+<td align="left">Alabama</td>
+<td align="right">13.2</td>
+<td align="right">236</td>
+<td align="right">58</td>
+<td align="right">21.2</td>
 </tr>
 <tr class="even">
-<td align="left">How your classmate helped</td>
-<td align="left">Missing</td>
-<td align="left">Not adequately described</td>
-<td align="left">Adequately described</td>
-<td align="right">2</td>
+<td align="left">Alaska</td>
+<td align="right">10.0</td>
+<td align="right">263</td>
+<td align="right">48</td>
+<td align="right">44.5</td>
 </tr>
 <tr class="odd">
-<td align="left">Illustration of distance</td>
-<td align="left">Missing</td>
-<td align="left">Unintelligible</td>
-<td align="left">Distance is legible</td>
-<td align="right">10</td>
+<td align="left">Arizona</td>
+<td align="right">8.1</td>
+<td align="right">294</td>
+<td align="right">80</td>
+<td align="right">31.0</td>
 </tr>
 <tr class="even">
-<td align="left">Description of analysis question</td>
-<td align="left">Missing</td>
-<td align="left">Not adequately described</td>
-<td align="left">Adequately described</td>
-<td align="right">5</td>
+<td align="left">Arkansas</td>
+<td align="right">8.8</td>
+<td align="right">190</td>
+<td align="right">50</td>
+<td align="right">19.5</td>
 </tr>
 <tr class="odd">
-<td align="left">Description of conclusion</td>
-<td align="left">Missing</td>
-<td align="left">Not adequately described</td>
-<td align="left">Adequately described</td>
-<td align="right">5</td>
+<td align="left">California</td>
+<td align="right">9.0</td>
+<td align="right">276</td>
+<td align="right">91</td>
+<td align="right">40.6</td>
 </tr>
 <tr class="even">
-<td align="left">Source attribution</td>
-<td align="left">Missing</td>
-<td align="left">Not adequately described</td>
-<td align="left">Adequately described</td>
-<td align="right">1</td>
+<td align="left">Colorado</td>
+<td align="right">7.9</td>
+<td align="right">204</td>
+<td align="right">78</td>
+<td align="right">38.7</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="the-mutate-function" class="section level1">
+<h1>The mutate function</h1>
+<p>The total number of crimes in a state would be the sum of the murder,
+assault, and rape rates, times 100,000. I can use the
+<code>mutate()</code> function to calculate this value and save it in a
+new variable called <code>crime_count</code>.</p>
+<pre class="r"><code># Calculate a new variable
+USArrests &lt;- USArrests %&gt;%
+  mutate(crime_count = (Murder + Assault + Rape) * 100000)
+
+# Display the first few rows in a table (format the large numbers)
+head(USArrests) %&gt;%
+  kable(format.args = list(big.mark = &quot;,&quot;))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Murder</th>
+<th align="right">Assault</th>
+<th align="right">UrbanPop</th>
+<th align="right">Rape</th>
+<th align="right">crime_count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Alabama</td>
+<td align="right">13.2</td>
+<td align="right">236</td>
+<td align="right">58</td>
+<td align="right">21.2</td>
+<td align="right">27,040,000</td>
+</tr>
+<tr class="even">
+<td align="left">Alaska</td>
+<td align="right">10.0</td>
+<td align="right">263</td>
+<td align="right">48</td>
+<td align="right">44.5</td>
+<td align="right">31,750,000</td>
 </tr>
 <tr class="odd">
-<td align="left">Total</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right">25</td>
+<td align="left">Arizona</td>
+<td align="right">8.1</td>
+<td align="right">294</td>
+<td align="right">80</td>
+<td align="right">31.0</td>
+<td align="right">33,310,000</td>
+</tr>
+<tr class="even">
+<td align="left">Arkansas</td>
+<td align="right">8.8</td>
+<td align="right">190</td>
+<td align="right">50</td>
+<td align="right">19.5</td>
+<td align="right">21,830,000</td>
+</tr>
+<tr class="odd">
+<td align="left">California</td>
+<td align="right">9.0</td>
+<td align="right">276</td>
+<td align="right">91</td>
+<td align="right">40.6</td>
+<td align="right">32,560,000</td>
+</tr>
+<tr class="even">
+<td align="left">Colorado</td>
+<td align="right">7.9</td>
+<td align="right">204</td>
+<td align="right">78</td>
+<td align="right">38.7</td>
+<td align="right">25,060,000</td>
 </tr>
 </tbody>
 </table>

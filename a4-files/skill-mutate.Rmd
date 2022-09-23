@@ -1,0 +1,57 @@
+---
+title: "Calculating new variables"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Any data analysis will likely require you to calculate new variables.
+
+# Required packages
+
+This example uses the following packages
+
+```{r, results='hide', message=FALSE}
+library(tidyverse)
+library(knitr)
+```
+
+# Load some sample data
+
+R has several datasets built in for practice and testing. I'll start by
+loading on of those with statistics on violent crime rates by state in 1973. 
+It includes four variables:
+
+* *Murder*: The number of murder arrests per 100,000 residents
+* *Assault*: The number of assault arrests per 100,000 residents
+* *UrbanPop*: The percent of the state's population in urban areas
+* *Rape*: The number of rape arrests per 100,000 residents
+
+```{r}
+# Load the dataset
+data("USArrests")
+
+# Display the first few rows in a table
+head(USArrests) %>%
+  kable()
+```
+
+# The mutate function
+
+The total number of crimes in a state would be the sum of the murder, assault, and rape
+rates, times 100,000. I can use the `mutate()` function to calculate this value and save 
+it in a new variable called `crime_count`.
+
+```{r}
+# Calculate a new variable
+USArrests <- USArrests %>%
+  mutate(crime_count = (Murder + Assault + Rape) * 100000)
+
+# Display the first few rows in a table (format the large numbers)
+head(USArrests) %>%
+  kable(format.args = list(big.mark = ","))
+```
+
+
