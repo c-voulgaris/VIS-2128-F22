@@ -1,0 +1,50 @@
+---
+title: "Calculating the average of a variable"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+It can sometimes be useful to summarize a variable in your
+data by calculating an average.
+
+# Required packages
+
+This example uses the following packages. 
+
+```{r, results='hide', message=FALSE}
+library(tidyverse)
+library(sf)
+library(knitr)
+```
+
+# Sample data
+
+```{r, include=FALSE}
+library(here)
+co_trails <- here("a1-files",
+                  "County_Trails.geojson") %>%
+  st_read() %>%
+  select(OBJECTID, TrailName, Length)
+```
+
+In this example, have a dataset county-managed trails in San Luis 
+Obispo County, California. There are three variables: an ID number,
+the name of the trail, and the trail length (in miles).
+
+```{r, warning=FALSE, message=FALSE}
+head(co_trails) %>%
+  kable()
+```
+
+# Calculate the average of a variable
+
+The `mean()` function will return the average value for a variable.
+Here's how I would calculate the average length of a trail.
+
+```{r}
+mean(co_trails$Length)
+```
+The average length of a trail is about 1.66 miles.

@@ -38,26 +38,24 @@ probably use some of them.
 
 #### R
 
-These do build on one another.
+These do build on one another. I recommend looking through them in order.
 
-* [Generating a travel time matrix](){target="_blank"} (this is a necessary preliminary step for finding the closest point and for generating isochrones)
-* [Finding the travel time to the closest point](){target="_blank"}
-* [Generating isochrones](){target="_blank"}
-* [Calculating average values for a variable](){target="_blank"}
-* [Non-map charts and graphs](){target="_blank"}
+* [Generating a travel time matrix](https://c-voulgaris.github.io/VIS-2128-F22/a5-files/skill-r5-ttm.html){target="_blank"} 
+* [Finding the travel time to the closest point](https://c-voulgaris.github.io/VIS-2128-F22/a5-files/skill-shortest-dist-from-ttm.html){target="_blank"}
+* [Generating isochrones](https://c-voulgaris.github.io/VIS-2128-F22/a5-files/skill-isochrones.html){target="_blank"}
+* [Calculating average values for a variable](https://c-voulgaris.github.io/VIS-2128-F22/a5-files/skill-average-column.html){target="_blank"}
+* [Non-map charts and graphs](https://c-voulgaris.github.io/VIS-2128-F22/a5-files/skill-charts.html){target="_blank"}
 
 #### ArcGIS Pro
 
-* [Finding the travel time to the closest point]
-
-
+* Coming soon
 
 # Examples
 
 The examples below fully meet the requirements for this assignment.
 
-* [Example 1](https://c-voulgaris.github.io/VIS-2128-F22/a4-files/Examples/slo-trails.html){target="_blank"}
-* [Example 2](https://c-voulgaris.github.io/VIS-2128-F22/a4-files/Examples/tornado-example.pdf){target="_blank"}
+* [Example 1](){target="_blank"}
+* [Example 2](){target="_blank"}
 
 # Grading rubric
 
@@ -65,7 +63,7 @@ The examples below fully meet the requirements for this assignment.
 rubric <- tibble(Item = c("Name of a helpful classmate",
                           "How your classmate helped",
                           "Inclusion of isochrones",
-                          "Illustration of continuous travel time",
+                          "Illustration of continuous travel time variation",
                           "Description of analysis question",
                           "Description of conclusion",
                           "Source attribution",

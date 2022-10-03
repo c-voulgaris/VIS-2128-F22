@@ -1,0 +1,134 @@
+---
+title: "Simple charts"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+A map is one of many ways you can visualize spatial data.
+Scatter plots and and histograms can be good alternatives.
+
+# Required packages
+
+This example uses the following packages. 
+
+```{r, results='hide', message=FALSE}
+library(tidyverse)
+library(tidycensus)
+library(knitr)
+library(here)
+```
+
+# Sample data
+
+I'll start by loading data on school districts in California. There are 
+two data column: The proportion of the district population that are
+children between the ages of 6 and 17, and the median income of district
+households.
+
+```{r, include=FALSE}
+vars <- c(med_inc = "B06011_001",
+          num_school_kids = "B05009_020",
+          population = "B01003_001")
+
+districts <- get_acs(geography = "school district (unified)",
+                    state = "CA",
+                    variables = vars,
+                    output = "wide",
+                    geometry = TRUE) %>%
+  mutate(pct_kids = num_school_kidsE / populationE) %>%
+  rename(med_income = med_incE) %>%
+  select(med_income, pct_kids)
+```
+
+```{r}
+head(districts) %>%
+  kable()
+```
+
+# Scatter plot
+
+I can create a scatter plot to show the relationship between these
+two variables.
+
+```{r, warning=FALSE}
+ggplot(districts) +
+  geom_point(aes(x = med_income,
+                 y = pct_kids),
+             size = 0.5) +
+  scale_x_continuous(
+    name = "Median income within school district boundaries",
+    breaks = breaks <- seq(0, 100000, by = 20000),
+    labels = paste0("$", 
+                    formatC(breaks, 
+                            big.mark = ",",
+                            format = "f",
+                            digits = 0))) +
+  scale_y_continuous(
+    name = "Percent of population between\n6 and 17 years old",
+    breaks = breaks <- seq(0, 0.25, by=0.05),
+    labels = paste0(breaks*100, "%")) +
+  theme_minimal()
+```
+
+Scatter plots can also be useful for showing variation in a single 
+variable. `position = "jitter"` can be used in this case to distribute
+the points randomly across the vertical axis.
+
+```{r, warning=FALSE}
+ggplot(districts) +
+  geom_point(aes(x = med_income,
+                 y = 1),
+             size = 0.5,
+             position = "jitter") +
+  scale_x_continuous(
+    name = "Median income within school district boundaries",
+    breaks = breaks <- seq(0, 100000, by = 20000),
+    labels = paste0("$", 
+                    formatC(breaks, 
+                            big.mark = ",",
+                            format = "f",
+                            digits = 0))) +
+  scale_y_continuous(name = "",
+                     breaks = c(0,2)) +
+  theme_minimal() +
+  theme(axis.text.y = element_blank())
+```
+
+
+# Histograms
+
+Histograms are a more traditional way to show variation in a 
+single variable.
+
+```{r}
+ggplot(districts) +
+  geom_histogram(aes(x = pct_kids),
+                 binwidth = 0.01,
+                 color = "lightgray",
+                 fill = "darkgray") +
+  scale_y_continuous(name = "Number of school districts") +
+  scale_x_continuous(
+    name = "Percent of population between\n6 and 17 years old",
+    breaks = breaks <- seq(0, 0.25, by = 0.05),
+    labels = paste0(breaks * 100, "%")) +
+  theme_minimal()
+```
+
+# Save your chart
+
+You can save your chart the same way you would save a map you 
+created with ggplot.
+
+```{r}
+here("a5-files",
+     "Examples",
+     "histogram.png") %>%
+  ggsave(height = 3, 
+         width = 3, 
+         units = "in",
+         dpi = 300)
+```
+

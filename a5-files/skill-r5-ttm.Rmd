@@ -1,0 +1,164 @@
+---
+title: "Generating a travel time matrix"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The r5r package is useful for calculating travel time matrices for 
+car, transit, bicycle, and pedestrian trips. You can use a travel
+time matrix as a starting point for finding the travel time to 
+the closest point or for generating isochrones.
+
+# Required packages
+
+This example uses the following packages. Before loading the r5r
+package, you should run the line `options(java.parameters = '-Xmx2G')`
+to allocate enough memory to Java (which r5r will use in the 
+background).
+
+
+```{r, results='hide', message=FALSE}
+options(java.parameters = '-Xmx2G')
+
+library(tidyverse)
+library(sf)
+library(r5r)
+library(ggspatial)
+library(ggthemes)
+library(knitr)
+```
+
+# Load some sample data
+
+I'll start with two sets of points for Somerville, Massachusettets:
+polling locations and transit stops (including those within half a mile
+of the city's boundary).
+
+```{r, include=FALSE}
+library(tigris)
+library(here)
+
+MA_st_plane <- "+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000.0001016002 +y_0=750000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +to_meter=0.3048006096012192 +no_defs"
+
+somerville <- places(state = "MA") %>%
+  filter(NAME == "Somerville") %>%
+  st_transform(MA_st_plane) %>%
+  st_buffer(dist = 2640)
+
+transit <- here("a5-files",
+                "Examples",
+                "MBTA-GTFS",
+                "stops.txt") %>%
+  read_csv() %>%
+  filter(!is.na(stop_lat)) %>%
+  st_as_sf(coords = c("stop_lon", "stop_lat"),
+           crs = "WGS84") %>%
+  st_transform(MA_st_plane) %>%
+  st_filter(somerville) %>%
+  st_transform("WGS84")
+  
+polls <- here("a5-files",
+              "Examples",
+              "somerville-polling",
+              "PollingPlaces.shp") %>%
+  st_read() %>%
+  st_transform("WGS84")
+
+```
+
+Here they are on a quick static map:
+
+```{r, message=FALSE}
+ggplot() +
+  annotation_map_tile(type = "cartolight", zoomin = 0) +
+  geom_sf(data = transit,
+          aes(color = "Transit stop")) +
+  geom_sf(data = polls,
+          aes(color = "Polling location")) +
+  scale_color_manual(name = "",
+                     values = c("orange","blue")) +
+  theme_map()
+```  
+
+# Set up networks and R5 core
+
+For r5r to calculate travel times, I need to have a folder within
+my project directory with street network data. This needs to be 
+OpenStreetMap data with a .pbf extension. You can download the data
+in the format you need from 
+[extract.bbbike.org](https://extract.bbbike.org/){target="_blank"}. 
+You may want to watch 
+[this video on how to get data through the BBBike web interface](https://harvard.zoom.us/rec/play/gUcKA268dHZcjD5qJX0MJmWlT4IpZ6dVnxZ2jFks-Y19irF2C5PFsHz4yL2EBBTHuu1Ua1HVXDArlqtz.mheNs6bxuHt9O29S?autoplay=true&startTime=1664806470000){target="_blank"}.
+
+If you want to calculate transit travel times, you'll need to save a 
+GTFS file (with a .zip extension) to the network folder as well.
+
+Now, you can set up an R5 core that will use all the data (street data
+and any transit data) in the directory you specify. In this case, I'm 
+using a directory I've called "networks." You'll get a lot of warnings
+and messages. Don't panic. You can probably ignore them, as long as you
+end up with a network.dat file in your networks folder
+that has a file size of more than zero.
+
+```{r, warning=FALSE, results='hide', message=FALSE}
+my_core <- here("a5-files",
+                "Examples",
+                "networks") %>%
+  setup_r5(verbose = FALSE)
+```
+
+# Prepare point layers
+
+The `r5r` package will find travel times between point layers. The
+data must be in the WGS 84 coordinate reference system and must 
+have a data column called "id". If you already have an ID column
+of some kind, you can rename it as "id". You can also create an ID
+column of sequential numbers.
+
+```{r}
+polls <- polls %>%
+  st_transform("WGS84") %>%
+  mutate(id = seq(1, length(polls$geometry), by = 1))
+
+transit <- transit %>%
+  st_transform("WGS84") %>%
+  rename(id = stop_id)
+```
+
+# Generate a travel time matrix
+
+Now I can generate a travel time matrix. I can choose among
+four modes: `WALK`, `BIKE`, `CAR`, or `TRANSIT`. I didn't include
+transit data when I created my network (and calculating transit
+directions to the closest transit stop doesn't make a lot of sense),
+so I can't use that in this case. I'll USE `mode = "WALK"`.
+
+```{r, warning=FALSE, results='hide'}
+walk_to_polls <- travel_time_matrix(my_core,
+                                   origins = transit,
+                                   destinations = polls,
+                                   mode = "WALK")
+```
+
+This will generate a data frame with three columns: 
+
+* `fromId` with the ID of an origin point,
+* `toId` with the ID of a destination point, and
+* `travel_time` with the travel time in minutes between those two points.
+
+```{r}
+head(walk_to_polls) %>%
+  kable()
+```
+
+# Stop the R5 core
+
+Remember to stop the R5 core when you're done with it.
+
+```{r}
+stop_r5()
+```
+

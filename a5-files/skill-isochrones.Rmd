@@ -1,0 +1,171 @@
+---
+title: "Isochrones"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+You can use a travel time matrix between a set of points
+and a grid to generate isochrones.
+
+# Required packages
+
+This example uses the following packages. Before loading the r5r
+package, you should run the line `options(java.parameters = '-Xmx2G')`
+to allocate enough memory to Java (which r5r will use in the 
+background).
+
+
+```{r, results='hide', message=FALSE}
+options(java.parameters = '-Xmx2G')
+
+library(tidyverse)
+library(tigris)
+library(sf)
+library(r5r)
+library(ggspatial)
+library(ggthemes)
+library(knitr)
+library(interp)
+library(isoband)
+library(here)
+```
+
+# Sample data
+
+```{r, include=FALSE}
+polls <- here::here("a5-files",
+              "Examples",
+              "somerville-polling",
+              "PollingPlaces.shp") %>%
+  st_read() %>%
+  st_transform("WGS84") %>%
+  mutate(id = as.character(OBJECTID))
+```
+
+I'll start with a set of points with the locations of polling
+places in Somerville. Here they are on a map:
+
+```{r, message=FALSE}
+ggplot(polls) +
+  annotation_map_tile(type = "cartolight",
+                      zoomin = -1) +
+  geom_sf()
+```
+
+# Generate a grid
+
+I'll start by generating a grid of points that covers the area within
+a half mile of the Somerville boundary. Grid points will be 500
+feet apart from one another. Since I want to use these to 
+generate a travel time matrix, I'll need to create an id column.
+
+```{r, message=FALSE, results='hide'}
+MA_st_plane <- "+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000.0001016002 +y_0=750000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +to_meter=0.3048006096012192 +no_defs"
+
+grid_points <- places(state = "MA") %>%
+  filter(NAME == "Somerville") %>%
+  st_transform(MA_st_plane) %>%
+  st_buffer(dist = 2640) %>%
+  st_make_grid(cellsize = 500,
+               what = "corners") %>%
+  st_as_sf() %>%
+  st_transform("WGS84")
+
+grid_points <- grid_points %>%
+  mutate(id = as.character(seq(1, length(grid_points$x), by = 1)))
+
+ggplot(grid_points) +
+  annotation_map_tile(type = "cartolight", zoomin = -1) +
+  geom_sf(size = 0.25)
+```
+
+# Find shortest distance from grid to features
+
+Now I can use r5r to find the shortest walking time from each
+point on the grid to the nearest polling place. If you have a 
+lot of points, this could take a few minutes.
+
+```{r, message=FALSE, warning=FALSE, results='hide'}
+my_core <- here("a5-files",
+                "Examples",
+                "networks") %>%
+  setup_r5(verbose = FALSE)
+
+walk_from_grid <- travel_time_matrix(my_core,
+                                   origins = grid_points,
+                                   destinations = polls,
+                                   mode = "WALK",
+                                   verbose = FALSE) %>%
+  pivot_wider(names_from = toId,
+              values_from = travel_time) %>%
+  rowwise() %>%
+  mutate(min_time = min(c_across(-fromId),na.rm = TRUE)) %>%
+  select(fromId, min_time) %>%
+  rename(id = fromId)
+
+grid_points <- grid_points %>%
+  left_join(walk_from_grid)
+
+stop_r5()
+```
+# Intermediate map
+
+Here's a quick map to show how walk time to the nearest polling
+place varies across your grid. I'm log-transforming the color scale
+so that the variation close to the polling locations in more visible.
+
+```{r}
+ggplot(grid_points) +
+  annotation_map_tile(type = "cartolight", zoomin = -1) +
+  geom_sf(aes(color = min_time)) +
+  scale_color_viridis_c(trans = "log",
+                        name = "Minutes to a polling place (walking)",
+                        breaks = c(1, 10, 100))
+```
+
+# Interpolate points
+
+To generate isochrones from those points, I'll need to interpolate them
+to a grid matrix.
+
+```{r}
+# create variables with latitude/longitude coordinates
+grid_points <- grid_points %>%
+  mutate(lon = st_coordinates(.)[,1],
+         lat = st_coordinates(.)[,2])
+
+interp <- interp(grid_points$lon, 
+                 grid_points$lat, 
+                 grid_points$min_time)
+```
+
+# Generate isochrones
+
+Now I can use the `isobands()` function to generate a set of
+isochrones for the area within a ten-minute walk of a polling 
+place.
+
+```{r}
+isochrones <- isobands(x = interp$x,
+                       y = interp$y,
+                       z = t(interp$z),
+                       levels_low = 0,
+                       levels_high = 10) %>%
+  iso_to_sfg() 
+
+iso_poly <- st_sf(level = 1:length(isochrones),
+                  geometry = st_sfc(isochrones)) %>%
+  st_set_crs("WGS84")
+
+ggplot() +
+ annotation_map_tile(type = "cartolight", zoomin = 0) +
+  geom_sf(data = iso_poly,
+          color = NA,
+          fill = "purple",
+          alpha = 0.5) +
+  geom_sf(data = polls) 
+```
+

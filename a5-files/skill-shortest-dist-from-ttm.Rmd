@@ -1,0 +1,152 @@
+---
+title: "Shortest distance from a travel time matrix"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Once you've created a travel time matrix using the `r5r`
+package, you can rearrange it to find the travel time to 
+the closest destination.
+
+# Required packages
+
+This example uses the following packages. 
+
+```{r, results='hide', message=FALSE}
+library(tidyverse)
+library(sf)
+library(ggspatial)
+library(ggthemes)
+library(knitr)
+```
+
+# Sample data
+
+```{r, include=FALSE}
+options(java.parameters = '-Xmx2G')
+
+library(r5r)
+library(tigris)
+library(here)
+
+MA_st_plane <- "+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000.0001016002 +y_0=750000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +to_meter=0.3048006096012192 +no_defs"
+
+somerville <- places(state = "MA") %>%
+  filter(NAME == "Somerville") %>%
+  st_transform(MA_st_plane) %>%
+  st_buffer(dist = 2640)
+
+transit <- here("a5-files",
+                "Examples",
+                "MBTA-GTFS",
+                "stops.txt") %>%
+  read_csv() %>%
+  filter(!is.na(stop_lat)) %>%
+  st_as_sf(coords = c("stop_lon", "stop_lat"),
+           crs = "WGS84") %>%
+  st_transform(MA_st_plane) %>%
+  st_filter(somerville) %>%
+  st_transform("WGS84") %>%
+  mutate(id = as.character(stop_id))
+  
+polls <- here("a5-files",
+              "Examples",
+              "somerville-polling",
+              "PollingPlaces.shp") %>%
+  st_read() %>%
+  st_transform("WGS84") %>%
+  mutate(id = as.character(OBJECTID))
+
+my_core <- here("a5-files",
+                "Examples",
+                "networks") %>%
+  setup_r5(verbose = FALSE)
+
+walk_to_polls <- travel_time_matrix(my_core,
+                                   origins = transit,
+                                   destinations = polls,
+                                   mode = "WALK",
+                                   verbose = FALSE)
+
+stop_r5()
+```
+
+In this example, I've already calculated a travel time
+matrix from transit stops to polling locations in 
+Somerville, Massachusetts.
+
+```{r, warning=FALSE, message=FALSE}
+head(walk_to_polls) %>%
+  kable()
+```
+
+# Reshape data
+
+I want a data set with a row for each polling place and column for 
+the travel time to each transit station. I can use `pivot_wider()`
+to get my dataframe in that format. 
+
+I'll end up with a data frame that has 19 rows (one for each polling
+place) and 650 (one for the polling place ID and 649 for all the 
+transit stops).
+
+Here, I'm showing just the first few rows an the first 15 columns.
+
+```{r}
+walk_to_polls_wide <- walk_to_polls %>%
+  pivot_wider(names_from = fromId,
+              values_from = travel_time)
+
+head(walk_to_polls_wide[1:15]) %>%
+  kable()
+```
+
+# Calculate the minimum travel time
+
+Now I can calculated the minimum travel time across all those
+columns. I'll need to use `rowwise()` to indicate that I 
+want to do calculations across columns rather than within
+columns. `c_across(-toID)` means I want to exclude the ID 
+column from my calculation. Finally, I'll rename `toId`
+as just `id` so I can easily join this variable to the 
+polling place layer.
+
+```{r}
+walk_to_polls_min <- walk_to_polls_wide %>%
+  rowwise() %>%
+  mutate(min_time = min(c_across(-toId),na.rm = TRUE)) %>%
+  select(toId, min_time) %>%
+  rename(id = toId)
+```
+
+# Join data to layer
+
+Now I can join the minimum travel time data to the layer with 
+polling place locations
+
+```{r}
+polls <- polls %>%
+  left_join(walk_to_polls_min)
+```
+
+# Map
+
+And I can make a quick map to see how it all looks
+
+```{r, message=FALSE, results='hide'}
+ggplot() +
+  annotation_map_tile(type = "cartolight", zoomin = 0) +
+  geom_sf(data = transit,
+          aes(shape = "Transit stop"),
+          color = "black",
+          size = 0.2) +
+  geom_sf(data = polls,
+          aes(color = min_time)) +
+  scale_color_viridis_c(name = 
+          "Polling place:\nWalking time to\nclosest transit stop") +
+  scale_shape(name = "") +
+  theme_void()
+```  
