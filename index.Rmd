@@ -29,4 +29,3 @@ Graduate School of Design.
 * [Assignment 4: Calculate distances](https://c-voulgaris.github.io/VIS-2128-F22/a4-files/assignment-4.html){target="_blank"}
 * Assignment 5: Generate isochrones
 * Assignment 6: Calculate areas and densities
-* Assignment 7: Write a research plan

@@ -1,0 +1,93 @@
+---
+title: "Assignment 5"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(knitr)
+```
+
+# Deliverable
+
+Generate a map to communicate the travel times between features
+
+* using isochrones _*and*_ 
+* by communicating continuous variations in travel time  
+    * by symbolizing features based on their travel time (by any mode) from other features _*or*_
+    * showing descriptive statistics such as averages and standard deviations _*or*_
+    * illustrating distributions and relationships using charts and graphs
+
+Your map layout should 
+include a description of the analysis question your
+map is meant to address and a clear description of what each 
+layer represents (this might be in the map legend). 
+
+Include the sources of all the data shown
+in your map (including any data that isn't shown but was 
+used to derive the layers you've shown), the name of a
+classmate who was helpful to you, and how they helped.
+
+# Relevant Skills
+
+You are unlikely to use all of these skills in this 
+assignment, but all of them are relevant and you will 
+probably use some of them. 
+
+#### R
+
+These do build on one another.
+
+* [Generating a travel time matrix](){target="_blank"} (this is a necessary preliminary step for finding the closest point and for generating isochrones)
+* [Finding the travel time to the closest point](){target="_blank"}
+* [Generating isochrones](){target="_blank"}
+* [Calculating average values for a variable](){target="_blank"}
+* [Non-map charts and graphs](){target="_blank"}
+
+#### ArcGIS Pro
+
+* [Finding the travel time to the closest point]
+
+
+
+# Examples
+
+The examples below fully meet the requirements for this assignment.
+
+* [Example 1](https://c-voulgaris.github.io/VIS-2128-F22/a4-files/Examples/slo-trails.html){target="_blank"}
+* [Example 2](https://c-voulgaris.github.io/VIS-2128-F22/a4-files/Examples/tornado-example.pdf){target="_blank"}
+
+# Grading rubric
+
+```{r, echo=FALSE}
+rubric <- tibble(Item = c("Name of a helpful classmate",
+                          "How your classmate helped",
+                          "Inclusion of isochrones",
+                          "Illustration of continuous travel time",
+                          "Description of analysis question",
+                          "Description of conclusion",
+                          "Source attribution",
+                          "Total"),
+                 `No credit` = c(rep("Missing", 7), ""),
+                 `Half credit` = c("Not adequately described",
+                                   "Not adequately described",
+                                   "",
+                                   "",
+                                   "Not adequately described",
+                                   "Not adequately described",
+                                   "Not adequately described",
+                                   ""),
+                 `Full credit` = c("Adequately described",
+                                   "Adequately described",
+                                   "Included",
+                                   "Included",
+                                   "Adequately described",
+                                   "Adequately described",
+                                   "Adequately described", 
+                                   ""),
+                 `Possible points` = c(2, 2, 5, 5, 5, 5, 1, 25))
+
+kable(rubric)
+```
