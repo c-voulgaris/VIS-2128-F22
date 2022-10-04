@@ -56,7 +56,9 @@ These do build on one another. I recommend watching them in order.
 
 # Example
 
-Coming soon
+This example would receive full credit on this assignment.
+
+* [Example 1](https://c-voulgaris.github.io/VIS-2128-F22/a5-files/Examples/polling-example.pdf){target="_blank"}
 
 # Grading rubric
 
