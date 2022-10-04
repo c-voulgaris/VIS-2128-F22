@@ -123,7 +123,8 @@ ggplot(grid_points) +
   geom_sf(aes(color = min_time)) +
   scale_color_viridis_c(trans = "log",
                         name = "Minutes to a polling place (walking)",
-                        breaks = c(1, 10, 100))
+                        breaks = c(1, 10, 100),
+                        limits = c(1, 100))
 ```
 
 # Interpolate points

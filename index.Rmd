@@ -13,13 +13,12 @@ Graduate School of Design.
 
 # Course Topics
 
-* Week 1: Finding and describing (spatial) data
-* Week 2: Visualizing (spatial) data
-* Week 3: Raster image data 
-* Week 4: Distance
-* Week 5: Networks
-* Week 6: Areas and densities
-* Week 7: Research questions
+* Topic 1: Finding and describing (spatial) data
+* Topic 2: Visualizing (spatial) data
+* Topic 3: Raster image data 
+* Topic 4: Distance
+* Topic 5: Networks
+* Topic 6: Areas and densities
     
 # Assignments
 
@@ -27,5 +26,5 @@ Graduate School of Design.
 * [Assignment 2: Create a map](https://c-voulgaris.github.io/VIS-2128-F22/a2-files/assignment-2.html){target="_blank"}
 * [Assignment 3: Georeference a map](https://c-voulgaris.github.io/VIS-2128-F22/a3-files/assignment-3.html){target="_blank"}
 * [Assignment 4: Calculate distances](https://c-voulgaris.github.io/VIS-2128-F22/a4-files/assignment-4.html){target="_blank"}
-* Assignment 5: Generate isochrones
+* [Assignment 5: Calculate travel times](https://c-voulgaris.github.io/VIS-2128-F22/a5-files/assignment-5.html){target="_blank"}
 * Assignment 6: Calculate areas and densities

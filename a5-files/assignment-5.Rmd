@@ -48,14 +48,15 @@ These do build on one another. I recommend looking through them in order.
 
 #### ArcGIS Pro
 
-* Coming soon
+These do build on one another. I recommend watching them in order.
 
-# Examples
+* [Generating isochrones](https://harvard.zoom.us/rec/play/IxXdU_nElwldXS98OmNT8QDdALYcKu2cAXxZiq_f1dfrUtmk61Rt6xrLHTgQnuFdEbz_GUrNfzYIP1qc.Z5ZazqeJCw9yydNv?continueMode=true){target="_blank"}
+* [Generating a travel time matrix](https://harvard.zoom.us/rec/play/5hHBUOhsdwpuQwNODn3PVcgcYldNEzYvf_oYj5zgSGAtEt11W-X_IjUlH4DPRZ0ILNpIBcnu_29Kh985.405SDnUSdeD-_A2x?continueMode=true){target="_blank"}
+* [Finding and summarizing the time to the closest feature](https://harvard.zoom.us/rec/play/mi-jv8jPqnWhCVYgqWno5SUH95fxWOmhHmlbRV21QbGid9iAkjPe2TvuYLWwBpk4O7WSp4Ag1BFhNX2e.RFi2Lca32vFP2fWm?continueMode=true){target="_blank"}
 
-The examples below fully meet the requirements for this assignment.
+# Example
 
-* [Example 1](){target="_blank"}
-* [Example 2](){target="_blank"}
+Coming soon
 
 # Grading rubric
 
