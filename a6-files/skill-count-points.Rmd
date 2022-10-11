@@ -1,0 +1,62 @@
+---
+title: "Count points within polygons"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Density is the ratio of the the amount of something within a 
+polygon to the area of the polygon. This page demonstrates how 
+to count the number of points within each polygon in a layer.
+
+# Required packages
+
+This example uses the following packages
+
+```{r, results='hide', message=FALSE}
+library(tidyverse)
+library(sf)
+library(knitr)
+```
+
+# Load some sample data
+
+I'll start by downloading and loading a layer of polygons representing 
+open space in Boston and a layer representing trees on public properties.
+
+```{r}
+MA_st_plane <- "+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000.0001016002 +y_0=750000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +to_meter=0.3048006096012192 +no_defs" 
+
+trees <- st_read("https://bostonopendata-boston.opendata.arcgis.com/datasets/boston::trees.geojson") %>%
+  st_transform(MA_st_plane)
+
+parks <- st_read("https://bostonopendata-boston.opendata.arcgis.com/datasets/boston::open-space.geojson") %>%
+  st_transform(MA_st_plane)
+
+```
+
+# Count the points in each polygon
+
+`st_intersects()` will return a list of indices for points within 
+each polygon. We're really just interested in how many points are in 
+each list, so I'll use `lengths()` to get the number of points in each 
+polygon.
+
+```{r}
+parks <- parks %>%
+  mutate(trees_in_park = lengths(st_intersects(., trees)))
+```  
+
+Now we have a variable called `trees_in_park` with the number of trees
+within each park.
+
+```{r}
+parks %>%
+  select(SITE_NAME, trees_in_park) %>%
+  head() %>%
+  kable()
+```
+
+

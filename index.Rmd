@@ -27,4 +27,4 @@ Graduate School of Design.
 * [Assignment 3: Georeference a map](https://c-voulgaris.github.io/VIS-2128-F22/a3-files/assignment-3.html){target="_blank"}
 * [Assignment 4: Calculate distances](https://c-voulgaris.github.io/VIS-2128-F22/a4-files/assignment-4.html){target="_blank"}
 * [Assignment 5: Calculate travel times](https://c-voulgaris.github.io/VIS-2128-F22/a5-files/assignment-5.html){target="_blank"}
-* Assignment 6: Calculate areas and densities
+* [Assignment 6: Calculate areas and densities](https://c-voulgaris.github.io/VIS-2128-F22/a6-files/assignment-6.html){target="_blank"}

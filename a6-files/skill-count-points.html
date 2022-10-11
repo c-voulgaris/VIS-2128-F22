@@ -11,7 +11,7 @@
 
 
 
-<title>Spatial Analysis</title>
+<title>Count points within polygons</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -361,35 +361,109 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Spatial Analysis</h1>
-<h3 class="subtitle">Fall 2022</h3>
+<h1 class="title toc-ignore">Count points within polygons</h1>
 
 </div>
 
 
-<p>This is the course webpage for Spatial Analysis (VIS 2128) at the
-Harvard Graduate School of Design.</p>
-<div id="course-topics" class="section level1">
-<h1>Course Topics</h1>
-<ul>
-<li>Topic 1: Finding and describing (spatial) data</li>
-<li>Topic 2: Visualizing (spatial) data</li>
-<li>Topic 3: Raster image data</li>
-<li>Topic 4: Distance</li>
-<li>Topic 5: Networks</li>
-<li>Topic 6: Areas and densities</li>
-</ul>
+<p>Density is the ratio of the the amount of something within a polygon
+to the area of the polygon. This page demonstrates how to count the
+number of points within each polygon in a layer.</p>
+<div id="required-packages" class="section level1">
+<h1>Required packages</h1>
+<p>This example uses the following packages</p>
+<pre class="r"><code>library(tidyverse)
+library(sf)
+library(knitr)</code></pre>
 </div>
-<div id="assignments" class="section level1">
-<h1>Assignments</h1>
-<ul>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/assignment-1.html" target="_blank">Assignment 1: Select and describe a dataset</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/assignment-2.html" target="_blank">Assignment 2: Create a map</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a3-files/assignment-3.html" target="_blank">Assignment 3: Georeference a map</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a4-files/assignment-4.html" target="_blank">Assignment 4: Calculate distances</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a5-files/assignment-5.html" target="_blank">Assignment 5: Calculate travel times</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a6-files/assignment-6.html" target="_blank">Assignment 6: Calculate areas and densities</a></li>
-</ul>
+<div id="load-some-sample-data" class="section level1">
+<h1>Load some sample data</h1>
+<p>I’ll start by downloading and loading a layer of polygons
+representing open space in Boston and a layer representing trees on
+public properties.</p>
+<pre class="r"><code>MA_st_plane &lt;- &quot;+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000.0001016002 +y_0=750000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +to_meter=0.3048006096012192 +no_defs&quot; 
+
+trees &lt;- st_read(&quot;https://bostonopendata-boston.opendata.arcgis.com/datasets/boston::trees.geojson&quot;) %&gt;%
+  st_transform(MA_st_plane)</code></pre>
+<pre><code>## Reading layer `Trees&#39; from data source 
+##   `https://bostonopendata-boston.opendata.arcgis.com/datasets/boston::trees.geojson&#39; 
+##   using driver `GeoJSON&#39;
+## Simple feature collection with 201845 features and 2 fields
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: -71.19069 ymin: 42.23267 xmax: -70.92452 ymax: 42.39691
+## Geodetic CRS:  WGS 84</code></pre>
+<pre class="r"><code>parks &lt;- st_read(&quot;https://bostonopendata-boston.opendata.arcgis.com/datasets/boston::open-space.geojson&quot;) %&gt;%
+  st_transform(MA_st_plane)</code></pre>
+<pre><code>## Reading layer `Open_Space&#39; from data source 
+##   `https://bostonopendata-boston.opendata.arcgis.com/datasets/boston::open-space.geojson&#39; 
+##   using driver `GeoJSON&#39;
+## Simple feature collection with 1002 features and 22 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -71.19091 ymin: 42.22789 xmax: -70.87486 ymax: 42.39653
+## Geodetic CRS:  WGS 84</code></pre>
+</div>
+<div id="count-the-points-in-each-polygon" class="section level1">
+<h1>Count the points in each polygon</h1>
+<p><code>st_intersects()</code> will return a list of indices for points
+within each polygon. We’re really just interested in how many points are
+in each list, so I’ll use <code>lengths()</code> to get the number of
+points in each polygon.</p>
+<pre class="r"><code>parks &lt;- parks %&gt;%
+  mutate(trees_in_park = lengths(st_intersects(., trees)))</code></pre>
+<p>Now we have a variable called <code>trees_in_park</code> with the
+number of trees within each park.</p>
+<pre class="r"><code>parks %&gt;%
+  select(SITE_NAME, trees_in_park) %&gt;%
+  head() %&gt;%
+  kable()</code></pre>
+<table>
+<colgroup>
+<col width="43%" />
+<col width="17%" />
+<col width="39%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">SITE_NAME</th>
+<th align="right">trees_in_park</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Wilson Park</td>
+<td align="right">6</td>
+<td align="left">MULTIPOLYGON (((751914.1 29…</td>
+</tr>
+<tr class="even">
+<td align="left">Nickerson Field</td>
+<td align="right">81</td>
+<td align="left">MULTIPOLYGON (((759302.3 29…</td>
+</tr>
+<tr class="odd">
+<td align="left">Hooker-Sorrento Street Playground</td>
+<td align="right">29</td>
+<td align="left">MULTIPOLYGON (((757472.3 29…</td>
+</tr>
+<tr class="even">
+<td align="left">Smith Playground</td>
+<td align="right">105</td>
+<td align="left">MULTIPOLYGON (((755864.1 29…</td>
+</tr>
+<tr class="odd">
+<td align="left">Fern Square</td>
+<td align="right">5</td>
+<td align="left">MULTIPOLYGON (((755246.1 29…</td>
+</tr>
+<tr class="even">
+<td align="left">Ringer Playground</td>
+<td align="right">106</td>
+<td align="left">MULTIPOLYGON (((754430.4 29…</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 

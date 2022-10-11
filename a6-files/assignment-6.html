@@ -11,7 +11,7 @@
 
 
 
-<title>Spatial Analysis</title>
+<title>Assignment 6</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -361,35 +361,132 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Spatial Analysis</h1>
-<h3 class="subtitle">Fall 2022</h3>
+<h1 class="title toc-ignore">Assignment 6</h1>
 
 </div>
 
 
-<p>This is the course webpage for Spatial Analysis (VIS 2128) at the
-Harvard Graduate School of Design.</p>
-<div id="course-topics" class="section level1">
-<h1>Course Topics</h1>
+<div id="deliverable" class="section level1">
+<h1>Deliverable</h1>
+<p>Calculate the density of points (number of points per unit of area)
+or lines (length of line per unit of area) within a layer of polygons.
+The polygon layer can be one that represents a set of features, or one
+that you have generated (for instance, a set of buffers or isochrones or
+a grid).</p>
+<p>Display the results on a map. Include a statement about the question
+the map is meant to answer and the answer to that question. You should
+also include the name of of a classmate who was helpful to you and a
+description of how they helped.</p>
+</div>
+<div id="relevant-skills" class="section level1">
+<h1>Relevant Skills</h1>
+<div id="r" class="section level4">
+<h4>R</h4>
 <ul>
-<li>Topic 1: Finding and describing (spatial) data</li>
-<li>Topic 2: Visualizing (spatial) data</li>
-<li>Topic 3: Raster image data</li>
-<li>Topic 4: Distance</li>
-<li>Topic 5: Networks</li>
-<li>Topic 6: Areas and densities</li>
+<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a6-files/skill-calculate-area.html" target="_blank">Calculate the area of polygons within a polygon
+layer</a></li>
+<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a6-files/skill-count-points.html" target="_blank">Count the number of points within a polygon
+layer</a></li>
+<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a6-files/skill-count-length.html" target="_blank">Calculate the length of lines within a polygon
+layer</a></li>
 </ul>
 </div>
-<div id="assignments" class="section level1">
-<h1>Assignments</h1>
+<div id="arcgis-pro" class="section level4">
+<h4>ArcGIS Pro</h4>
 <ul>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a1-files/assignment-1.html" target="_blank">Assignment 1: Select and describe a dataset</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a2-files/assignment-2.html" target="_blank">Assignment 2: Create a map</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a3-files/assignment-3.html" target="_blank">Assignment 3: Georeference a map</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a4-files/assignment-4.html" target="_blank">Assignment 4: Calculate distances</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a5-files/assignment-5.html" target="_blank">Assignment 5: Calculate travel times</a></li>
-<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a6-files/assignment-6.html" target="_blank">Assignment 6: Calculate areas and densities</a></li>
+<li><a href="https://harvard.zoom.us/rec/share/_Na_H0miN8UTISITJrSu9ysDSv29bEGFG2jRkh-Ho1x0QW3QTKW-MLtp__It8cbG.hL733mCAFWuHXm_O?startTime=1665419672000" target="_blank">Calculate the areas of polygons</a></li>
+<li><a href="https://harvard.zoom.us/rec/share/LiPUEsKl2uGQXoAQvbraE9Tvkkyga7Rb2GShqhIj5kXnqGnYjCreCIulTA2EOVHU.j0Kqlo8hV2ga5Aqd?startTime=1665418912000" target="_blank">Count the number of points within a polygon
+layer</a></li>
+<li><a href="https://harvard.zoom.us/rec/share/cbBv1vvzKLWZgt7dV8dYT-u5OgKdb0e3FP4GFXL7sDWFarTs9OnBK5-L7LrZi1wI.YdBPcc3H0iVFs7d7?startTime=1665422274000" target="_blank">Calculate the length of lines within a polygon
+layer</a></li>
 </ul>
+</div>
+</div>
+<div id="example" class="section level1">
+<h1>Example</h1>
+<p>These examples would receive full credit on this assignment.</p>
+<ul>
+<li>Example 1(coming soon)</li>
+</ul>
+</div>
+<div id="grading-rubric" class="section level1">
+<h1>Grading rubric</h1>
+<table style="width:100%;">
+<colgroup>
+<col width="31%" />
+<col width="9%" />
+<col width="23%" />
+<col width="20%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Item</th>
+<th align="left">No credit</th>
+<th align="left">Half credit</th>
+<th align="left">Full credit</th>
+<th align="right">Possible points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Name of a helpful classmate</td>
+<td align="left">Missing</td>
+<td align="left">Not adequately described</td>
+<td align="left">Adequately described</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">How your classmate helped</td>
+<td align="left">Missing</td>
+<td align="left">Not adequately described</td>
+<td align="left">Adequately described</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Description of density variable</td>
+<td align="left">Missing</td>
+<td align="left">Not adequately described</td>
+<td align="left">Adequately described</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">Illustration of density variable</td>
+<td align="left">Missing</td>
+<td align="left">Not clearly illustrated</td>
+<td align="left">Clearly illustrated</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">Description of analysis question</td>
+<td align="left">Missing</td>
+<td align="left">Not adequately described</td>
+<td align="left">Adequately described</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">Description of conclusion</td>
+<td align="left">Missing</td>
+<td align="left">Not adequately described</td>
+<td align="left">Adequately described</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">Source attribution</td>
+<td align="left">Missing</td>
+<td align="left">Not adequately described</td>
+<td align="left">Adequately described</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="right">25</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 

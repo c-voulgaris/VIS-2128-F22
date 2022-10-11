@@ -1,0 +1,76 @@
+---
+title: "Assignment 6"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(knitr)
+```
+
+# Deliverable
+
+Calculate the density of points (number of points per unit of area) or lines
+(length of line per unit of area) within a layer of polygons. The polygon layer 
+can be one that represents a set of features, or one that you have generated 
+(for instance, a set of buffers or isochrones or a grid).
+
+Display the results on a map. Include a statement about the question the
+map is meant to answer and the answer to that question. You should also 
+include the name of of a classmate who was helpful to you and a description 
+of how they helped.
+
+# Relevant Skills
+
+#### R
+
+* [Calculate the area of polygons within a polygon layer](https://c-voulgaris.github.io/VIS-2128-F22/a6-files/skill-calculate-area.html){target="_blank"}
+* [Count the number of points within a polygon layer](https://c-voulgaris.github.io/VIS-2128-F22/a6-files/skill-count-points.html){target="_blank"}
+* [Calculate the length of lines within a polygon layer](https://c-voulgaris.github.io/VIS-2128-F22/a6-files/skill-count-length.html){target="_blank"}
+
+#### ArcGIS Pro
+
+* [Calculate the areas of polygons](https://harvard.zoom.us/rec/share/_Na_H0miN8UTISITJrSu9ysDSv29bEGFG2jRkh-Ho1x0QW3QTKW-MLtp__It8cbG.hL733mCAFWuHXm_O?startTime=1665419672000){target="_blank"}
+* [Count the number of points within a polygon layer](https://harvard.zoom.us/rec/share/LiPUEsKl2uGQXoAQvbraE9Tvkkyga7Rb2GShqhIj5kXnqGnYjCreCIulTA2EOVHU.j0Kqlo8hV2ga5Aqd?startTime=1665418912000){target="_blank"}
+* [Calculate the length of lines within a polygon layer](https://harvard.zoom.us/rec/share/cbBv1vvzKLWZgt7dV8dYT-u5OgKdb0e3FP4GFXL7sDWFarTs9OnBK5-L7LrZi1wI.YdBPcc3H0iVFs7d7?startTime=1665422274000){target="_blank"}
+
+# Example
+
+These examples would receive full credit on this assignment.
+
+* Example 1(coming soon)
+
+# Grading rubric
+
+```{r, echo=FALSE}
+rubric <- tibble(Item = c("Name of a helpful classmate",
+                          "How your classmate helped",
+                          "Description of density variable",
+                          "Illustration of density variable",
+                          "Description of analysis question",
+                          "Description of conclusion",
+                          "Source attribution",
+                          "Total"),
+                 `No credit` = c(rep("Missing", 7), ""),
+                 `Half credit` = c("Not adequately described",
+                                   "Not adequately described",
+                                   "Not adequately described",
+                                   "Not clearly illustrated",
+                                   "Not adequately described",
+                                   "Not adequately described",
+                                   "Not adequately described",
+                                   ""),
+                 `Full credit` = c("Adequately described",
+                                   "Adequately described",
+                                   "Adequately described",
+                                   "Clearly illustrated",
+                                   "Adequately described",
+                                   "Adequately described",
+                                   "Adequately described", 
+                                   ""),
+                 `Possible points` = c(2, 2, 5, 5, 5, 5, 1, 25))
+
+kable(rubric)
+```
