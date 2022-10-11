@@ -40,7 +40,7 @@ of how they helped.
 
 These examples would receive full credit on this assignment.
 
-* Example 1(coming soon)
+* [Example 1](https://c-voulgaris.github.io/VIS-2128-F22/a6-files/Examples/park-map.html){target="_blank"}
 
 # Grading rubric
 
