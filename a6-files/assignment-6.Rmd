@@ -36,6 +36,10 @@ of how they helped.
 * [Count the number of points within a polygon layer](https://harvard.zoom.us/rec/share/LiPUEsKl2uGQXoAQvbraE9Tvkkyga7Rb2GShqhIj5kXnqGnYjCreCIulTA2EOVHU.j0Kqlo8hV2ga5Aqd?startTime=1665418912000){target="_blank"}
 * [Calculate the length of lines within a polygon layer](https://harvard.zoom.us/rec/share/cbBv1vvzKLWZgt7dV8dYT-u5OgKdb0e3FP4GFXL7sDWFarTs9OnBK5-L7LrZi1wI.YdBPcc3H0iVFs7d7?startTime=1665422274000){target="_blank"}
 
+# Additional resources
+
+* [Lecture slides](https://c-voulgaris.github.io/VIS-2128-F22/a6-files/area-density-lecture.pdf){target="_blank"}
+
 # Example
 
 These examples would receive full credit on this assignment.

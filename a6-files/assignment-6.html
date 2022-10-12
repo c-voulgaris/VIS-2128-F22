@@ -298,8 +298,8 @@ pre code {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -307,16 +307,9 @@ pre code {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -401,6 +394,12 @@ layer</a></li>
 layer</a></li>
 </ul>
 </div>
+</div>
+<div id="additional-resources" class="section level1">
+<h1>Additional resources</h1>
+<ul>
+<li><a href="https://c-voulgaris.github.io/VIS-2128-F22/a6-files/area-density-lecture.pdf" target="_blank">Lecture slides</a></li>
+</ul>
 </div>
 <div id="example" class="section level1">
 <h1>Example</h1>

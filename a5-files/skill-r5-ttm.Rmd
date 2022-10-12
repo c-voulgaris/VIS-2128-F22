@@ -29,6 +29,7 @@ library(r5r)
 library(ggspatial)
 library(ggthemes)
 library(knitr)
+library(here)
 ```
 
 # Load some sample data
@@ -121,7 +122,7 @@ column of sequential numbers.
 ```{r}
 polls <- polls %>%
   st_transform("WGS84") %>%
-  mutate(id = seq(1, length(polls$geometry), by = 1))
+  mutate(id = as.character(seq(1, length(polls$geometry), by = 1)))
 
 transit <- transit %>%
   st_transform("WGS84") %>%

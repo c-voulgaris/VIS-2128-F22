@@ -146,15 +146,15 @@ interp <- interp(grid_points$lon,
 # Generate isochrones
 
 Now I can use the `isobands()` function to generate a set of
-isochrones for the area within a ten-minute walk of a polling 
+isochrones for the area within a ten- and twenty-minute walk of a polling 
 place.
 
 ```{r}
 isochrones <- isobands(x = interp$x,
                        y = interp$y,
                        z = t(interp$z),
-                       levels_low = 0,
-                       levels_high = 10) %>%
+                       levels_low = c(0,10),
+                       levels_high = c(10, 20)) %>%
   iso_to_sfg() 
 
 iso_poly <- st_sf(level = 1:length(isochrones),
@@ -165,8 +165,9 @@ ggplot() +
  annotation_map_tile(type = "cartolight", zoomin = 0) +
   geom_sf(data = iso_poly,
           color = NA,
-          fill = "purple",
+          aes(fill = as.character(level)),
           alpha = 0.5) +
-  geom_sf(data = polls) 
+  geom_sf(data = polls) +
+  scale_fill_manual(values = c("red", "blue"))
 ```
 
