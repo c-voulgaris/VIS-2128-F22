@@ -54,6 +54,10 @@ These do build on one another. I recommend watching them in order.
 * [Generating a travel time matrix](https://harvard.zoom.us/rec/play/5hHBUOhsdwpuQwNODn3PVcgcYldNEzYvf_oYj5zgSGAtEt11W-X_IjUlH4DPRZ0ILNpIBcnu_29Kh985.405SDnUSdeD-_A2x?continueMode=true){target="_blank"}
 * [Finding and summarizing the time to the closest feature](https://harvard.zoom.us/rec/play/mi-jv8jPqnWhCVYgqWno5SUH95fxWOmhHmlbRV21QbGid9iAkjPe2TvuYLWwBpk4O7WSp4Ag1BFhNX2e.RFi2Lca32vFP2fWm?continueMode=true){target="_blank"}
 
+# Other resources
+
+* [Accessibility lecture notes](https://gsd-ses-5394.github.io/accessibilty/){target="_blank"}
+
 # Example
 
 This example would receive full credit on this assignment.
